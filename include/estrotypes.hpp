@@ -1,5 +1,7 @@
 #pragma once
 
+#include "estrocolors.hpp"
+
 typedef struct rVector2 {
 	rVector2(int x = 0, int y = 0) : x(x), y(y) {}
 	int x = 0;
