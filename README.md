@@ -1,2 +1,2 @@
 # Estroengine v0.1.4
-A simple-to-use portable node-based game engine built in C++.
+A simple-to-use portable node-tree-based game engine built in C++.
