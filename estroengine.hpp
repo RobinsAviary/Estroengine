@@ -147,6 +147,12 @@ class rNode {
 			return result;
 		}
 
+		std::vector<rNode*> getSiblingsTagged(std::string tag) {
+			if (parent!=nullptr) {
+				return parent->getChildrenTagged(tag);
+			}
+		}
+
 		// TODO: std::vector<rNode*> getAllChildrenTagged(std::string tag)
 
 		void destroyChildrenTagged(std::string tag) {
