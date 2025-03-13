@@ -33,8 +33,13 @@ class rNode {
 		void childrenStep() {
 			if (children.size() != 0) {
 				for (auto child : children) {
-					child->step();
-					child->childrenStep();
+					if (child != nullptr && child) {
+						child->step();
+						child->childrenStep();
+					}
+					else {
+						children.erase(std::remove(children.begin(), children.end(), child), children.end());
+					}
 				}
 			}
 		}
@@ -42,8 +47,13 @@ class rNode {
 		void childrenDraw() {
 			if (children.size() != 0) {
 				for (auto child : children) {
-					child->draw();
-					child->childrenDraw();
+					if (child != nullptr && child) {
+						child->draw();
+						child->childrenDraw();
+					}
+					else {
+						children.erase(std::remove(children.begin(), children.end(), child), children.end());
+					}
 				}
 			}
 		}
@@ -135,25 +145,25 @@ class rNode {
 			return (std::find(tags.begin(), tags.end(), tag) != tags.end());
 		}
 
-		std::vector<rNode*> getChildrenTagged(std::string tag) {
-			std::vector<rNode*> result;
+		template <typename T = rNode>
+		std::vector<T*> getChildrenTagged(std::string tag) {
+			std::vector<T*> result;
 			
 			for (auto child : children) {
 				if (child->hasTag(tag)) {
-					result.push_back(child);
+					result.push_back(static_cast<T*>(child));
 				}
 			}
 
 			return result;
 		}
 
-		std::vector<rNode*> getSiblingsTagged(std::string tag) {
+		template <typename T = rNode>
+		std::vector<T*> getSiblingsTagged(std::string tag) {
 			if (parent!=nullptr) {
-				return parent->getChildrenTagged(tag);
+				return parent->getChildrenTagged<T>(tag);
 			}
 		}
-
-		// TODO: std::vector<rNode*> getAllChildrenTagged(std::string tag)
 
 		void destroyChildrenTagged(std::string tag) {
 			auto childrenCopy = children;
