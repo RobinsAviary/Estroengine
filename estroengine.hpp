@@ -33,13 +33,8 @@ class rNode {
 		void childrenStep() {
 			if (children.size() != 0) {
 				for (auto child : children) {
-					if (child != nullptr && child) {
-						child->step();
-						child->childrenStep();
-					}
-					else {
-						children.erase(std::remove(children.begin(), children.end(), child), children.end());
-					}
+					child->step();
+					child->childrenStep();
 				}
 			}
 		}
@@ -47,13 +42,8 @@ class rNode {
 		void childrenDraw() {
 			if (children.size() != 0) {
 				for (auto child : children) {
-					if (child != nullptr && child) {
-						child->draw();
-						child->childrenDraw();
-					}
-					else {
-						children.erase(std::remove(children.begin(), children.end(), child), children.end());
-					}
+					child->draw();
+					child->childrenDraw();
 				}
 			}
 		}
@@ -162,6 +152,14 @@ class rNode {
 		std::vector<T*> getSiblingsTagged(std::string tag) {
 			if (parent!=nullptr) {
 				return parent->getChildrenTagged<T>(tag);
+			}
+		}
+
+		void destroyAllChildren() {
+			auto childrenCopy = children;
+
+			for (auto child : childrenCopy) {
+				child->destroy();
 			}
 		}
 
