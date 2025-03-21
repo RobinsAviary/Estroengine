@@ -11,7 +11,7 @@ sf::Clock deltaClock;
 
 float _delta = 0.0f;
 
-bool mouseHidden = false;
+bool _mouseHidden = false;
 
 rColor sfColorTorColor(sf::Color color) {
 	return rColor{ color.r, color.g, color.b, color.a };
@@ -67,8 +67,24 @@ void rUnloadCPUTexture(rCPUTexture texture) {
 	
 }
 
-void rInit(int windowWidth, int windowHeight, std::string windowTitle) {
-	window.create(sf::VideoMode({ static_cast<unsigned int>(windowWidth), static_cast<unsigned int>(windowHeight) }), windowTitle);
+std::string rGetClipboard() {
+	return sf::Clipboard::getString().toAnsiString();
+}
+
+void rSetClipboard(std::string _string) {
+	sf::Clipboard::setString(sf::String(_string));
+}
+
+void rInit(int windowWidth, int windowHeight, std::string windowTitle, bool resizable = false) {
+	int style = 0;
+	if (resizable) {
+		style = sf::Style::Default;
+	}
+	else {
+		style = sf::Style::Close;
+	}
+
+	window.create(sf::VideoMode({ static_cast<unsigned int>(windowWidth), static_cast<unsigned int>(windowHeight) }), windowTitle, style);
 }
 
 void rDeinit() {
@@ -211,16 +227,16 @@ rVector2 rGetWindowPosition() {
 
 void rShowCursor() {
 	window.setMouseCursorVisible(true);
-	mouseHidden = false;
+	_mouseHidden = false;
 }
 
 void rHideCursor() {
 	window.setMouseCursorVisible(false);
-	mouseHidden = true;
+	_mouseHidden = true;
 }
 
 bool rIsCursorHidden() {
-	return mouseHidden;
+	return _mouseHidden;
 }
 
 bool rIsCursorOnScreen() {

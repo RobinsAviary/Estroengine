@@ -76,6 +76,14 @@ void rUnloadCPUTexture(rCPUTexture texture) {
 	UnloadImage(texture.texture);
 }
 
+std::string rGetClipboard() {
+
+}
+
+void rSetClipboard(std::string _string) {
+
+}
+
 void rInit(int windowWidth, int windowHeight, std::string windowTitle) {
 	InitWindow(windowWidth, windowHeight, windowTitle.c_str());
 }
