@@ -7,6 +7,16 @@ std::string backendName = "sfml";
 
 sf::RenderWindow window;
 
+bool mouseHidden = false;
+
+rColor sfColorTorColor(sf::Color color) {
+	return rColor{ color.r, color.g, color.b, color.a };
+}
+
+sf::Color rColorTosfColor(rColor color) {
+	return sf::Color{ color.r, color.g, color.b, color.a };
+}
+
 class rCPUTexture {
 public:
 	// texture;
@@ -58,7 +68,7 @@ void rInit(int windowWidth, int windowHeight, std::string windowTitle) {
 }
 
 void rDeinit() {
-	
+	window.close();
 }
 
 void rDrawTexture(rTexture* texture, rVector2 position, rColor tint) {
@@ -111,11 +121,13 @@ void rEndDraw() {
 }
 
 rVector2 rGetMousePosition() {
-	
+	sf::Vector2i pos = sf::Mouse::getPosition();
+
+	return rVector2{ pos.x, pos.y };
 }
 
 void rSetMousePosition(rVector2 position) {
-	
+	sf::Mouse::setPosition(sf::Vector2i{ position.x, position.y });
 }
 
 void rSetWindowTitle(std::string title) {
@@ -142,7 +154,7 @@ void rSetWindowSize(rVector2 size) {
 }
 
 void rSetWindowOpacity(float opacity) {
-	
+	//rPrint("rSetWindowOpacity is not supported on this backend!");
 }
 
 void rSetWindowPosition(rVector2 position) {
@@ -150,19 +162,23 @@ void rSetWindowPosition(rVector2 position) {
 }
 
 rVector2 rGetWindowPosition() {
-	
+	sf::Vector2i pos = window.getPosition();
+
+	return rVector2{ pos.x, pos.y };
 }
 
 void rShowCursor() {
-	
+	window.setMouseCursorVisible(true);
+	mouseHidden = false;
 }
 
 void rHideCursor() {
-	
+	window.setMouseCursorVisible(false);
+	mouseHidden = true;
 }
 
 bool rIsCursorHidden() {
-	
+	return mouseHidden;
 }
 
 bool rIsCursorOnScreen() {
@@ -170,7 +186,7 @@ bool rIsCursorOnScreen() {
 }
 
 void rDrawClear(rColor color) {
-	
+	window.clear(rColorTosfColor(color));
 }
 
 void rSetMaxFPS(int fps) {
@@ -186,15 +202,16 @@ bool rIsGameLooping() {
 }
 
 void rSetRandomSeed(unsigned int seed) {
-	
+	srand(seed);
 }
 
 void rSleep(double seconds) {
-	
+	sf::sleep(sf::seconds(seconds));
 }
 
+// TODO: Upgrade this to use std members
 int rGetRandomValue(int min, int max) {
-	
+	return min + (rand() % (max + 1));
 }
 
 class rInput {
