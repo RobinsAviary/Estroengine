@@ -105,6 +105,8 @@ void rDrawTexture(const rTexture& texture, rVector2 position, rColor tint) {
 
 	sprite.setPosition(sf::Vector2f{static_cast<float>(position.x), static_cast<float>(position.y)});
 	sprite.setColor(rColorTosfColor(tint));
+
+	window.draw(sprite);
 }
 
 void rDrawTextureSection(const rTexture& texture, rVector2 position, rRectangle rectangle, rColor tint) {
