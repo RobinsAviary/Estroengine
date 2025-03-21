@@ -240,7 +240,17 @@ bool rIsCursorHidden() {
 }
 
 bool rIsCursorOnScreen() {
-	
+	// Get cursor position relative to window
+	sf::Vector2i _position = sf::Mouse::getPosition(window);
+	rVector2 position = rVector2{ _position.x, position.y };
+
+	if (position.x >= 0 && position.y >= 0) {
+		if (position.x < rGetWindowWidth() && position.y < rGetWindowHeight()) {
+			return true;
+		}
+	}
+
+	return false;
 }
 
 void rDrawClear(rColor color) {
