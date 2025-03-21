@@ -56,7 +56,7 @@ public:
 
 	rVector2 getSize() {
 		sf::Vector2u size = texture.getSize();
-		return rVector2{ size.x, size.y };
+		return rVector2{ static_cast<int>(size.x), static_cast<int>(size.y) };
 	}
 
 	void load(std::string filename) {
