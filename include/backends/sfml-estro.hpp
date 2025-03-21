@@ -7,6 +7,10 @@ std::string backendName = "sfml";
 
 sf::RenderWindow window;
 
+sf::Clock deltaClock;
+
+float _delta = 0.0f;
+
 bool mouseHidden = false;
 
 rColor sfColorTorColor(sf::Color color) {
@@ -154,6 +158,8 @@ void rBeginDraw() {
 
 void rEndDraw() {
 	window.display();
+	sf::Time time = deltaClock.restart();
+	_delta = time.asSeconds();
 }
 
 rVector2 rGetMousePosition() {
@@ -230,7 +236,7 @@ void rSetMaxFPS(int fps) {
 }
 
 float rGetDelta() {
-	
+	return _delta;
 }
 
 bool rIsGameLooping() {
