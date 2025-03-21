@@ -37,6 +37,14 @@ class rCPUTexture {
 		int getHeight() {
 			return texture.height;
 		}
+
+		void load(std::string filename) {
+			texture = LoadImage(filename.c_str());
+		}
+
+		~rTexture() {
+			UnloadImage(texture.texture);
+		}
 };
 
 class rTexture {
@@ -63,18 +71,6 @@ class rTexture {
 			UnloadTexture(texture.texture);
 		}
 };
-
-rCPUTexture rLoadCPUTexture(std::string filename) {
-	rCPUTexture result;
-
-	result.texture = LoadImage(filename.c_str());
-
-	return result;
-}
-
-void rUnloadCPUTexture(rCPUTexture texture) {
-	UnloadImage(texture.texture);
-}
 
 std::string rGetClipboard() {
 

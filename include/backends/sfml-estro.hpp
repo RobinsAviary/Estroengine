@@ -23,18 +23,35 @@ sf::Color rColorTosfColor(rColor color) {
 
 class rCPUTexture {
 public:
-	
+	sf::Image texture;
 
 	rColor getPixel(rVector2 position) {
-		
+		return sfColorTorColor(texture.getPixel(sf::Vector2u{ static_cast<unsigned int>(position.x), static_cast<unsigned int>(position.y) }));
 	}
 
 	int getWidth() {
-		
+		rVector2 size = getSize();
+
+		return size.x;
 	}
 
 	int getHeight() {
-		
+		rVector2 size = getSize();
+
+		return size.y;
+	}
+
+	rVector2 getSize() {
+		sf::Vector2u _size = texture.getSize();
+		return rVector2{ static_cast<int>(_size.x), static_cast<int>(_size.y) };
+	}
+
+	void load(std::string filename) {
+		texture.loadFromFile(filename);
+	}
+
+	~rCPUTexture() {
+
 	}
 };
 
