@@ -50,19 +50,19 @@ class rTexture {
 		int getHeight() {
 			return texture.height;
 		}
+
+		rVector2 getSize() {
+			return rVector2{ getWidth(), getHeight() };
+		}
+
+		void load(std::string filename) {
+			texture = LoadTexture(filename.c_str());
+		}
+
+		~rTexture() {
+			UnloadTexture(texture.texture);
+		}
 };
-
-rTexture rLoadTexture(std::string filename) {
-	rTexture result;
-
-	result.texture = LoadTexture(filename.c_str());
-
-	return result;
-};
-
-void rUnloadTexture(rTexture texture) {
-	UnloadTexture(texture.texture);
-}
 
 rCPUTexture rLoadCPUTexture(std::string filename) {
 	rCPUTexture result;
