@@ -1,9 +1,10 @@
+#include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
 #include "../estrotypes.hpp"
 
 std::string backendName = "sfml";
 
-
+sf::Window window;
 
 class rCPUTexture {
 public:
@@ -52,7 +53,8 @@ void rUnloadCPUTexture(rCPUTexture texture) {
 }
 
 void rInit(int windowWidth, int windowHeight, std::string windowTitle) {
-	
+	sf::Window _window(sf::VideoMode({ 800, 600 }), "My window");
+	window = _window;
 }
 
 void rDeinit() {
@@ -89,7 +91,11 @@ void rDrawPixel(rVector2 position, rColor color) {
 }
 
 void rBeginStep() {
-
+	while (const std::optional event = window.pollEvent())
+	{
+		if (event->is<sf::Event::Closed>())
+			window.close();
+	}
 }
 
 void rBeginDraw() {
@@ -109,23 +115,26 @@ void rSetMousePosition(rVector2 position) {
 }
 
 void rSetWindowTitle(std::string title) {
-	
+	window.setTitle(title)
 }
 
 int rGetWindowWidth() {
-	
+	sf::Vector2u size = window.getSize();
+	return size.x;
 }
 
 int rGetWindowHeight() {
-	
+	sf::Vector2u size = window.getSize();
+	return size.y;
 }
 
 rVector2 rGetWindowSize() {
-	return rVector2{ rGetWindowWidth(), rGetWindowHeight() };
+	sf::Vector2u size = window.getSize();
+	return rVector2{ size.x, size.y };
 }
 
 void rSetWindowSize(rVector2 size) {
-	
+	window.setSize({ size.x, size.y });
 }
 
 void rSetWindowOpacity(float opacity) {
@@ -133,7 +142,7 @@ void rSetWindowOpacity(float opacity) {
 }
 
 void rSetWindowPosition(rVector2 position) {
-	
+	window.setPosition({ 10, 50 });
 }
 
 rVector2 rGetWindowPosition() {
@@ -161,7 +170,7 @@ void rDrawClear(rColor color) {
 }
 
 void rSetMaxFPS(int fps) {
-	
+	window.setFramerateLimit(fps);
 }
 
 float rGetDelta() {
@@ -169,7 +178,7 @@ float rGetDelta() {
 }
 
 bool rIsGameLooping() {
-	
+	return window.isOpen();
 }
 
 void rSetRandomSeed(unsigned int seed) {
