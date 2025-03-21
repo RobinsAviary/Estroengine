@@ -1,14 +1,15 @@
+#pragma once
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
 #include "../estrotypes.hpp"
 
 std::string backendName = "sfml";
 
-sf::Window window;
+sf::RenderWindow window;
 
 class rCPUTexture {
 public:
-	 texture;
+	// texture;
 
 	rColor getPixel(rVector2 position) {
 		
@@ -25,7 +26,7 @@ public:
 
 class rTexture {
 public:
-	 texture;
+	// texture;
 
 	int getWidth() {
 		
@@ -53,8 +54,7 @@ void rUnloadCPUTexture(rCPUTexture texture) {
 }
 
 void rInit(int windowWidth, int windowHeight, std::string windowTitle) {
-	sf::Window _window(sf::VideoMode({ 800, 600 }), "My window");
-	window = _window;
+	window.create(sf::VideoMode({ static_cast<unsigned int>(windowWidth), static_cast<unsigned int>(windowHeight) }), windowTitle);
 }
 
 void rDeinit() {
@@ -98,12 +98,16 @@ void rBeginStep() {
 	}
 }
 
+void rEndStep() {
+
+}
+
 void rBeginDraw() {
 	
 }
 
 void rEndDraw() {
-	
+	window.display();
 }
 
 rVector2 rGetMousePosition() {
@@ -115,7 +119,7 @@ void rSetMousePosition(rVector2 position) {
 }
 
 void rSetWindowTitle(std::string title) {
-	window.setTitle(title)
+	window.setTitle(title);
 }
 
 int rGetWindowWidth() {
@@ -130,11 +134,11 @@ int rGetWindowHeight() {
 
 rVector2 rGetWindowSize() {
 	sf::Vector2u size = window.getSize();
-	return rVector2{ size.x, size.y };
+	return rVector2{ static_cast<int>(size.x), static_cast<int>(size.y) };
 }
 
 void rSetWindowSize(rVector2 size) {
-	window.setSize({ size.x, size.y });
+	window.setSize({ static_cast<unsigned int>(size.x), static_cast<unsigned int>(size.y) });
 }
 
 void rSetWindowOpacity(float opacity) {

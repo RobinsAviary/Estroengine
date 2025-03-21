@@ -1,10 +1,10 @@
 #pragma once
 #include "include/estrotypes.hpp"
-#include "include/backends/raylib-estro.hpp"
+#include "include/backends/sfml-estro.hpp"
 #include <string>
 #include <vector>
 #include <memory>
-#include <ostream>
+#include <iostream>
 
 // Estroengine 0.4, created by Robin
 
@@ -220,8 +220,12 @@ public:
 
 private:
 	void step() {
+		rBeginStep();
+
 		root->step();
 		root->childrenStep();
+
+		rEndStep();
 	}
 
 	void draw() {

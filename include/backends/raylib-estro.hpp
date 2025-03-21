@@ -129,6 +129,10 @@ void rBeginStep() {
 	
 }
 
+void rEndStep() {
+
+}
+
 void rBeginDraw() {
 	BeginDrawing();
 }
