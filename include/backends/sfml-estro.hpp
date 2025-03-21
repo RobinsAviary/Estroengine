@@ -85,14 +85,6 @@ public:
 	}
 };
 
-rCPUTexture rLoadCPUTexture(std::string filename) {
-	
-}
-
-void rUnloadCPUTexture(rCPUTexture texture) {
-	
-}
-
 std::string rGetClipboard() {
 	return sf::Clipboard::getString().toAnsiString();
 }
