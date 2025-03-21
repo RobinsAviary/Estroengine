@@ -100,15 +100,18 @@ void rDeinit() {
 	window.close();
 }
 
-void rDrawTexture(rTexture* texture, rVector2 position, rColor tint) {
+void rDrawTexture(const rTexture& texture, rVector2 position, rColor tint) {
+	sf::Sprite sprite(texture.texture);
+
+	sprite.setPosition(sf::Vector2f{static_cast<float>(position.x), static_cast<float>(position.y)});
+	sprite.setColor(rColorTosfColor(tint));
+}
+
+void rDrawTextureSection(const rTexture& texture, rVector2 position, rRectangle rectangle, rColor tint) {
 	
 }
 
-void rDrawTextureSection(rTexture* texture, rVector2 position, rRectangle rectangle, rColor tint) {
-	
-}
-
-void rDrawTextureReproject(rTexture* texture, rRectangle source, rRectangle target, rColor tint) {
+void rDrawTextureReproject(const rTexture& texture, rRectangle source, rRectangle target, rColor tint) {
 	
 }
 
