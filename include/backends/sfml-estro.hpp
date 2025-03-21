@@ -110,11 +110,24 @@ void rDrawTexture(const rTexture& texture, rVector2 position, rColor tint) {
 }
 
 void rDrawTextureSection(const rTexture& texture, rVector2 position, rRectangle rectangle, rColor tint) {
-	
+	sf::Sprite sprite(texture.texture);
+
+	sprite.setTextureRect(sf::IntRect({ rectangle.x, rectangle.y }, { rectangle.w, rectangle.h }));
+	sprite.setPosition(sf::Vector2f{ static_cast<float>(position.x), static_cast<float>(position.y) });
+	sprite.setColor(rColorTosfColor(tint));
+
+	window.draw(sprite);
 }
 
 void rDrawTextureReproject(const rTexture& texture, rRectangle source, rRectangle target, rColor tint) {
-	
+	sf::Sprite sprite(texture.texture);
+
+	sprite.setTextureRect(sf::IntRect({ source.x, source.y }, { source.w, source.h }));
+
+	sf::Vector2f scale = sf::Vector2f{ static_cast<float>(target.x) / static_cast<float>(source.x), static_cast<float>(target.y) / static_cast<float>(source.y) };
+	sprite.setScale(scale);
+
+	window.draw(sprite);
 }
 
 void rDrawLine(rVector2 pos1, rVector2 pos2, rColor color) {
