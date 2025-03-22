@@ -375,4 +375,6 @@ bool rIsKeyReleased(rKey key) {
 			if (iter.second == _key) return true;
 		}
 	}
+
+	return false;
 }
