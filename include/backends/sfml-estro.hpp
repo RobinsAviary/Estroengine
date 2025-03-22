@@ -3,7 +3,9 @@
 #include "SFML/Graphics.hpp"
 #include "../estrotypes.hpp"
 
-std::string backendName = "sfml";
+std::string rGetBackendName() {
+	return "sfml";
+}
 
 sf::RenderWindow window;
 

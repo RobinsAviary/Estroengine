@@ -4,7 +4,9 @@
 #include <map>
 #include <iostream>
 
-std::string backendName = "raylib";
+std::string rGetBackendName() {
+	return "raylib";
+}
 
 Color rColorToColor(rColor color) {
 	return Color{ color.r, color.g, color.b, color.a };
