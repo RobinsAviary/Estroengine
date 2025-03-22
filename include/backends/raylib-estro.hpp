@@ -236,8 +236,3 @@ void rSleep(double seconds) {
 int rGetRandomValue(int min, int max) {
 	return GetRandomValue(min, max);
 }
-
-class rInput {
-public:
-
-};

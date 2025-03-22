@@ -2,6 +2,8 @@
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
 #include "../estrotypes.hpp"
+#include <map>
+#include "../estroinput.hpp"
 
 std::string rGetBackendName() {
 	return "sfml";
@@ -105,6 +107,7 @@ void rInit(int windowWidth, int windowHeight, std::string windowTitle, bool resi
 	}
 
 	window.create(sf::VideoMode({ static_cast<unsigned int>(windowWidth), static_cast<unsigned int>(windowHeight) }), windowTitle, style);
+	window.setKeyRepeatEnabled(false);
 }
 
 void rDeinit() {
@@ -194,11 +197,23 @@ void rDrawPixel(rVector2 position, rColor color) {
 	rDrawRectangle(rRectangle{ position.x, position.y, 1, 1 }, color, true);
 }
 
+std::vector<sf::Keyboard::Key> _pressedKeys;
+std::vector<sf::Keyboard::Key> _releasedKeys;
+
 void rBeginStep() {
 	while (const std::optional event = window.pollEvent())
 	{
-		if (event->is<sf::Event::Closed>())
-			window.close();
+		_pressedKeys.clear();
+		_releasedKeys.clear();
+
+		// TODO: Upgrade to switch
+		if (event->is<sf::Event::Closed>()) window.close();
+		else if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()) {
+			_pressedKeys.push_back(keyPressed->code);
+		}
+		else if (const auto* keyReleased = event->getIf<sf::Event::KeyReleased>()) {
+			_releasedKeys.push_back(keyReleased->code);
+		}
 	}
 }
 
@@ -329,7 +344,35 @@ int rGetRandomValue(int min, int max) {
 	return min + (rand() % (max + 1));
 }
 
-class rInput {
-public:
+std::map<rKey, sf::Keyboard::Key> _keyMap{ {Q, sf::Keyboard::Key::Q}, {W, sf::Keyboard::Key::W}, {E, sf::Keyboard::Key::E}, {R, sf::Keyboard::Key::R}, {T, sf::Keyboard::Key::T}, {Y, sf::Keyboard::Key::Y}, {U, sf::Keyboard::Key::U}, {I, sf::Keyboard::Key::I}, {O, sf::Keyboard::Key::O}, {P, sf::Keyboard::Key::P}, {A, sf::Keyboard::Key::A}, {S, sf::Keyboard::Key::S}, {D, sf::Keyboard::Key::D}, {F, sf::Keyboard::Key::F}, {G, sf::Keyboard::Key::G}, {H, sf::Keyboard::Key::H}, {J, sf::Keyboard::Key::J}, {K, sf::Keyboard::Key::K}, {L, sf::Keyboard::Key::L}, {Z, sf::Keyboard::Key::Z}, {X, sf::Keyboard::Key::X}, {C, sf::Keyboard::Key::C}, {V, sf::Keyboard::Key::V}, {B, sf::Keyboard::Key::B}, {N, sf::Keyboard::Key::N}, {M, sf::Keyboard::Key::M},
+	{Space, sf::Keyboard::Key::Space}, {LeftAlt, sf::Keyboard::Key::LAlt}, {RightAlt, sf::Keyboard::Key::RAlt}, {LeftCtrl, sf::Keyboard::Key::LControl}, {RightCtrl, sf::Keyboard::Key::RControl}, {LeftShift, sf::Keyboard::Key::LShift}, {RightShift, sf::Keyboard::Key::RShift}, {Enter, sf::Keyboard::Key::Enter}, {Left, sf::Keyboard::Key::Left}, {Right, sf::Keyboard::Key::Right}, {Up, sf::Keyboard::Key::Up}, {Down, sf::Keyboard::Key::Down} };
 
-};
+sf::Keyboard::Key rKeyTosfKey(rKey key) {
+	return _keyMap[key];
+}
+
+bool rIsKeyPressed(rKey key) {
+	sf::Keyboard::Key _key = rKeyTosfKey(key);
+
+	for (auto key : _pressedKeys) {
+		for (auto& iter : _keyMap) {
+			if (iter.second == _key) return true;
+		}
+	}
+
+	return false;
+}
+
+bool rIsKeyHeld(rKey key) {
+	return sf::Keyboard::isKeyPressed(rKeyTosfKey(key));
+}
+
+bool rIsKeyReleased(rKey key) {
+	sf::Keyboard::Key _key = rKeyTosfKey(key);
+
+	for (auto key : _releasedKeys) {
+		for (auto& iter : _keyMap) {
+			if (iter.second == _key) return true;
+		}
+	}
+}

@@ -111,8 +111,3 @@ void rSetRandomSeed(unsigned int seed)
 void rSleep(double seconds)
 
 int rGetRandomValue(int min, int max)
-
-class rInput {
-public:
-
-};
