@@ -94,6 +94,10 @@ bool rIsCursorHidden()
 
 bool rIsCursorOnScreen()
 
+rVector2 rGetCursorPosition()
+
+void rSetCursorPosition(rVector2 position)
+
 void rDrawClear(rColor color)
 
 void rSetMaxFPS(int fps)

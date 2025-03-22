@@ -291,6 +291,15 @@ bool rIsCursorOnScreen() {
 	return false;
 }
 
+rVector2 rGetCursorPosition() {
+	sf::Vector2i pos = sf::Mouse::getPosition();
+	return rVector2{pos.x, pos.y};
+}
+
+void rSetCursorPosition(rVector2 position) {
+	sf::Mouse::setPosition(sf::Vector2i{ position.x, position.y });
+}
+
 void rDrawClear(rColor color) {
 	window.clear(rColorTosfColor(color));
 }

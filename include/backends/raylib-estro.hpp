@@ -205,6 +205,10 @@ bool rIsCursorOnScreen() {
 	return IsCursorOnScreen();
 }
 
+rVector2 rGetCursorPosition()
+
+void rSetCursorPosition(rVector2 position)
+
 void rDrawClear(rColor color) {
 	ClearBackground(rColorToColor(color));
 }
