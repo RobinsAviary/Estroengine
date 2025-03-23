@@ -2,6 +2,7 @@
 
 #include "raylib.h"
 #include "../estrotypes.hpp"
+#include "../estroinput.hpp"
 #include <string>
 #include <map>
 #include <iostream>
@@ -287,4 +288,23 @@ void rSleep(double seconds) {
 
 int rGetRandomValue(int min, int max) {
 	return GetRandomValue(min, max);
+}
+
+std::map<rKey, int> _keyMap{ {Q, KEY_Q}, {W, KEY_W}, {E, KEY_E}, {R, KEY_R}, {T, KEY_T}, {Y, KEY_Y}, {U, KEY_U}, {I, KEY_I}, {O, KEY_O}, {P, KEY_P}, {A, KEY_A}, {S, KEY_S}, {D, KEY_D}, {F, KEY_F}, {G, KEY_G}, {H, KEY_H}, {J, KEY_J}, {K, KEY_K}, {L, KEY_L}, {Z, KEY_Z}, {X, KEY_X}, {C, KEY_C}, {V, KEY_V}, {B, KEY_B}, {N, KEY_N}, {M, KEY_M},
+	{Space, KEY_SPACE}, {LeftAlt, KEY_LEFT_ALT}, {RightAlt, KEY_RIGHT_ALT}, {LeftCtrl, KEY_LEFT_CONTROL}, {RightCtrl, KEY_RIGHT_CONTROL}, {LeftShift, KEY_LEFT_SHIFT}, {RightShift, KEY_RIGHT_SHIFT}, {Enter, KEY_ENTER}, {Left, KEY_LEFT}, {Right, KEY_RIGHT}, {Up, KEY_UP}, {Down, KEY_DOWN} };
+
+int rKeyToInt(rKey key) {
+	return _keyMap[key];
+}
+
+bool rIsKeyPressed(rKey key) {
+	return IsKeyPressed(rKeyToInt(key));
+}
+
+bool rIsKeyHeld(rKey key) {
+	return IsKeyDown(rKeyToInt(key));
+}
+
+bool rIsKeyReleased(rKey key) {
+	return IsKeyReleased(rKeyToInt(key));
 }
