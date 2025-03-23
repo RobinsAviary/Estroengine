@@ -30,7 +30,7 @@ Rectangle rRectangleToRectangle(rRectangle rectangle) {
 	return Rectangle{ static_cast<float>(rectangle.x), static_cast<float>(rectangle.y), static_cast<float>(rectangle.w), static_cast<float>(rectangle.h) };
 }
 
-class rCPUTexture {
+class rCPUTexture : public rAsset {
 	public:
 		Image texture = { 0 };
 
@@ -52,20 +52,16 @@ class rCPUTexture {
 			}
 			
 			texture = LoadImage(filename.c_str());
+			valid = IsImageValid(texture);
 		}
-		
-		rCPUTexture(std::string filename) {
-			load(filename);
-		}
-
-		rCPUTexture() {}
 
 		~rCPUTexture() {
 			UnloadImage(texture);
+			valid = false;
 		}
 };
 
-class rTexture {
+class rTexture : public rAsset {
 	public:
 		Texture2D texture = { 0 };
 
@@ -86,16 +82,30 @@ class rTexture {
 				UnloadTexture(texture);
 			}
 			texture = LoadTexture(filename.c_str());
-		}
 
-		rTexture(std::string filename) {
-			load(filename);
+			valid = IsTextureValid(texture);
 		}
-
-		rTexture() {}
 
 		~rTexture() {
 			UnloadTexture(texture);
+		}
+};
+
+class rAudio : public rAsset {
+	public:
+		Sound audio;
+
+		void load(std::string filename) {
+			if (IsSoundValid(audio)) {
+				UnloadSound(audio);
+			}
+			audio = LoadSound(filename.c_str());
+
+			valid = IsSoundValid(audio);
+		}
+
+		~rAudio() {
+			UnloadSound(audio);
 		}
 };
 

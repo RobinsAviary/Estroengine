@@ -22,19 +22,6 @@ void rPrintFlush() {
 	std::cout << std::endl;
 }
 
-class rAsset {
-public:
-	rAsset(std::string filename) {
-		load(filename);
-	}
-
-	virtual void load(std::string filename) = 0;
-
-	virtual ~rAsset() = 0;
-private:
-
-};
-
 class rNode {
 	public:
 		virtual void step() {}

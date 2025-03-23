@@ -25,7 +25,7 @@ sf::Color rColorTosfColor(rColor color) {
 	return sf::Color{ color.r, color.g, color.b, color.a };
 }
 
-class rCPUTexture {
+class rCPUTexture : public rAsset {
 public:
 	sf::Image texture;
 
@@ -51,7 +51,7 @@ public:
 	}
 
 	void load(std::string filename) {
-		texture.loadFromFile(filename);
+		valid = texture.loadFromFile(filename);
 	}
 
 	~rCPUTexture() {
@@ -59,7 +59,7 @@ public:
 	}
 };
 
-class rTexture {
+class rTexture : public rAsset {
 public:
 	sf::Texture texture;
 
@@ -81,7 +81,7 @@ public:
 	}
 
 	void load(std::string filename) {
-		texture.loadFromFile(filename);
+		valid = texture.loadFromFile(filename);
 	}
 
 	~rTexture() {

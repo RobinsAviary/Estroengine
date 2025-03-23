@@ -174,3 +174,18 @@ inline bool operator==(const rColor& lhs, const rColor& rhs) {
 inline bool operator!=(const rColor& lhs, const rColor& rhs) {
 	return { lhs.r != rhs.r || lhs.g != rhs.g || lhs.b != rhs.b || lhs.a != rhs.a };
 }
+
+class rAsset {
+public:
+	virtual void load(std::string filename) = 0;
+
+	bool isValid() {
+		return valid;
+	}
+
+	~rAsset() {
+		valid = false;
+	}
+protected:
+	bool valid = false;
+};
