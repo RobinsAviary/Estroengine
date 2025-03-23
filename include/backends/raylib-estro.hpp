@@ -107,16 +107,16 @@ void rDeinit() {
 	CloseWindow();
 }
 
-void rDrawTexture(const rTexture& texture, rVector2 position, rColor tint) {
-	DrawTexture(texture.texture, position.x, position.y, rColorToColor(tint));
+void rDrawTexture(const rTexture* texture, rVector2 position, rColor tint) {
+	DrawTexture(texture->texture, position.x, position.y, rColorToColor(tint));
 }
 
-void rDrawTextureSection(const rTexture& texture, rVector2 position, rRectangle rectangle, rColor tint) {
-	DrawTextureRec(texture.texture, rRectangleToRectangle(rectangle), rVector2ToVector2(position), rColorToColor(tint));
+void rDrawTextureSection(const rTexture* texture, rVector2 position, rRectangle rectangle, rColor tint) {
+	DrawTextureRec(texture->texture, rRectangleToRectangle(rectangle), rVector2ToVector2(position), rColorToColor(tint));
 }
 
-void rDrawTextureReproject(const rTexture& texture, rRectangle source, rRectangle target, rColor tint) {
-	DrawTexturePro(texture.texture, rRectangleToRectangle(source), rRectangleToRectangle(target), Vector2{ 0, 0 }, 0, rColorToColor(tint));
+void rDrawTextureReproject(const rTexture* texture, rRectangle source, rRectangle target, rColor tint) {
+	DrawTexturePro(texture->texture, rRectangleToRectangle(source), rRectangleToRectangle(target), Vector2{ 0, 0 }, 0, rColorToColor(tint));
 }
 
 void rDrawLine(rVector2 pos1, rVector2 pos2, rColor color) {
