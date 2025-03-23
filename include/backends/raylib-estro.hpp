@@ -107,6 +107,18 @@ class rAudio : public rAsset {
 		~rAudio() {
 			UnloadSound(audio);
 		}
+
+		void play() {
+			PlaySound(audio);
+		}
+
+		void pause() {
+			PauseSound(audio);
+		}
+
+		void stop() {
+			StopSound(audio);
+		}
 };
 
 std::string rGetClipboard() {
