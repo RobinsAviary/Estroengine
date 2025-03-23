@@ -20,6 +20,10 @@ Vector2 rVector2ToVector2(rVector2 vector) {
 	return Vector2{ static_cast<float>(vector.x), static_cast<float>(vector.y) };
 }
 
+rVector2 Vector2TorVector2(Vector2 vector) {
+	return rVector2{ static_cast<int>(vector.x), static_cast<int>(vector.y) };
+}
+
 Rectangle rRectangleToRectangle(rRectangle rectangle) {
 	return Rectangle{ static_cast<float>(rectangle.x), static_cast<float>(rectangle.y), static_cast<float>(rectangle.w), static_cast<float>(rectangle.h) };
 }
@@ -41,11 +45,17 @@ class rCPUTexture {
 		}
 
 		void load(std::string filename) {
+			if (IsImageValid(texture)) {
+				UnloadImage(texture);
+			}
+			
 			texture = LoadImage(filename.c_str());
 		}
+		
+		
 
-		~rTexture() {
-			UnloadImage(texture.texture);
+		~rCPUTexture() {
+			UnloadImage(texture);
 		}
 };
 
@@ -66,11 +76,18 @@ class rTexture {
 		}
 
 		void load(std::string filename) {
+			if (IsTextureValid(texture)) {
+				UnloadTexture(texture);
+			}
 			texture = LoadTexture(filename.c_str());
 		}
 
+		rTexture(std::string filename) {
+			load(filename);
+		}
+
 		~rTexture() {
-			UnloadTexture(texture.texture);
+			UnloadTexture(texture);
 		}
 };
 
@@ -91,17 +108,15 @@ void rDeinit() {
 }
 
 void rDrawTexture(const rTexture& texture, rVector2 position, rColor tint) {
-	DrawTexture(texture->texture, position.x, position.y, rColorToColor(tint));
+	DrawTexture(texture.texture, position.x, position.y, rColorToColor(tint));
 }
 
 void rDrawTextureSection(const rTexture& texture, rVector2 position, rRectangle rectangle, rColor tint) {
-	if (texture) {
-		DrawTextureRec(texture->texture, rRectangleToRectangle(rectangle), rVector2ToVector2(position), rColorToColor(tint));
-	}
+	DrawTextureRec(texture.texture, rRectangleToRectangle(rectangle), rVector2ToVector2(position), rColorToColor(tint));
 }
 
 void rDrawTextureReproject(const rTexture& texture, rRectangle source, rRectangle target, rColor tint) {
-	DrawTexturePro(texture->texture, rRectangleToRectangle(source), rRectangleToRectangle(target), Vector2{ 0, 0 }, 0, rColorToColor(tint));
+	DrawTexturePro(texture.texture, rRectangleToRectangle(source), rRectangleToRectangle(target), Vector2{ 0, 0 }, 0, rColorToColor(tint));
 }
 
 void rDrawLine(rVector2 pos1, rVector2 pos2, rColor color) {
@@ -205,9 +220,13 @@ bool rIsCursorOnScreen() {
 	return IsCursorOnScreen();
 }
 
-rVector2 rGetCursorPosition()
+rVector2 rGetCursorPosition() {
+	return Vector2TorVector2(GetMousePosition());
+}
 
-void rSetCursorPosition(rVector2 position)
+void rSetCursorPosition(rVector2 position) {
+	SetMousePosition(position.x, position.y);
+}
 
 void rDrawClear(rColor color) {
 	ClearBackground(rColorToColor(color));

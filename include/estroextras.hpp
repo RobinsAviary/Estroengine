@@ -37,7 +37,7 @@ template <typename T> int sign(T val) {
     return (T(0) < val) - (val < T(0));
 }
 
-class TestGrid : public rNode {
+/*class TestGrid : public rNode {
 public:
     int slices = 16;
     int spacing = 1;
@@ -142,7 +142,7 @@ class rModelRenderer : public rNode {
     ~rModelRenderer() {
         if (IsModelValid(model)) UnloadModel(model);
     }
-};
+};*/
 
 class rTimer : public rNode {
 public:

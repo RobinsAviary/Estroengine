@@ -1,5 +1,6 @@
 #pragma once
 #include "../estrotypes.hpp"
+#include "../estroinput.hpp"
 
 std::string rGetBackendName()
 
@@ -111,3 +112,9 @@ void rSetRandomSeed(unsigned int seed)
 void rSleep(double seconds)
 
 int rGetRandomValue(int min, int max)
+
+bool rIsKeyPressed(rKey key)
+
+bool rIsKeyHeld(rKey key)
+
+bool rIsKeyReleased(rKey key)
