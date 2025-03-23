@@ -153,6 +153,9 @@ class rNode {
 			if (parent!=nullptr) {
 				return parent->getChildrenTagged<T>(tag);
 			}
+
+			std::vector<T*> blankList;
+			return blankList;
 		}
 
 		void destroyAllChildren() {

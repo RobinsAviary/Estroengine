@@ -1,3 +1,5 @@
+#pragma once
+
 #include "raylib.h"
 #include "../estrotypes.hpp"
 #include <string>
@@ -30,7 +32,7 @@ Rectangle rRectangleToRectangle(rRectangle rectangle) {
 
 class rCPUTexture {
 	public:
-		Image texture;
+		Image texture = { 0 };
 
 		rColor getPixel(rVector2 position) {
 			return ColorTorColor(GetImageColor(texture, position.x, position.y));
@@ -52,7 +54,11 @@ class rCPUTexture {
 			texture = LoadImage(filename.c_str());
 		}
 		
-		
+		rCPUTexture(std::string filename) {
+			load(filename);
+		}
+
+		rCPUTexture() {}
 
 		~rCPUTexture() {
 			UnloadImage(texture);
@@ -61,7 +67,7 @@ class rCPUTexture {
 
 class rTexture {
 	public:
-		Texture2D texture;
+		Texture2D texture = { 0 };
 
 		int getWidth() {
 			return texture.width;
@@ -86,17 +92,19 @@ class rTexture {
 			load(filename);
 		}
 
+		rTexture() {}
+
 		~rTexture() {
 			UnloadTexture(texture);
 		}
 };
 
 std::string rGetClipboard() {
-
+	return GetClipboardText();
 }
 
 void rSetClipboard(std::string _string) {
-
+	SetClipboardText(_string.c_str());
 }
 
 void rInit(int windowWidth, int windowHeight, std::string windowTitle) {
