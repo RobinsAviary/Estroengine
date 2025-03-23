@@ -114,7 +114,9 @@ void rDeinit() {
 	window.close();
 }
 
-void rDrawTexture(const rTexture* texture, rVector2 position, rColor tint) {
+void rDrawTexture(rTexture* texture, rVector2 position, rColor tint) {
+	if (!texture->isValid()) return;
+
 	sf::Sprite sprite(texture->texture);
 
 	sprite.setPosition(sf::Vector2f{static_cast<float>(position.x), static_cast<float>(position.y)});
@@ -123,7 +125,9 @@ void rDrawTexture(const rTexture* texture, rVector2 position, rColor tint) {
 	window.draw(sprite);
 }
 
-void rDrawTextureSection(const rTexture* texture, rVector2 position, rRectangle rectangle, rColor tint) {
+void rDrawTextureSection(rTexture* texture, rVector2 position, rRectangle rectangle, rColor tint) {
+	if (!texture->isValid()) return;
+
 	sf::Sprite sprite(texture->texture);
 
 	sprite.setTextureRect(sf::IntRect({ rectangle.x, rectangle.y }, { rectangle.w, rectangle.h }));
@@ -133,7 +137,9 @@ void rDrawTextureSection(const rTexture* texture, rVector2 position, rRectangle 
 	window.draw(sprite);
 }
 
-void rDrawTextureReproject(const rTexture* texture, rRectangle source, rRectangle target, rColor tint) {
+void rDrawTextureReproject(rTexture* texture, rRectangle source, rRectangle target, rColor tint) {
+	if (!texture->isValid()) return;
+
 	sf::Sprite sprite(texture->texture);
 
 	sprite.setTextureRect(sf::IntRect({ source.x, source.y }, { source.w, source.h }));
