@@ -323,3 +323,20 @@ template <typename T> class rGrid {
             return (position.y * size.y) + position.x;
         }
 };
+
+class rSpriteCursor : public rNode {
+public:
+    rTexture texture;
+
+    rSpriteCursor() {
+        rHideCursor();
+    }
+
+    ~rSpriteCursor() {
+        rShowCursor();
+    }
+
+    void draw() {
+        rDrawTexture(&texture, rGetMousePosition(), cWhite);
+    }
+};
