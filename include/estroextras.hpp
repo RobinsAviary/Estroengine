@@ -289,7 +289,8 @@ private:
         std::vector<Point> points;
 };*/
 
-template <typename T> class rGrid {
+/*template <typename T>
+class rGrid {
     public:
         void setSize(rVector2 _size) {
             data.clear();
@@ -322,7 +323,7 @@ template <typename T> class rGrid {
         rVector2 getIndex(rVector2 position) {
             return (position.y * size.y) + position.x;
         }
-};
+};*/
 
 class rSprite : public rNode2D {
 public:

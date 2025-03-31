@@ -280,6 +280,53 @@ public:
 		return list;
 	}
 
+	void resize(int size, T val = NULL) {
+		if (val) {
+			list.resize(size, val);
+		}
+		else {
+			list.resize(size);
+		}
+		
+	}
+
 protected:
 	std::list<T> list;
+};
+
+template <typename T> 
+class rGrid {
+public:
+	rGrid(rVector2 _size) {
+		resize(_size);
+	}
+
+	void resize(rVector2 _size, T val = NULL) {
+		// rList will check if val is valid
+		size = _size;
+		list.resize(size.x * size.y, val);
+	}
+
+	void set(rVector2 position, T val) {
+		list[getIndex(position)] = val;
+	}
+
+	T get(rVector2 position) {
+		return list[getIndex(position)];
+	}
+
+	rVector2 getSize() {
+		return size;
+	}
+
+private:
+	int getIndex(rVector2 position) {
+		rVector2 size = getSize();
+
+		return (position.x + (position.y * size.y));
+	}
+
+	rList<T> list;
+
+	rVector2 size;
 };
