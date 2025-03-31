@@ -176,8 +176,12 @@ class rNode {
 			return _name;
 		}
 
-		std::string setName() {
+		void setName(std::string name) {
+			_name = name;
+		}
 
+		bool isNamed(std::string name) {
+			return (name == _name);
 		}
 
 	private:
