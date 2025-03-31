@@ -29,27 +29,10 @@ class rNode {
 	public:
 		virtual void step() {}
 		virtual void draw() {}
+		virtual void onCreate() {}
 		virtual void onDestroy() {}
 
 		rNode* parent = nullptr;
-
-		void childrenStep() {
-			if (children.size() != 0) {
-				for (auto child : children) {
-					child->step();
-					child->childrenStep();
-				}
-			}
-		}
-
-		void childrenDraw() {
-			if (children.size() != 0) {
-				for (auto child : children) {
-					child->draw();
-					child->childrenDraw();
-				}
-			}
-		}
 
 		template <typename T>
 		T* addNode() {
@@ -59,6 +42,8 @@ class rNode {
 			}
 
 			pointer->parent = this;
+
+			pointer->onCreate();
 			
 			return static_cast<T*>(pointer);
 		}
@@ -175,7 +160,7 @@ class rNode {
 			}
 		}
 
-		bool valid() { return _valid; }
+		bool isValid() { return _valid; }
 
 		void addTag(std::string tag) {
 			if (!hasTag(tag)) {
@@ -186,6 +171,14 @@ class rNode {
 		void removeTag(std::string tag) {
 			tags.erase(std::remove(tags.begin(), tags.end(), tag), tags.end());
 		}
+		
+		std::string getName() {
+			return _name;
+		}
+
+		std::string setName() {
+
+		}
 
 	private:
 		std::vector<std::string> tags;
@@ -194,6 +187,25 @@ class rNode {
 	protected:
 		bool _valid = true;
 		unsigned int _handle = 0;
+		std::string _name;
+
+		void childrenStep() {
+			if (children.size() != 0) {
+				for (auto child : children) {
+					child->step();
+					child->childrenStep();
+				}
+			}
+		}
+
+		void childrenDraw() {
+			if (children.size() != 0) {
+				for (auto child : children) {
+					child->draw();
+					child->childrenDraw();
+				}
+			}
+		}
 };
 
 class rNode2D : public rNode {

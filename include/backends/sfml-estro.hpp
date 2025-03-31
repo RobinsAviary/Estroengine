@@ -384,3 +384,7 @@ bool rIsKeyReleased(rKey key) {
 
 	return false;
 }
+
+std::string rGetWorkingDirectory() {
+
+}

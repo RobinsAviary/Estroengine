@@ -308,3 +308,7 @@ bool rIsKeyHeld(rKey key) {
 bool rIsKeyReleased(rKey key) {
 	return IsKeyReleased(rKeyToInt(key));
 }
+
+std::string rGetWorkingDirectory() {
+	return GetWorkingDirectory();
+}
