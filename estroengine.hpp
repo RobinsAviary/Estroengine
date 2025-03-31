@@ -3,10 +3,13 @@
 #include "include/backends/raylib-estro.hpp"
 #include <string>
 #include <vector>
+#include <list>
 #include <memory>
 #include <iostream>
 
 // Estroengine 0.4, created by Robin
+
+rList<void*> garbage;
 
 void rPrint(std::string text) {
 	std::cout << text << std::endl;
@@ -52,7 +55,7 @@ class rNode {
 		T* addNode() {
 			rNode* pointer = new T;
 			if (pointer) {
-				children.push_back(pointer);
+				children.pushBack(pointer);
 			}
 
 			pointer->parent = this;
@@ -61,33 +64,19 @@ class rNode {
 		}
 
 		void removeNode(int index) {
-			children.erase(children.begin() + index);
+			children.erase(index);
 		}
 
 		void destroy() {
+			_valid = false;
+
+			if (parent) {
+				parent->children.erase(this);
+			}
+			
+			garbage.add(this);
+
 			onDestroy();
-
- 			auto children = getAllChildren();
-
-			for (auto child : children) {
-				delete child;
-				child = nullptr;
-
-				int i = 0;
-			}
-
-			if (parent != nullptr) {
-				int parentChildrenSize = parent->children.size();
-				for (int i = 0; i < parentChildrenSize; i++) {
-					if (parent->children[i] == this) {
-						parent->children[i] = nullptr;
-						parent->children.erase(parent->children.begin() + i);
-						break;
-					}
-				}
-			}
-
-			delete this;
 		}
 
 		template <typename T>
@@ -95,7 +84,7 @@ class rNode {
 			rNode* pointer = new T;
 
 			if (pointer) {
-				children.insert(children.begin() + index, pointer);
+				children.insert(pointer, index);
 			}
 
 			pointer->parent = this;
@@ -103,27 +92,37 @@ class rNode {
 			return static_cast<T*>(children[index]);
 		}
 
-		std::vector<rNode*> getChildren() {
+		rNode* getRoot() {
+			rNode* currentNode = parent;
+
+			while (currentNode->parent) {
+				currentNode = currentNode->parent;
+			}
+
+			return currentNode;
+		}
+
+		rList<rNode*> getChildren() {
 			return children;
 		}
 
-		std::vector<rNode*> getAllChildren() {
-			std::vector<rNode*> result;
+		rList<rNode*> getAllChildren() {
+			rList<rNode*> result;
 
 			// Recursively iterate through hierarchy.
-			std::vector<rNode*> unexploredNodes;
+			rList<rNode*> unexploredNodes;
 
 			unexploredNodes = children;
 			result = children;
 
 			while (unexploredNodes.size() > 0) {
 				rNode* node = unexploredNodes.back(); // Get last node
-				unexploredNodes.pop_back(); // Remove last node
+				unexploredNodes.popBack(); // Remove last node
 				
 				if (node->children.size() != 0) { // If current node has children
 					for (auto child : node->children) {
-						unexploredNodes.push_back(child); // Push back all children to the unexplored nodes and result.
-						result.push_back(child);
+						unexploredNodes.pushBack(child); // Push back all children to the unexplored nodes and result.
+						result.pushBack(child);
 					}
 				}
 			}
@@ -136,12 +135,12 @@ class rNode {
 		}
 
 		template <typename T = rNode>
-		std::vector<T*> getChildrenTagged(std::string tag) {
-			std::vector<T*> result;
+		rList<T*> getChildrenTagged(std::string tag) {
+			rList<T*> result;
 			
 			for (auto child : children) {
 				if (child->hasTag(tag)) {
-					result.push_back(static_cast<T*>(child));
+					result.add(static_cast<T*>(child));
 				}
 			}
 
@@ -149,12 +148,12 @@ class rNode {
 		}
 
 		template <typename T = rNode>
-		std::vector<T*> getSiblingsTagged(std::string tag) {
+		rList<T*> getSiblingsTagged(std::string tag) {
 			if (parent!=nullptr) {
 				return parent->getChildrenTagged<T>(tag);
 			}
 
-			std::vector<T*> blankList;
+			rList<T*> blankList;
 			return blankList;
 		}
 
@@ -176,6 +175,8 @@ class rNode {
 			}
 		}
 
+		bool valid() { return _valid; }
+
 		void addTag(std::string tag) {
 			if (!hasTag(tag)) {
 				tags.push_back(tag);
@@ -188,7 +189,11 @@ class rNode {
 
 	private:
 		std::vector<std::string> tags;
-		std::vector<rNode*> children;
+		rList<rNode*> children;
+
+	protected:
+		bool _valid = true;
+		unsigned int _handle = 0;
 };
 
 class rNode2D : public rNode {
@@ -203,40 +208,42 @@ public:
 	rVector3 rotation;
 };
 
-class rEngine {
+class rEngine : public rNode {
 public:
 	void update() {
 		step();
 		draw();
+		garbageCollect();
 	}
 
-	rNode* root;
-
-	rEngine() {
-		root = new rNode();
-	}
-
-	~rEngine() {
-		delete root;
-		root = nullptr;
-	}
-
-private:
 	void step() {
 		rBeginStep();
-
-		root->step();
-		root->childrenStep();
-
+		childrenStep();
 		rEndStep();
 	}
 
 	void draw() {
 		rBeginDraw();
-		
-		root->draw();
-		root->childrenDraw();
-
+		childrenDraw();
 		rEndDraw();
+	}
+
+	// GARBAGE DAY. /ref
+	void garbageCollect() {
+		for (auto piece : garbage) {
+			rNode* currentNode = static_cast<rNode*>(piece);
+
+			auto allChildren = currentNode->getAllChildren();
+
+			for (auto child : allChildren) {
+				delete child;
+				child = NULL;
+			}
+
+			delete piece;
+			piece = NULL;
+		}
+
+		garbage.clear();
 	}
 };

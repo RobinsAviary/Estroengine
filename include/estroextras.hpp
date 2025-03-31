@@ -17,7 +17,7 @@ class rColorBackground : public rNode {
 };
 
 float deg2rad(float deg) {
-    return deg * (M_PI / 180);
+    return static_cast<float>(deg * (M_PI / 180));
 }
 
 float lengthdir_x(float length, float dir) {
@@ -324,6 +324,14 @@ template <typename T> class rGrid {
         }
 };
 
+class rSprite : public rNode2D {
+public:
+
+
+private:
+
+};
+
 class rSpriteCursor : public rNode {
 public:
     rTexture texture;
@@ -337,6 +345,8 @@ public:
     }
 
     void draw() {
-        rDrawTexture(&texture, rGetMousePosition(), cWhite);
+        if (rIsCursorOnScreen()) {
+            rDrawTexture(&texture, rGetMousePosition(), cWhite);
+        }
     }
 };

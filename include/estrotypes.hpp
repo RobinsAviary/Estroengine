@@ -1,6 +1,8 @@
 #pragma once
 
 #include "estrocolors.hpp"
+#include <list>
+#include <algorithm>
 
 typedef struct rVector2 {
 	rVector2(int x = 0, int y = 0) : x(x), y(y) {}
@@ -188,4 +190,96 @@ public:
 	}
 protected:
 	bool valid = false;
+};
+
+template <typename T>
+class rList {
+public:
+	/*inline void operator=(rList& rhs) {
+		//clear();
+
+		for (auto item : rhs.getBase()) {
+			add(item);
+		}
+	}*/
+
+	void add(T item) {
+		list.push_back(item);
+	}
+
+	void insert(int index, T item) {
+		auto iter = list.begin();
+		advance(iter, index);
+		list.insert(iter, item);
+	}
+
+	T at(int index) {
+		auto iter = list.begin();
+		advance(iter, index);
+
+		return *iter;
+	}
+
+	void set(int index, T item) {
+		auto iter = list.begin();
+		advance(iter, index);
+		*iter = item;
+	}
+
+	int size() {
+		return list.size();
+	}
+
+	void pushBack(T item) {
+		list.push_back(item);
+	}
+
+	void pushFront(T item) {
+		list.push_front(item);
+	}
+
+	void popBack() {
+		list.pop_back();
+	}
+
+	void popFront() {
+		list.pop_front();
+	}
+
+	void erase(int index) {
+		auto iter = list.begin();
+		advance(iter, index);
+		list.erase(iter);
+	}
+
+	void erase(T pointer) {
+		list.remove(pointer);
+	}
+
+	auto begin() {
+		return list.begin();
+	}
+
+	auto end() {
+		return list.end();
+	}
+
+	T back() {
+		return list.back();
+	}
+	
+	T front() {
+		return list.front();
+	}
+
+	void clear() {
+		list.clear();
+	}
+
+	std::list<T> getBase() {
+		return list;
+	}
+
+protected:
+	std::list<T> list;
 };
