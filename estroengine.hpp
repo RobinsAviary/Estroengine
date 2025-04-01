@@ -220,8 +220,8 @@ public:
 
 class rNode3D : public rNode {
 public:
-	rVector3 position;
-	rVector3 rotation;
+	rVector3<float> position;
+	rVector3<float> rotation;
 };
 
 class rEngine : public rNode {

@@ -83,17 +83,81 @@ rVector2<int> rVector2SE = { 1, 1 };
 rVector2<int> rVector2NW = { -1, -1 };
 rVector2<int> rVector2SW = { -1, 1 };
 
+template <typename T>
 struct rVector3 {
 	rVector3(int x = 0, int y = 0, int z = 0) : x(x), y(y), z(z) {}
 	int x = 0;
 	int y = 0;
 	int z = 0;
+
+	template <typename rhs_type>
+	inline rVector3<rhs_type> operator+ (const rVector3<rhs_type>& rhs) {
+		return rVector3{ x + rhs.x, y + rhs.y, z + rhs.z };
+	}
+
+	template <typename rhs_type>
+	inline rVector3<rhs_type> operator- (const rVector3<rhs_type>& rhs) {
+		return rVector3{ x - rhs.x, y - rhs.y, z - rhs.z };
+	}
+
+	template <typename rhs_type>
+	inline rVector3<rhs_type> operator/ (const rVector3<rhs_type>& rhs) {
+		return rVector3{ x / rhs.x, y / rhs.y, z / rhs.z };
+	}
+
+	template <typename rhs_type>
+	inline rVector3<rhs_type> operator* (const rVector3<rhs_type>& rhs) {
+		return rVector3{ x * rhs.x, y * rhs.y, z * rhs.z };
+	}
+
+	template <typename rhs_type>
+	inline void operator+=(rVector3& rhs) {
+		x += rhs.x;
+		y += rhs.y;
+		z += rhs.z;
+	}
+
+	template <typename rhs_type>
+	inline void operator-=(rVector3& rhs) {
+		x -= rhs.x;
+		y -= rhs.y;
+		z -= rhs.z;
+	}
+
+	template <typename rhs_type>
+	inline void operator*=(rVector3& rhs) {
+		x *= rhs.x;
+		y *= rhs.y;
+		z *= rhs.z;
+	}
+
+	template <typename rhs_type>
+	inline void operator/=(rVector3& rhs) {
+		x /= rhs.x;
+		y /= rhs.y;
+		z /= rhs.z;
+	}
+
+	template <typename rhs_type>
+	inline bool operator==(const rVector3& rhs) {
+		return (x == rhs.x && y == rhs.y && z == rhs.z);
+	}
+
+	template <typename rhs_type>
+	inline bool operator!=(const rVector3& rhs) {
+		return (x != rhs.x || y != rhs.y || z != rhs.z);
+	}
+
+	template <typename T>
+	rVector2<T> cast() {
+		return rVector3<T>{static_cast<T>(x), static_cast<T>(y), static_cast<T>(z)};
+	}
 };
 
 typedef struct rTransform {
-	rTransform(rVector3 position, rVector3 rotation) : position(position), rotation(rotation) {}
-	rVector3 position;
-	rVector3 rotation;
+	rTransform(rVector3<float> position, rVector3<float> rotation) : position(position), rotation(rotation) {}
+	rVector3<float> position;
+	rVector3<float> rotation;
 } rTransform;
 
 typedef struct rRectangle {
@@ -103,62 +167,6 @@ typedef struct rRectangle {
 	int w = 0;
 	int h = 0;
 } rRectangle;
-
-inline rVector3 operator+(const rVector3& lhs, const rVector3& rhs) {
-	return rVector3{ lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z };
-}
-
-inline rVector3 operator-(const rVector3& lhs, const rVector3& rhs) {
-	return rVector3{ lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z };
-}
-
-inline rVector3 operator*(const rVector3& lhs, const rVector3& rhs) {
-	return rVector3{ lhs.x * rhs.x, lhs.y * rhs.y, lhs.z * rhs.z };
-}
-
-inline rVector3 operator/(const rVector3& lhs, const rVector3& rhs) {
-	return rVector3{ lhs.x / rhs.x, lhs.y / rhs.y, lhs.z / rhs.z };
-}
-
-inline void operator+=(rVector3& lhs, rVector3& rhs) {
-	lhs.x += rhs.x;
-	lhs.y += rhs.y;
-	lhs.z += rhs.z;
-}
-
-inline void operator-=(rVector3& lhs, rVector3& rhs) {
-	lhs.x -= rhs.x;
-	lhs.y -= rhs.y;
-	lhs.z -= rhs.z;
-}
-
-inline void operator*=(rVector3& lhs, rVector3& rhs) {
-	lhs.x *= rhs.x;
-	lhs.y *= rhs.y;
-	lhs.z *= rhs.z;
-}
-
-inline void operator/=(rVector3& lhs, rVector3& rhs) {
-	lhs.x /= rhs.x;
-	lhs.y /= rhs.y;
-	lhs.z /= rhs.z;
-}
-
-inline bool operator==(const rVector3& lhs, const rVector3& rhs) {
-	return (lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z);
-}
-
-inline bool operator!=(const rVector3& lhs, const rVector3& rhs) {
-	return (lhs.x != rhs.x || lhs.y != rhs.y || lhs.z != rhs.z);
-}
-
-inline bool operator==(const rColor& lhs, const rColor& rhs) {
-	return { lhs.r == rhs.r && lhs.g == rhs.g && lhs.b == rhs.b && lhs.a == rhs.a };
-}
-
-inline bool operator!=(const rColor& lhs, const rColor& rhs) {
-	return { lhs.r != rhs.r || lhs.g != rhs.g || lhs.b != rhs.b || lhs.a != rhs.a };
-}
 
 class rAsset {
 public:
