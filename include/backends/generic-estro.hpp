@@ -2,119 +2,117 @@
 #include "../estrotypes.hpp"
 #include "../estroinput.hpp"
 
-std::string rGetBackendName()
+std::string rGetBackendName();
 
-class rCPUTexture {
+class rCPUTexture : public rAsset {
 public:
-	//CustomType texture;
+	rColor getPixel(rVector2<unsigned int> position);
 
-	rColor getPixel(rVector2 position)
+	int getWidth();
 
-	int getWidth()
+	int getHeight();
 
-	int getHeight()
+	rVector2<unsigned int> getSize();
 
-	rVector2 getSize()
+	void load(std::string filename);
 
-	void load(std::string filename)
-
-	~rCPUTexture()
+	~rCPUTexture();
 };
 
-class rTexture {
+class rTexture : public rAsset {
 public:
-	//CustomType texture;
+	int getWidth();
 
-	int getWidth()
+	int getHeight();
 
-	int getHeight()
+	rVector2<unsigned int> getSize();
 
-	rVector2 getSize()
+	void load(std::string filename);
 
-	void load(std::string filename)
-
-	~rTexture()
+	~rTexture();
 };
 
-std::string rGetClipboard()
+std::string rGetClipboard();
 
-void rSetClipboard(std::string _string)
+void rSetClipboard(std::string _string);
 
-void rInit(int windowWidth, int windowHeight, std::string windowTitle, bool resizable = false)
+void rInit(unsigned int windowWidth, unsigned int windowHeight, std::string windowTitle, bool resizable = false);
 
-void rDeinit()
+void rDeinit();
 
-void rDrawTexture(const rTexture& texture, rVector2 position, rColor tint)
+void rDrawTexture(rTexture* texture, rVector2<float> position, rColor tint);
 
-void rDrawTextureSection(const rTexture& texture, rVector2 position, rRectangle rectangle, rColor tint)
+void rDrawTextureSection(rTexture* texture, rVector2<float> position, rRectangle<int> rectangle, rColor tint);
 
-void rDrawTextureReproject(const rTexture& texture, rRectangle source, rRectangle target, rColor tint)
+void rDrawTextureReproject(rTexture* texture, rRectangle<int> source, rRectangle<float> target, rColor tint);
 
-void rDrawLine(rVector2 pos1, rVector2 pos2, rColor color)
+void rDrawLine(rVector2<float> pos1, rVector2<float> pos2, rColor color);
 
-void rDrawRectangle(rRectangle rectangle, rColor color, bool filled)
+void rDrawRectangle(rRectangle<float> rectangle, rColor color, bool filled);
 
-void rDrawCircle(rVector2 position, float radius, rColor color, bool filled)
+void rDrawCircle(rVector2<float> position, float radius, rColor color, bool filled);
 
 // NOTE: DO NOT use in large amounts, this is generally not an efficient way to do whatever you're doing. Look into editing the textures directly or simplifying shapes.
-void rDrawPixel(rVector2 position, rColor color)
+void rDrawPixel(rVector2<int> position, rColor color);
 
-void rBeginStep()
+void rBeginStep();
 
-void rEndStep()
+void rEndStep();
 
-void rBeginDraw()
+void rBeginDraw();
 
-void rEndDraw()
+void rEndDraw();
 
-rVector2 rGetMousePosition()
+rVector2<int> rGetMousePosition();
 
-void rSetMousePosition(rVector2 position)
+void rSetMousePosition(rVector2<int> position);
 
-void rSetWindowTitle(std::string title)
+void rSetWindowTitle(std::string title);
 
-int rGetWindowWidth()
+int rGetWindowWidth();
 
-int rGetWindowHeight()
+int rGetWindowHeight();
 
-rVector2 rGetWindowSize()
+rVector2<unsigned int> rGetWindowSize();
 
-void rSetWindowSize(rVector2 size)
+void rSetWindowSize(rVector2<unsigned int> size);
 
-void rSetWindowOpacity(float opacity)
+void rSetWindowOpacity(float opacity);
 
-void rSetWindowPosition(rVector2 position)
+void rSetWindowPosition(rVector2<int> position);
 
-rVector2 rGetWindowPosition()
+rVector2<int> rGetWindowPosition();
 
-void rShowCursor()
+void rShowCursor();
 
-void rHideCursor()
+void rHideCursor();
 
-bool rIsCursorHidden()
+bool rIsCursorHidden();
 
-bool rIsCursorOnScreen()
+bool rIsCursorOnScreen();
 
-rVector2 rGetCursorPosition()
+rVector2<int> rGetCursorPosition();
 
-void rSetCursorPosition(rVector2 position)
+void rSetCursorPosition(rVector2<int> position);
 
-void rDrawClear(rColor color)
+void rDrawClear(rColor color);
 
-void rSetMaxFPS(int fps)
+void rSetMaxFPS(int fps);
 
-float rGetDelta()
+float rGetDelta();
 
-bool rIsGameLooping()
+bool rIsGameLooping();
 
-void rSetRandomSeed(unsigned int seed)
+void rSetRandomSeed(unsigned int seed);
 
-void rSleep(double seconds)
+void rSleep(double seconds);
 
-int rGetRandomValue(int min, int max)
+int rGetRandomValue(int min, int max);
 
-bool rIsKeyPressed(rKey key)
+bool rIsKeyPressed(rKey key);
 
-bool rIsKeyHeld(rKey key)
+bool rIsKeyHeld(rKey key);
 
-bool rIsKeyReleased(rKey key)
+bool rIsKeyReleased(rKey key);
+
+std::string rGetWorkingDirectory();

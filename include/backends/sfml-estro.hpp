@@ -199,7 +199,7 @@ void rDrawCircle(rVector2<float> position, float radius, rColor color, bool fill
 }
 
 // NOTE: DO NOT use in large amounts, this is generally not an efficient way to do whatever you're doing. Look into editing the textures directly or simplifying shapes.
-void rDrawPixel(rVector2<unsigned int> position, rColor color) {
+void rDrawPixel(rVector2<int> position, rColor color) {
 	rDrawRectangle(rRectangle<float>{ static_cast<float>(position.x), static_cast<float>(position.y), 1, 1 }, color, true);
 }
 
