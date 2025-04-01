@@ -29,8 +29,8 @@ class rCPUTexture : public rAsset {
 public:
 	sf::Image texture;
 
-	rColor getPixel(rVector2<unsigned int> position) {
-		return sfColorTorColor(texture.getPixel(sf::Vector2u{ static_cast<unsigned int>(position.x), static_cast<unsigned int>(position.y) }));
+	rColor getPixel(rVector2<int> position) {
+		return sfColorTorColor(texture.getPixel(sf::Vector2u{ position.x, position.y }));
 	}
 
 	int getWidth() {
@@ -97,7 +97,7 @@ void rSetClipboard(std::string _string) {
 	sf::Clipboard::setString(sf::String(_string));
 }
 
-void rInit(int windowWidth, int windowHeight, std::string windowTitle, bool resizable = false) {
+void rInit(unsigned int windowWidth, unsigned int windowHeight, std::string windowTitle, bool resizable = false) {
 	int style = 0;
 	if (resizable) {
 		style = sf::Style::Default;
@@ -106,7 +106,7 @@ void rInit(int windowWidth, int windowHeight, std::string windowTitle, bool resi
 		style = sf::Style::Close;
 	}
 
-	window.create(sf::VideoMode({ static_cast<unsigned int>(windowWidth), static_cast<unsigned int>(windowHeight) }), windowTitle, style);
+	window.create(sf::VideoMode({ windowWidth, windowHeight }), windowTitle, style);
 	window.setKeyRepeatEnabled(false);
 }
 
@@ -119,7 +119,7 @@ void rDrawTexture(rTexture* texture, rVector2<float> position, rColor tint) {
 
 	sf::Sprite sprite(texture->texture);
 
-	sprite.setPosition(sf::Vector2f{static_cast<float>(position.x), static_cast<float>(position.y)});
+	sprite.setPosition(sf::Vector2f{position.x, position.y});
 	sprite.setColor(rColorTosfColor(tint));
 
 	window.draw(sprite);
@@ -131,7 +131,7 @@ void rDrawTextureSection(rTexture* texture, rVector2<float> position, rRectangle
 	sf::Sprite sprite(texture->texture);
 
 	sprite.setTextureRect(sf::IntRect({ rectangle.x, rectangle.y }, { rectangle.w, rectangle.h }));
-	sprite.setPosition(sf::Vector2f{ static_cast<float>(position.x), static_cast<float>(position.y) });
+	sprite.setPosition(sf::Vector2f{ position.x, position.y });
 	sprite.setColor(rColorTosfColor(tint));
 
 	window.draw(sprite);
@@ -144,7 +144,7 @@ void rDrawTextureReproject(rTexture* texture, rRectangle source, rRectangle targ
 
 	sprite.setTextureRect(sf::IntRect({ source.x, source.y }, { source.w, source.h }));
 
-	sf::Vector2f scale = sf::Vector2f{ static_cast<float>(target.x) / static_cast<float>(source.x), static_cast<float>(target.y) / static_cast<float>(source.y) };
+	sf::Vector2f scale = sf::Vector2f{ target.x / source.x, target.y / source.y };
 	sprite.setScale(scale);
 
 	window.draw(sprite);

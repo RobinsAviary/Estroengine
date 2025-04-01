@@ -6,19 +6,20 @@
 #include <algorithm>
 #include <string>
 
-typedef struct rTransform {
+struct rTransform {
 	rTransform(rVector3<float> position, rVector3<float> rotation) : position(position), rotation(rotation) {}
 	rVector3<float> position;
 	rVector3<float> rotation;
-} rTransform;
+};
 
-typedef struct rRectangle {
-	rRectangle(int x = 0, int y = 0, int w = 0, int h = 0) : x(x), y(y), w(w), h(h) {}
-	int x = 0;
-	int y = 0;
-	int w = 0;
-	int h = 0;
-} rRectangle;
+template <typename T>
+struct rRectangle {
+	rRectangle(T x = 0, T y = 0, T w = 0, T h = 0) : x(x), y(y), w(w), h(h) {}
+	T x = 0;
+	T y = 0;
+	T w = 0;
+	T h = 0;
+};
 
 class rAsset {
 public:
