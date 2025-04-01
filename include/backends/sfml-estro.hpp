@@ -47,7 +47,7 @@ public:
 
 	rVector2<unsigned int> getSize() {
 		sf::Vector2u _size = texture.getSize();
-		return rVector2<unsigned int>{ static_cast<int>(_size.x), static_cast<int>(_size.y) };
+		return rVector2<unsigned int>{ _size.x, _size.y };
 	}
 
 	void load(std::string filename) {
@@ -77,7 +77,7 @@ public:
 
 	rVector2<unsigned int> getSize() {
 		sf::Vector2u size = texture.getSize();
-		return rVector2<unsigned int>{ static_cast<int>(size.x), static_cast<int>(size.y) };
+		return rVector2<unsigned int>{ size.x,size.y };
 	}
 
 	void load(std::string filename) {
@@ -200,7 +200,7 @@ void rDrawCircle(rVector2<float> position, float radius, rColor color, bool fill
 
 // NOTE: DO NOT use in large amounts, this is generally not an efficient way to do whatever you're doing. Look into editing the textures directly or simplifying shapes.
 void rDrawPixel(rVector2<unsigned int> position, rColor color) {
-	rDrawRectangle(rRectangle{ position.x, position.y, 1, 1 }, color, true);
+	rDrawRectangle(rRectangle{ static_cast<int>(position.x), static_cast<int>(position.y), 1, 1 }, color, true);
 }
 
 std::vector<sf::Keyboard::Key> _pressedKeys;
@@ -237,13 +237,13 @@ void rEndDraw() {
 	_delta = time.asSeconds();
 }
 
-rVector2<unsigned int> rGetMousePosition() {
+rVector2<int> rGetMousePosition() {
 	sf::Vector2i pos = sf::Mouse::getPosition();
 
-	return rVector2<unsigned int>{ pos.x, pos.y };
+	return rVector2<int>{ pos.x, pos.y };
 }
 
-void rSetMousePosition(rVector2<unsigned int> position) {
+void rSetMousePosition(rVector2<int> position) {
 	sf::Mouse::setPosition(sf::Vector2i{ position.x, position.y });
 }
 
@@ -263,7 +263,7 @@ int rGetWindowHeight() {
 
 rVector2<unsigned int> rGetWindowSize() {
 	sf::Vector2u size = window.getSize();
-	return rVector2<unsigned int>{ static_cast<int>(size.x), static_cast<int>(size.y) };
+	return rVector2<unsigned int>{ static_cast<unsigned int>(size.x), static_cast<unsigned int>(size.y) };
 }
 
 void rSetWindowSize(rVector2<unsigned int> size) {
@@ -301,7 +301,7 @@ bool rIsCursorHidden() {
 bool rIsCursorOnScreen() {
 	// Get cursor position relative to window
 	sf::Vector2i _position = sf::Mouse::getPosition(window);
-	rVector2<unsigned int> position = rVector2<unsigned int>{ _position.x, _position.y };
+	rVector2<unsigned int> position = rVector2<unsigned int>{ static_cast<unsigned int>(_position.x), static_cast<unsigned int>(_position.y)};
 
 	if (position.x >= 0 && position.y >= 0) {
 		if (position.x < rGetWindowWidth() && position.y < rGetWindowHeight()) {
@@ -312,12 +312,12 @@ bool rIsCursorOnScreen() {
 	return false;
 }
 
-rVector2<unsigned int> rGetCursorPosition() {
+rVector2<int> rGetCursorPosition() {
 	sf::Vector2i pos = sf::Mouse::getPosition();
-	return rVector2<unsigned int>{pos.x, pos.y};
+	return rVector2<int>{pos.x, pos.y};
 }
 
-void rSetCursorPosition(rVector2<unsigned int> position) {
+void rSetCursorPosition(rVector2<int> position) {
 	sf::Mouse::setPosition(sf::Vector2i{ position.x, position.y });
 }
 
