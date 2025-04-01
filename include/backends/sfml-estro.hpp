@@ -29,7 +29,7 @@ class rCPUTexture : public rAsset {
 public:
 	sf::Image texture;
 
-	rColor getPixel(rVector2<int> position) {
+	rColor getPixel(rVector2<unsigned int> position) {
 		return sfColorTorColor(texture.getPixel(sf::Vector2u{ position.x, position.y }));
 	}
 
@@ -125,7 +125,7 @@ void rDrawTexture(rTexture* texture, rVector2<float> position, rColor tint) {
 	window.draw(sprite);
 }
 
-void rDrawTextureSection(rTexture* texture, rVector2<float> position, rRectangle rectangle, rColor tint) {
+void rDrawTextureSection(rTexture* texture, rVector2<float> position, rRectangle<int> rectangle, rColor tint) {
 	if (!texture->isValid()) return;
 
 	sf::Sprite sprite(texture->texture);
@@ -137,7 +137,7 @@ void rDrawTextureSection(rTexture* texture, rVector2<float> position, rRectangle
 	window.draw(sprite);
 }
 
-void rDrawTextureReproject(rTexture* texture, rRectangle source, rRectangle target, rColor tint) {
+void rDrawTextureReproject(rTexture* texture, rRectangle<int> source, rRectangle<float> target, rColor tint) {
 	if (!texture->isValid()) return;
 
 	sf::Sprite sprite(texture->texture);
@@ -162,11 +162,11 @@ void rDrawLine(rVector2<float> pos1, rVector2<float> pos2, rColor color) {
 	window.draw(line.data(), line.size(), sf::PrimitiveType::Lines);
 }
 
-void rDrawRectangle(rRectangle rectangle, rColor color, bool filled) {
+void rDrawRectangle(rRectangle<float> rectangle, rColor color, bool filled) {
 	sf::Color _color = rColorTosfColor(color);
 
-	sf::RectangleShape shape({ static_cast<float>(rectangle.w), static_cast<float>(rectangle.h) });
-	shape.setPosition(sf::Vector2f{ static_cast<float>(rectangle.x), static_cast<float>(rectangle.y) });
+	sf::RectangleShape shape({ rectangle.w, rectangle.h });
+	shape.setPosition(sf::Vector2f{ rectangle.x, rectangle.y });
 	if (filled) {
 		shape.setFillColor(_color);
 	}
@@ -200,7 +200,7 @@ void rDrawCircle(rVector2<float> position, float radius, rColor color, bool fill
 
 // NOTE: DO NOT use in large amounts, this is generally not an efficient way to do whatever you're doing. Look into editing the textures directly or simplifying shapes.
 void rDrawPixel(rVector2<unsigned int> position, rColor color) {
-	rDrawRectangle(rRectangle{ static_cast<int>(position.x), static_cast<int>(position.y), 1, 1 }, color, true);
+	rDrawRectangle(rRectangle<float>{ static_cast<float>(position.x), static_cast<float>(position.y), 1, 1 }, color, true);
 }
 
 std::vector<sf::Keyboard::Key> _pressedKeys;
