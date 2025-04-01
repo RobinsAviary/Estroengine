@@ -3,6 +3,7 @@
 
 A portable simple-to-use node-tree-based game engine built in C++.
 The entire engine is header-only so it can be easily integrated.
+Premake is a work-in-progress.
 
 Estroengine currently supports two libraries as backends:
 * [raylib](https://www.raylib.com/)
