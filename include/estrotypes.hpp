@@ -4,11 +4,11 @@
 #include <list>
 #include <algorithm>
 
-typedef struct rVector2 {
+struct rVector2 {
 	rVector2(int x = 0, int y = 0) : x(x), y(y) {}
 	int x = 0;
 	int y = 0;
-} rVector2;
+};
 
 rVector2 rVector2Zero = { 0, 0 };
 
@@ -22,12 +22,12 @@ rVector2 rVector2SE = { 1, 1 };
 rVector2 rVector2NW = { -1, -1 };
 rVector2 rVector2SW = { -1, 1 };
 
-typedef struct rVector3 {
+struct rVector3 {
 	rVector3(int x = 0, int y = 0, int z = 0) : x(x), y(y), z(z) {}
 	int x = 0;
 	int y = 0;
 	int z = 0;
-} rVector3;
+};
 
 typedef struct rTransform {
 	rTransform(rVector3 position, rVector3 rotation) : position(position), rotation(rotation) {}
