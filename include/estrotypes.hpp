@@ -301,7 +301,12 @@ public:
 		resize(_size);
 	}
 
+	void clear() {
+		list.clear();
+	}
+
 	void resize(rVector2 _size, T val = NULL) {
+		clear();
 		// rList will check if val is valid
 		size = _size;
 		list.resize(size.x * size.y, val);
