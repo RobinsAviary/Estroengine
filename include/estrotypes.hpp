@@ -104,23 +104,6 @@ typedef struct rRectangle {
 	int h = 0;
 } rRectangle;
 
-// A buncha inline implimentations that are implied in most languages.
-
-/*inline rVector2 operator+(const rVector2& lhs, const rVector2& rhs) {
-	return rVector2{ lhs.x + rhs.x, lhs.y + rhs.y };
-}
-
-inline rVector2 operator-(const rVector2& lhs, const rVector2& rhs) {
-	return rVector2{ lhs.x - rhs.x, lhs.y - rhs.y };
-}
-
-inline rVector2 operator*(const rVector2& lhs, const rVector2& rhs) {
-	return rVector2{ lhs.x * rhs.x, lhs.y * rhs.y };
-}
-
-inline rVector2 operator/(const rVector2& lhs, const rVector2& rhs) {
-	return rVector2{ lhs.x / rhs.x, lhs.y / rhs.y };*/
-
 inline rVector3 operator+(const rVector3& lhs, const rVector3& rhs) {
 	return rVector3{ lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z };
 }
@@ -195,14 +178,6 @@ protected:
 template <typename T>
 class rList {
 public:
-	/*inline void operator=(rList& rhs) {
-		//clear();
-
-		for (auto item : rhs.getBase()) {
-			add(item);
-		}
-	}*/
-
 	void add(T item) {
 		list.push_back(item);
 	}
