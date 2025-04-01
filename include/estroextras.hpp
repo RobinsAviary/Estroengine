@@ -347,7 +347,7 @@ public:
 
     void draw() {
         if (rIsCursorOnScreen()) {
-            rDrawTexture(&texture, rGetMousePosition(), cWhite);
+            rDrawTexture(&texture, rGetMousePosition().cast<float>(), cWhite);
         }
     }
 };

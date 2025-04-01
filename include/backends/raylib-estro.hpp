@@ -19,12 +19,14 @@ rColor ColorTorColor(Color color) {
 	return rColor{ color.r, color.g, color.b, color.a };
 }
 
-Vector2 rVector2ToVector2(rVector2 vector) {
+template <typename T>
+Vector2 rVector2ToVector2(rVector2<T> vector) {
 	return Vector2{ static_cast<float>(vector.x), static_cast<float>(vector.y) };
 }
 
-rVector2 Vector2TorVector2(Vector2 vector) {
-	return rVector2{ static_cast<int>(vector.x), static_cast<int>(vector.y) };
+template <typename T>
+rVector2<T> Vector2TorVector2(Vector2 vector) {
+	return rVector2<T>{ static_cast<T>(vector.x), static_cast<T>(vector.y) };
 }
 
 Rectangle rRectangleToRectangle(rRectangle rectangle) {
@@ -35,7 +37,7 @@ class rCPUTexture : public rAsset {
 	public:
 		Image texture = { 0 };
 
-		rColor getPixel(rVector2 position) {
+		rColor getPixel(rVector2<unsigned int> position) {
 			return ColorTorColor(GetImageColor(texture, position.x, position.y));
 		}
 
@@ -74,8 +76,8 @@ class rTexture : public rAsset {
 			return texture.height;
 		}
 
-		rVector2 getSize() {
-			return rVector2{ getWidth(), getHeight() };
+		rVector2<unsigned int> getSize() {
+			return rVector2<unsigned int>{ getWidth(), getHeight() };
 		}
 
 		void load(std::string filename) {
@@ -138,12 +140,12 @@ void rDeinit() {
 	CloseWindow();
 }
 
-void rDrawTexture(rTexture* texture, rVector2 position, rColor tint) {
+void rDrawTexture(rTexture* texture, rVector2<float> position, rColor tint) {
 	if (!texture->isValid()) return;
 	DrawTexture(texture->texture, position.x, position.y, rColorToColor(tint));
 }
 
-void rDrawTextureSection(rTexture* texture, rVector2 position, rRectangle rectangle, rColor tint) {
+void rDrawTextureSection(rTexture* texture, rVector2<float> position, rRectangle rectangle, rColor tint) {
 	if (!texture->isValid()) return;
 	DrawTextureRec(texture->texture, rRectangleToRectangle(rectangle), rVector2ToVector2(position), rColorToColor(tint));
 }
@@ -153,7 +155,7 @@ void rDrawTextureReproject(rTexture* texture, rRectangle source, rRectangle targ
 	DrawTexturePro(texture->texture, rRectangleToRectangle(source), rRectangleToRectangle(target), Vector2{ 0, 0 }, 0, rColorToColor(tint));
 }
 
-void rDrawLine(rVector2 pos1, rVector2 pos2, rColor color) {
+void rDrawLine(rVector2<float> pos1, rVector2<float> pos2, rColor color) {
 	DrawLine(pos1.x, pos1.y, pos2.x, pos2.y, rColorToColor(color));
 }
 
@@ -166,7 +168,7 @@ void rDrawRectangle(rRectangle rectangle, rColor color, bool filled) {
 	}
 }
 
-void rDrawCircle(rVector2 position, float radius, rColor color, bool filled) {
+void rDrawCircle(rVector2<float> position, float radius, rColor color, bool filled) {
 	if (filled) {
 		DrawCircle(position.x, position.y, radius, rColorToColor(color));
 	}
@@ -176,7 +178,7 @@ void rDrawCircle(rVector2 position, float radius, rColor color, bool filled) {
 }
 
 // NOTE: DO NOT use in large amounts, this is generally not an efficient way to do whatever you're doing. Look into editing the textures directly or simplifying shapes.
-void rDrawPixel(rVector2 position, rColor color) {
+void rDrawPixel(rVector2<unsigned int> position, rColor color) {
 	DrawPixel(position.x, position.y, rColorToColor(color));
 }
 
@@ -196,11 +198,11 @@ void rEndDraw() {
 	EndDrawing();
 }
 
-rVector2 rGetMousePosition() {
-	return rVector2{ GetMouseX(), GetMouseY() };
+rVector2<unsigned int> rGetMousePosition() {
+	return rVector2<unsigned int>{ GetMouseX(), GetMouseY() };
 }
 
-void rSetMousePosition(rVector2 position) {
+void rSetMousePosition(rVector2<unsigned int> position) {
 	SetMousePosition(position.x, position.y);
 }
 
@@ -216,11 +218,11 @@ int rGetWindowHeight() {
 	return GetScreenHeight();
 }
 
-rVector2 rGetWindowSize() {
-	return rVector2{ rGetWindowWidth(), rGetWindowHeight() };
+rVector2<unsigned int> rGetWindowSize() {
+	return rVector2<unsigned int>{ rGetWindowWidth(), rGetWindowHeight() };
 }
 
-void rSetWindowSize(rVector2 size) {
+void rSetWindowSize(rVector2<unsigned int> size) {
 	SetWindowSize(size.x, size.y);
 }
 
@@ -228,14 +230,14 @@ void rSetWindowOpacity(float opacity) {
 	SetWindowOpacity(opacity);
 }
 
-void rSetWindowPosition(rVector2 position) {
+void rSetWindowPosition(rVector2<int> position) {
 	SetWindowPosition(position.x, position.y);
 }
 
-rVector2 rGetWindowPosition() {
+rVector2<int> rGetWindowPosition() {
 	Vector2 position = GetWindowPosition();
 
-	return rVector2{ static_cast<int>(position.x), static_cast<int>(position.y) };
+	return rVector2<int>{ static_cast<int>(position.x), static_cast<int>(position.y) };
 }
 
 void rShowCursor() {
@@ -254,11 +256,11 @@ bool rIsCursorOnScreen() {
 	return IsCursorOnScreen();
 }
 
-rVector2 rGetCursorPosition() {
-	return Vector2TorVector2(GetMousePosition());
+rVector2<unsigned int> rGetCursorPosition() {
+	return Vector2TorVector2<unsigned int>(GetMousePosition());
 }
 
-void rSetCursorPosition(rVector2 position) {
+void rSetCursorPosition(rVector2<unsigned int> position) {
 	SetMousePosition(position.x, position.y);
 }
 

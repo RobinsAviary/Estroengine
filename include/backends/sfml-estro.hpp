@@ -29,25 +29,25 @@ class rCPUTexture : public rAsset {
 public:
 	sf::Image texture;
 
-	rColor getPixel(rVector2 position) {
+	rColor getPixel(rVector2<unsigned int> position) {
 		return sfColorTorColor(texture.getPixel(sf::Vector2u{ static_cast<unsigned int>(position.x), static_cast<unsigned int>(position.y) }));
 	}
 
 	int getWidth() {
-		rVector2 size = getSize();
+		rVector2<unsigned int> size = getSize();
 
 		return size.x;
 	}
 
 	int getHeight() {
-		rVector2 size = getSize();
+		rVector2<unsigned int> size = getSize();
 
 		return size.y;
 	}
 
-	rVector2 getSize() {
+	rVector2<unsigned int> getSize() {
 		sf::Vector2u _size = texture.getSize();
-		return rVector2{ static_cast<int>(_size.x), static_cast<int>(_size.y) };
+		return rVector2<unsigned int>{ static_cast<int>(_size.x), static_cast<int>(_size.y) };
 	}
 
 	void load(std::string filename) {
@@ -70,14 +70,14 @@ public:
 	}
 
 	int getHeight() {
-		rVector2 size = getSize();
+		rVector2<unsigned int> size = getSize();
 
 		return size.y;
 	}
 
-	rVector2 getSize() {
+	rVector2<unsigned int> getSize() {
 		sf::Vector2u size = texture.getSize();
-		return rVector2{ static_cast<int>(size.x), static_cast<int>(size.y) };
+		return rVector2<unsigned int>{ static_cast<int>(size.x), static_cast<int>(size.y) };
 	}
 
 	void load(std::string filename) {
@@ -114,7 +114,7 @@ void rDeinit() {
 	window.close();
 }
 
-void rDrawTexture(rTexture* texture, rVector2 position, rColor tint) {
+void rDrawTexture(rTexture* texture, rVector2<float> position, rColor tint) {
 	if (!texture->isValid()) return;
 
 	sf::Sprite sprite(texture->texture);
@@ -125,7 +125,7 @@ void rDrawTexture(rTexture* texture, rVector2 position, rColor tint) {
 	window.draw(sprite);
 }
 
-void rDrawTextureSection(rTexture* texture, rVector2 position, rRectangle rectangle, rColor tint) {
+void rDrawTextureSection(rTexture* texture, rVector2<float> position, rRectangle rectangle, rColor tint) {
 	if (!texture->isValid()) return;
 
 	sf::Sprite sprite(texture->texture);
@@ -150,7 +150,7 @@ void rDrawTextureReproject(rTexture* texture, rRectangle source, rRectangle targ
 	window.draw(sprite);
 }
 
-void rDrawLine(rVector2 pos1, rVector2 pos2, rColor color) {
+void rDrawLine(rVector2<float> pos1, rVector2<float> pos2, rColor color) {
 	sf::Color _color = rColorTosfColor(color);
 
 	std::array line =
@@ -178,7 +178,7 @@ void rDrawRectangle(rRectangle rectangle, rColor color, bool filled) {
 	window.draw(shape);
 }
 
-void rDrawCircle(rVector2 position, float radius, rColor color, bool filled) {
+void rDrawCircle(rVector2<float> position, float radius, rColor color, bool filled) {
 	sf::CircleShape shape(radius);
 
 	shape.setOrigin(sf::Vector2f{ .5, .5 });
@@ -199,7 +199,7 @@ void rDrawCircle(rVector2 position, float radius, rColor color, bool filled) {
 }
 
 // NOTE: DO NOT use in large amounts, this is generally not an efficient way to do whatever you're doing. Look into editing the textures directly or simplifying shapes.
-void rDrawPixel(rVector2 position, rColor color) {
+void rDrawPixel(rVector2<unsigned int> position, rColor color) {
 	rDrawRectangle(rRectangle{ position.x, position.y, 1, 1 }, color, true);
 }
 
@@ -237,13 +237,13 @@ void rEndDraw() {
 	_delta = time.asSeconds();
 }
 
-rVector2 rGetMousePosition() {
+rVector2<unsigned int> rGetMousePosition() {
 	sf::Vector2i pos = sf::Mouse::getPosition();
 
-	return rVector2{ pos.x, pos.y };
+	return rVector2<unsigned int>{ pos.x, pos.y };
 }
 
-void rSetMousePosition(rVector2 position) {
+void rSetMousePosition(rVector2<unsigned int> position) {
 	sf::Mouse::setPosition(sf::Vector2i{ position.x, position.y });
 }
 
@@ -261,12 +261,12 @@ int rGetWindowHeight() {
 	return size.y;
 }
 
-rVector2 rGetWindowSize() {
+rVector2<unsigned int> rGetWindowSize() {
 	sf::Vector2u size = window.getSize();
-	return rVector2{ static_cast<int>(size.x), static_cast<int>(size.y) };
+	return rVector2<unsigned int>{ static_cast<int>(size.x), static_cast<int>(size.y) };
 }
 
-void rSetWindowSize(rVector2 size) {
+void rSetWindowSize(rVector2<unsigned int> size) {
 	window.setSize({ static_cast<unsigned int>(size.x), static_cast<unsigned int>(size.y) });
 }
 
@@ -274,14 +274,14 @@ void rSetWindowOpacity(float opacity) {
 	//rPrint("rSetWindowOpacity is not supported on this backend!");
 }
 
-void rSetWindowPosition(rVector2 position) {
+void rSetWindowPosition(rVector2<int> position) {
 	window.setPosition({ 10, 50 });
 }
 
-rVector2 rGetWindowPosition() {
+rVector2<int> rGetWindowPosition() {
 	sf::Vector2i pos = window.getPosition();
 
-	return rVector2{ pos.x, pos.y };
+	return rVector2<int>{ pos.x, pos.y };
 }
 
 void rShowCursor() {
@@ -301,7 +301,7 @@ bool rIsCursorHidden() {
 bool rIsCursorOnScreen() {
 	// Get cursor position relative to window
 	sf::Vector2i _position = sf::Mouse::getPosition(window);
-	rVector2 position = rVector2{ _position.x, _position.y };
+	rVector2<unsigned int> position = rVector2<unsigned int>{ _position.x, _position.y };
 
 	if (position.x >= 0 && position.y >= 0) {
 		if (position.x < rGetWindowWidth() && position.y < rGetWindowHeight()) {
@@ -312,12 +312,12 @@ bool rIsCursorOnScreen() {
 	return false;
 }
 
-rVector2 rGetCursorPosition() {
+rVector2<unsigned int> rGetCursorPosition() {
 	sf::Vector2i pos = sf::Mouse::getPosition();
-	return rVector2{pos.x, pos.y};
+	return rVector2<unsigned int>{pos.x, pos.y};
 }
 
-void rSetCursorPosition(rVector2 position) {
+void rSetCursorPosition(rVector2<unsigned int> position) {
 	sf::Mouse::setPosition(sf::Vector2i{ position.x, position.y });
 }
 
@@ -386,5 +386,6 @@ bool rIsKeyReleased(rKey key) {
 }
 
 std::string rGetWorkingDirectory() {
-
+	// TODO: Impl.
+	return "";
 }

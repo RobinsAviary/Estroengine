@@ -1,4 +1,5 @@
 #pragma once
+#include "include/backends/sfml-estro.hpp"
 #include "include/estrotypes.hpp"
 #include <string>
 #include <vector>
@@ -213,7 +214,7 @@ class rNode {
 
 class rNode2D : public rNode {
 public:
-	rVector2 position;
+	rVector2<float> position;
 	float rotation;
 };
 
