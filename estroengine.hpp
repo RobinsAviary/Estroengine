@@ -169,6 +169,19 @@ class rNode {
 			return result;
 		}
 
+		rList<rNode*> getSiblings() {
+			rList<rNode*> result;
+			
+			if (parent) {
+				 parent->getChildren();
+
+				// Remove self from list
+				result.erase(this);
+			}
+
+			return result;
+		}
+
 		// TODO: Fix
 		template <typename T = rNode>
 		rList<T*> getSiblingsTagged(std::string tag) {
