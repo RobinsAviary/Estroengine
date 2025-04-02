@@ -182,15 +182,19 @@ class rNode {
 			return result;
 		}
 
-		// TODO: Fix
 		template <typename T = rNode>
 		rList<T*> getSiblingsTagged(std::string tag) {
-			if (parent!=nullptr) {
-				return parent->getChildrenTagged<T>(tag);
+			rList<T*> result;
+			
+			rList<rNode*> siblings = getSiblings();
+
+			for (auto sibling : siblings) {
+				if (sibling->hasTag("tag")) {
+					result.add(sibling);
+				}
 			}
 
-			rList<T*> blankList;
-			return blankList;
+			return result;
 		}
 
 		void destroyAllChildren() {
