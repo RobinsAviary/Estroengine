@@ -190,7 +190,7 @@ class rNode {
 
 			for (auto sibling : siblings) {
 				if (sibling->hasTag("tag")) {
-					result.add(sibling);
+					result.add(static_cast<T*>(sibling));
 				}
 			}
 
