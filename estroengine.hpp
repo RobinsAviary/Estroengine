@@ -48,6 +48,30 @@ class rNode {
 			return static_cast<T*>(pointer);
 		}
 
+		rNode* getNode(rNode* pointer) {
+			auto _children = getRoot()->getAllChildren();
+
+			for (auto child : children) {
+				if (child == pointer) {
+					return child;
+				}
+			}
+		}
+
+		rNode* getNode(unsigned int handle) {
+			auto _children = getRoot()->getAllChildren();
+
+			for (auto child : children) {
+				if (child->getHandle() == handle) {
+					return child;
+				}
+			}
+		}
+
+		unsigned int getHandle() {
+			return _handle;
+		}
+
 		void removeNode(int index) {
 			children.erase(index);
 		}
@@ -115,6 +139,19 @@ class rNode {
 			return result;
 		}
 
+		rList<rNode*> getAllChildrenTagged(std::string tag) {
+			auto _children = getAllChildren();
+			rList<rNode*> result;
+
+			for (auto child : _children) {
+				if (child->hasTag(tag)) {
+					result.add(child);
+				}
+			}
+
+			return result;
+		}
+
 		bool hasTag(std::string tag) {
 			return (std::find(tags.begin(), tags.end(), tag) != tags.end());
 		}
@@ -132,6 +169,7 @@ class rNode {
 			return result;
 		}
 
+		// TODO: Fix
 		template <typename T = rNode>
 		rList<T*> getSiblingsTagged(std::string tag) {
 			if (parent!=nullptr) {
