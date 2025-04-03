@@ -7,7 +7,7 @@ The entire engine is header-only so it can be easily integrated.
 
 ### Example
 
-This example is the minimum amount of required code to create and manage a window in a way that won't upset whatever system you're working on. Be sure to include an implementation file from `include\backends\`
+This example is the minimum amount of required code to create and manage a window in a way that won't upset whatever system you're working on. Be sure to include an implementation file from `include\backends\`.
 
 ```
 #include "estroengine.hpp"
