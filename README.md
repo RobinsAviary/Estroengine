@@ -5,9 +5,15 @@ A portable simple-to-use node-tree-based game engine built in C++.
 The entire engine is header-only so it can be easily integrated.
 [Premake](https://premake.github.io/) is a work-in-progress.
 
-Estroengine also technically includes a standalone library, estrovector, which is a basic C#-style implementation of math vectors intended for general utility (Basically Vector2 and Vector3).
+Gamepads are currently a work in progress and only supported on SFML at the moment.
 
-Estropathing is a *work-in-progress* interface for [Bensuperpc](https://github.com/bensuperpc)'s [A* implementation](https://github.com/bensuperpc/astar).
+### Notes on individual libraries
+
+Estroengine includes a standalone library, estrovector, which is a basic C#-style implementation of math vectors intended for general utility (Basically Vector2 and Vector3).
+
+Estropathing is an interface for [Bensuperpc](https://github.com/bensuperpc)'s [A* implementation](https://github.com/bensuperpc/astar).
+
+### Backends
 
 Estroengine currently supports two libraries as backends:
 * [raylib](https://www.raylib.com/)
