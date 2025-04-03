@@ -126,6 +126,10 @@ public:
 		
 	}
 
+	bool has(T val) {
+		return (std::find(list.begin(), list.end(), val) != list.end());
+	}
+
 protected:
 	std::list<T> list;
 };
