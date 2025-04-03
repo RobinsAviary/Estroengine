@@ -156,11 +156,11 @@ public:
 	}
 
 	void setAll(T value) {
-		std::fill(list.begin(), list.end(), T);
+		std::fill(list.begin(), list.end(), value);
 	}
 
-	void set(rVector2<unsigned int> position, T val) {
-		list[getIndex(position)] = val;
+	void set(rVector2<unsigned int> position, T value) {
+		list[getIndex(position)] = value;
 	}
 
 	T get(rVector2<unsigned int> position) {
