@@ -419,26 +419,78 @@ std::string rGetWorkingDirectory() {
 	return "";
 }
 
-void rSetControllerIndex(int index) {
-
+bool rIsControllerConnected(unsigned int index) {
+	sf::Joystick::isConnected(index);
 }
 
-/*rVector2<float> rGetJoystickPosition(rJoysticks::Joystick stick) {
+// Basically a custom implementation in sfml lol
+rVector2<float> rGetJoystickPosition(unsigned int index, rJoysticks::Joystick stick) {
+	switch (stick) {
+		case rJoysticks::Left:
+			return rVector2<float>{sf::Joystick::getAxisPosition(index, sf::Joystick::Axis::X), sf::Joystick::getAxisPosition(0, sf::Joystick::Axis::Y)};
+		break;
+		case rJoysticks::Right:
+			return rVector2<float>{sf::Joystick::getAxisPosition(index, sf::Joystick::Axis::U), sf::Joystick::getAxisPosition(0, sf::Joystick::Axis::R)};
+		break;
+	}
+}
+
+bool rGetButtonPressed(unsigned int index, rButtons::Button button) {
 	
 }
 
-bool rGetButtonPressed(rButtons::Button button) {
+bool rGetButtonHeld(unsigned int index, rButtons::Button button) {
+	switch (button) {
+	case rButtons::A:
+		return sf::Joystick::isButtonPressed(index, 0);
+		break;
+	case rButtons::B:
+		return sf::Joystick::isButtonPressed(index, 1);
+		break;
+	case rButtons::X:
+		return sf::Joystick::isButtonPressed(index, 2);
+		break;
+	case rButtons::Y:
+		return sf::Joystick::isButtonPressed(index, 3);
+		break;
+	case rButtons::LeftShoulder:
+		return sf::Joystick::isButtonPressed(index, 4);
+		break;
+	case rButtons::RightShoulder:
+		return sf::Joystick::isButtonPressed(index, 5);
+		break;
+	case rButtons::Select:
+		return sf::Joystick::isButtonPressed(index, 6);
+		break;
+	case rButtons::Start:
+		return sf::Joystick::isButtonPressed(index, 7);
+		break;
+	case rButtons::LeftStick:
+		return sf::Joystick::isButtonPressed(index, 8);
+		break;
+	case rButtons::RightStick:
+		return sf::Joystick::isButtonPressed(index, 9);
+		break;
 
-}
-
-bool rGetButtonHeld(rButtons::Button button) {
-
+		// Not a perfect implementation, xInput would be better but that's platform-specific.
+	case rButtons::Left:
+		return (sf::Joystick::getAxisPosition(index, sf::Joystick::Axis::PovX) < 0);
+		break;
+	case rButtons::Right:
+		return (sf::Joystick::getAxisPosition(index, sf::Joystick::Axis::PovX) > 0);
+		break;
+	case rButtons::Up:
+		return (sf::Joystick::getAxisPosition(index, sf::Joystick::Axis::PovY) < 0);
+		break;
+	case rButtons::Down:
+		return (sf::Joystick::getAxisPosition(index, sf::Joystick::Axis::PovY) > 0);
+		break;
+	default:
+		return false;
+		break;
+	}
 }
 
 bool rGetButtonReleased(rButtons::Button button) {
 
 }
-
-float rGetTrigger(rTriggers::Trigger trigger) {
-
-}*/

@@ -50,14 +50,6 @@ namespace rJoysticks {
 	};
 }
 
-
-namespace rTriggers {
-	enum Trigger {
-		Left,
-		Right
-	};
-}
-
 namespace rButtons {
 	enum Button {
 		A,
