@@ -80,7 +80,7 @@ public:
 
 	rVector2<unsigned int> getSize() {
 		sf::Vector2u size = texture.getSize();
-		return rVector2<unsigned int>{ size.x,size.y };
+		return rVector2<unsigned int>{ size.x, size.y };
 	}
 
 	bool load(std::string filename) {

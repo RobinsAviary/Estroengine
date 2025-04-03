@@ -136,6 +136,10 @@ protected:
 template <typename T> 
 class rGrid {
 public:
+	rGrid() {
+		resize(rVector2<unsigned int>{0, 0});
+	}
+
 	rGrid(rVector2<unsigned int> _size) {
 		resize(_size);
 	}
