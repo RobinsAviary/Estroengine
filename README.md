@@ -7,9 +7,9 @@ The entire engine is header-only so it can be easily integrated.
 
 ### Notes on individual libraries
 
-Estroengine includes a standalone library, estrovector, which is a basic C#-style implementation of math vectors intended for general utility (Basically Vector2 and Vector3).
+Estroengine includes a standalone library, *estrovector*, which is a basic C#-style implementation of math vectors intended for general utility (Basically Vector2 and Vector3).
 
-Estropathing is an interface for [Bensuperpc](https://github.com/bensuperpc)'s [A* implementation](https://github.com/bensuperpc/astar).
+*Estropathing* is an interface for [Bensuperpc](https://github.com/bensuperpc)'s [A* implementation](https://github.com/bensuperpc/astar).
 
 ### Backends
 
