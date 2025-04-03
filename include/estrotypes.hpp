@@ -159,6 +159,10 @@ public:
 		return list[getIndex(position)];
 	}
 
+	T at(rVector2<unsigned int> position) {
+		return get(position);
+	}
+
 	rVector2<unsigned int> getSize() {
 		return size;
 	}

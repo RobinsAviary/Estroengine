@@ -123,7 +123,7 @@ void rSetClipboard(std::string _string) {
 	sf::Clipboard::setString(sf::String(_string));
 }
 
-void rInit(unsigned int windowWidth, unsigned int windowHeight, std::string windowTitle, bool resizable = false) {
+void rInit(rVector2<unsigned int> windowSize, std::string windowTitle, bool resizable = false) {
 	int style = 0;
 	if (resizable) {
 		style = sf::Style::Default;
@@ -135,7 +135,7 @@ void rInit(unsigned int windowWidth, unsigned int windowHeight, std::string wind
 	sf::ContextSettings settings;
 	settings.antiAliasingLevel = 8;
 
-	window.create(sf::VideoMode({ windowWidth, windowHeight }), windowTitle, style, sf::State::Windowed, settings);
+	window.create(sf::VideoMode({ windowSize.x, windowSize.y }), windowTitle, style, sf::State::Windowed, settings);
 	window.setKeyRepeatEnabled(false);
 }
 
