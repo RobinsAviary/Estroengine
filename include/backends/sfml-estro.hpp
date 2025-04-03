@@ -51,8 +51,10 @@ public:
 		return rVector2<unsigned int>{ _size.x, _size.y };
 	}
 
-	void load(std::string filename) {
+	bool load(std::string filename) {
 		valid = texture.loadFromFile(filename);
+
+		return valid;
 	}
 
 	~rCPUTexture() {
@@ -81,14 +83,37 @@ public:
 		return rVector2<unsigned int>{ size.x,size.y };
 	}
 
-	void load(std::string filename) {
+	bool load(std::string filename) {
 		valid = texture.loadFromFile(filename);
+
+		return valid;
 	}
 
 	~rTexture() {
 
 	}
 };
+
+class rFont : public rAsset {
+public:
+	sf::Font font;
+
+	bool load(std::string filename) {
+		valid = font.openFromFile(filename);
+
+		return valid;
+	}
+};
+
+void rDrawText(rFont* font, rVector2<float> position, unsigned int size, std::string text, rColor color) {
+	sf::Text _text(font->font);
+	_text.setString(text);
+	_text.setCharacterSize(size);
+	_text.setPosition({ position.x, position.y });
+	_text.setFillColor(rColorTosfColor(color));
+
+	window.draw(_text);
+}
 
 std::string rGetClipboard() {
 	return sf::Clipboard::getString().toAnsiString();
@@ -354,14 +379,14 @@ int rGetRandomValue(int min, int max) {
 	return min + (rand() % (max + 1));
 }
 
-std::map<rKey, sf::Keyboard::Key> _keyMap{ {Q, sf::Keyboard::Key::Q}, {W, sf::Keyboard::Key::W}, {E, sf::Keyboard::Key::E}, {R, sf::Keyboard::Key::R}, {T, sf::Keyboard::Key::T}, {Y, sf::Keyboard::Key::Y}, {U, sf::Keyboard::Key::U}, {I, sf::Keyboard::Key::I}, {O, sf::Keyboard::Key::O}, {P, sf::Keyboard::Key::P}, {A, sf::Keyboard::Key::A}, {S, sf::Keyboard::Key::S}, {D, sf::Keyboard::Key::D}, {F, sf::Keyboard::Key::F}, {G, sf::Keyboard::Key::G}, {H, sf::Keyboard::Key::H}, {J, sf::Keyboard::Key::J}, {K, sf::Keyboard::Key::K}, {L, sf::Keyboard::Key::L}, {Z, sf::Keyboard::Key::Z}, {X, sf::Keyboard::Key::X}, {C, sf::Keyboard::Key::C}, {V, sf::Keyboard::Key::V}, {B, sf::Keyboard::Key::B}, {N, sf::Keyboard::Key::N}, {M, sf::Keyboard::Key::M},
-	{Space, sf::Keyboard::Key::Space}, {LeftAlt, sf::Keyboard::Key::LAlt}, {RightAlt, sf::Keyboard::Key::RAlt}, {LeftCtrl, sf::Keyboard::Key::LControl}, {RightCtrl, sf::Keyboard::Key::RControl}, {LeftShift, sf::Keyboard::Key::LShift}, {RightShift, sf::Keyboard::Key::RShift}, {Enter, sf::Keyboard::Key::Enter}, {Left, sf::Keyboard::Key::Left}, {Right, sf::Keyboard::Key::Right}, {Up, sf::Keyboard::Key::Up}, {Down, sf::Keyboard::Key::Down} };
+std::map<rKeys::Key, sf::Keyboard::Key> _keyMap{ {rKeys::Q, sf::Keyboard::Key::Q}, {rKeys::W, sf::Keyboard::Key::W}, {rKeys::E, sf::Keyboard::Key::E}, {rKeys::R, sf::Keyboard::Key::R}, {rKeys::T, sf::Keyboard::Key::T}, {rKeys::Y, sf::Keyboard::Key::Y}, {rKeys::U, sf::Keyboard::Key::U}, {rKeys::I, sf::Keyboard::Key::I}, {rKeys::O, sf::Keyboard::Key::O}, {rKeys::P, sf::Keyboard::Key::P}, {rKeys::A, sf::Keyboard::Key::A}, {rKeys::S, sf::Keyboard::Key::S}, {rKeys::D, sf::Keyboard::Key::D}, {rKeys::F, sf::Keyboard::Key::F}, {rKeys::G, sf::Keyboard::Key::G}, {rKeys::H, sf::Keyboard::Key::H}, {rKeys::J, sf::Keyboard::Key::J}, {rKeys::K, sf::Keyboard::Key::K}, {rKeys::L, sf::Keyboard::Key::L}, {rKeys::Z, sf::Keyboard::Key::Z}, {rKeys::X, sf::Keyboard::Key::X}, {rKeys::C, sf::Keyboard::Key::C}, {rKeys::V, sf::Keyboard::Key::V}, {rKeys::B, sf::Keyboard::Key::B}, {rKeys::N, sf::Keyboard::Key::N}, {rKeys::M, sf::Keyboard::Key::M},
+	{rKeys::Space, sf::Keyboard::Key::Space}, {rKeys::LeftAlt, sf::Keyboard::Key::LAlt}, {rKeys::RightAlt, sf::Keyboard::Key::RAlt}, {rKeys::LeftCtrl, sf::Keyboard::Key::LControl}, {rKeys::RightCtrl, sf::Keyboard::Key::RControl}, {rKeys::LeftShift, sf::Keyboard::Key::LShift}, {rKeys::RightShift, sf::Keyboard::Key::RShift}, {rKeys::Enter, sf::Keyboard::Key::Enter}, {rKeys::Left, sf::Keyboard::Key::Left}, {rKeys::Right, sf::Keyboard::Key::Right}, {rKeys::Up, sf::Keyboard::Key::Up}, {rKeys::Down, sf::Keyboard::Key::Down} };
 
-sf::Keyboard::Key rKeyTosfKey(rKey key) {
+sf::Keyboard::Key rKeyTosfKey(rKeys::Key key) {
 	return _keyMap[key];
 }
 
-bool rIsKeyPressed(rKey key) {
+bool rIsKeyPressed(rKeys::Key key) {
 	sf::Keyboard::Key _key = rKeyTosfKey(key);
 
 	for (auto key : _pressedKeys) {
@@ -373,11 +398,11 @@ bool rIsKeyPressed(rKey key) {
 	return false;
 }
 
-bool rIsKeyHeld(rKey key) {
+bool rIsKeyHeld(rKeys::Key key) {
 	return sf::Keyboard::isKeyPressed(rKeyTosfKey(key));
 }
 
-bool rIsKeyReleased(rKey key) {
+bool rIsKeyReleased(rKeys::Key key) {
 	sf::Keyboard::Key _key = rKeyTosfKey(key);
 
 	for (auto key : _releasedKeys) {
@@ -393,3 +418,27 @@ std::string rGetWorkingDirectory() {
 	// TODO: Impl.
 	return "";
 }
+
+void rSetControllerIndex(int index) {
+
+}
+
+/*rVector2<float> rGetJoystickPosition(rJoysticks::Joystick stick) {
+	
+}
+
+bool rGetButtonPressed(rButtons::Button button) {
+
+}
+
+bool rGetButtonHeld(rButtons::Button button) {
+
+}
+
+bool rGetButtonReleased(rButtons::Button button) {
+
+}
+
+float rGetTrigger(rTriggers::Trigger trigger) {
+
+}*/

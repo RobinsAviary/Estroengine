@@ -23,7 +23,7 @@ struct rRectangle {
 
 class rAsset {
 public:
-	virtual void load(std::string filename) = 0;
+	virtual bool load(std::string filename) = 0;
 
 	bool isValid() {
 		return valid;
