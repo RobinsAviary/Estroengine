@@ -241,11 +241,14 @@ void rBeginStep() {
 		_pressedKeys.clear();
 		_releasedKeys.clear();
 
-		// TODO: Upgrade to switch
+		// Poll close button
 		if (event->is<sf::Event::Closed>()) window.close();
+
+		// Poll keyboard
 		else if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()) {
 			_pressedKeys.push_back(keyPressed->code);
 		}
+
 		else if (const auto* keyReleased = event->getIf<sf::Event::KeyReleased>()) {
 			_releasedKeys.push_back(keyReleased->code);
 		}
@@ -420,23 +423,41 @@ std::string rGetWorkingDirectory() {
 }
 
 bool rIsControllerConnected(unsigned int index) {
-	sf::Joystick::isConnected(index);
+	return sf::Joystick::isConnected(index);
+}
+
+float _deadzone = 0.125;
+
+void rSetControllerDeadzone(float deadzone) {
+	_deadzone = deadzone;
+}
+
+float rGetControllerDeadzone() {
+	return _deadzone;
+}
+
+float _rGetAxisDeadzone(unsigned int index, sf::Joystick::Axis axis) {
+	float pos = sf::Joystick::getAxisPosition(index, axis) / 100;
+	if (abs(pos) > _deadzone) {
+		return pos;
+	}
+	else return 0.0f;
 }
 
 // Basically a custom implementation in sfml lol
 rVector2<float> rGetJoystickPosition(unsigned int index, rJoysticks::Joystick stick) {
 	switch (stick) {
 		case rJoysticks::Left:
-			return rVector2<float>{sf::Joystick::getAxisPosition(index, sf::Joystick::Axis::X), sf::Joystick::getAxisPosition(0, sf::Joystick::Axis::Y)};
+			return rVector2<float>{_rGetAxisDeadzone(index, sf::Joystick::Axis::X), _rGetAxisDeadzone(index, sf::Joystick::Axis::Y)};
 		break;
 		case rJoysticks::Right:
-			return rVector2<float>{sf::Joystick::getAxisPosition(index, sf::Joystick::Axis::U), sf::Joystick::getAxisPosition(0, sf::Joystick::Axis::R)};
+			return rVector2<float>{_rGetAxisDeadzone(index, sf::Joystick::Axis::U), _rGetAxisDeadzone(index, sf::Joystick::Axis::R)};
 		break;
 	}
 }
 
 bool rGetButtonPressed(unsigned int index, rButtons::Button button) {
-	
+	return false;
 }
 
 bool rGetButtonHeld(unsigned int index, rButtons::Button button) {
@@ -485,6 +506,7 @@ bool rGetButtonHeld(unsigned int index, rButtons::Button button) {
 	case rButtons::Down:
 		return (sf::Joystick::getAxisPosition(index, sf::Joystick::Axis::PovY) > 0);
 		break;
+
 	default:
 		return false;
 		break;
@@ -492,5 +514,5 @@ bool rGetButtonHeld(unsigned int index, rButtons::Button button) {
 }
 
 bool rGetButtonReleased(rButtons::Button button) {
-
+	return false;
 }

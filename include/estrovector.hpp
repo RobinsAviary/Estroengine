@@ -51,6 +51,26 @@ struct rVector2 {
 	}
 
 	template <typename rhs_type>
+	inline rVector2<rhs_type> operator+ (const rhs_type& rhs) {
+		return rVector2{ x + rhs, y + rhs };
+	}
+
+	template <typename rhs_type>
+	inline rVector2<rhs_type> operator- (const rhs_type& rhs) {
+		return rVector2{ x - rhs, y - rhs };
+	}
+
+	template <typename rhs_type>
+	inline rVector2<rhs_type> operator* (const rhs_type& rhs) {
+		return rVector2{ x * rhs, y * rhs };
+	}
+
+	template <typename rhs_type>
+	inline rVector2<rhs_type> operator/ (const rhs_type& rhs) {
+		return rVector2{ x / rhs, y / rhs };
+	}
+
+	template <typename rhs_type>
 	inline bool operator==(const rVector2& rhs) {
 		return (x == rhs.x && y == rhs.y);
 	}
