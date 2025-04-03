@@ -3,6 +3,9 @@
 
 A portable simple-to-use node-tree-based game engine built in C++.
 The entire engine is header-only so it can be easily integrated.
+
+### Installation / Building
+
 [Premake](https://premake.github.io/) is a work-in-progress, though I am just using a simple include and templates for the backends themself. *(Also make sure you update the specific backend you're using in estroengine.hpp. I'm working on a way to hopefully avoid having to do this in the future.*
 
 ### Example
