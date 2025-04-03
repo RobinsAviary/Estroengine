@@ -151,12 +151,20 @@ public:
 		list.resize(size.x * size.y, val);
 	}
 
+	void fill(T value) {
+		setAll(value);
+	}
+
+	void setAll(T value) {
+		std::fill(list.begin(), list.end(), T);
+	}
+
 	void set(rVector2<unsigned int> position, T val) {
 		list[getIndex(position)] = val;
 	}
 
 	T get(rVector2<unsigned int> position) {
-		return list[getIndex(position)];
+		return list.at(getIndex(position));
 	}
 
 	T at(rVector2<unsigned int> position) {

@@ -330,23 +330,22 @@ bool rIsCursorHidden() {
 	return _mouseHidden;
 }
 
+rVector2<int> rGetCursorPosition() {
+	sf::Vector2i pos = sf::Mouse::getPosition();
+	return rVector2<int>{pos.x, pos.y};
+}
+
 bool rIsCursorOnScreen() {
 	// Get cursor position relative to window
-	sf::Vector2i _position = sf::Mouse::getPosition(window);
-	rVector2<unsigned int> position = rVector2<unsigned int>{ static_cast<unsigned int>(_position.x), static_cast<unsigned int>(_position.y)};
+	rVector2<int> position = rGetCursorPosition();
 
 	if (position.x >= 0 && position.y >= 0) {
-		if (position.x < rGetWindowWidth() && position.y < rGetWindowHeight()) {
+		if (position.x < static_cast<int>(rGetWindowWidth()) && position.y < static_cast<int>(rGetWindowHeight())) {
 			return true;
 		}
 	}
 
 	return false;
-}
-
-rVector2<int> rGetCursorPosition() {
-	sf::Vector2i pos = sf::Mouse::getPosition();
-	return rVector2<int>{pos.x, pos.y};
 }
 
 void rSetCursorPosition(rVector2<int> position) {
@@ -373,7 +372,7 @@ void rSetRandomSeed(unsigned int seed) {
 	srand(seed);
 }
 
-void rSleep(double seconds) {
+void rSleep(float seconds) {
 	sf::sleep(sf::seconds(seconds));
 }
 

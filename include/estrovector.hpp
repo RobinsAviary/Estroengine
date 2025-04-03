@@ -8,81 +8,81 @@ struct rVector2 {
 
 	template <typename rhs_type>
 	inline rVector2<rhs_type> operator+ (const rVector2<rhs_type>& rhs) {
-		return rVector2{ x + rhs.x, y + rhs.y };
+		return rVector2<rhs_type>{ x + rhs.x, y + rhs.y };
 	}
 
 	template <typename rhs_type>
 	inline rVector2<rhs_type> operator- (const rVector2<rhs_type>& rhs) {
-		return rVector2{ x - rhs.x, y - rhs.y };
+		return rVector2<rhs_type>{ x - rhs.x, y - rhs.y };
 	}
 
 	template <typename rhs_type>
 	inline rVector2<rhs_type> operator/ (const rVector2<rhs_type>& rhs) {
-		return rVector2{ x / rhs.x, y / rhs.y };
+		return rVector2<rhs_type>{ x / rhs.x, y / rhs.y };
 	}
 
 	template <typename rhs_type>
 	inline rVector2<rhs_type> operator* (const rVector2<rhs_type>& rhs) {
-		return rVector2{ x * rhs.x, y * rhs.y };
+		return rVector2<rhs_type>{ x * rhs.x, y * rhs.y };
 	}
 
 	template <typename rhs_type>
-	inline void operator+=(rVector2& rhs) {
+	inline void operator+=(rVector2<rhs_type>& rhs) {
 		x += rhs.x;
 		y += rhs.y;
 	}
 
 	template <typename rhs_type>
-	inline void operator-=(rVector2& rhs) {
+	inline void operator-=(rVector2<rhs_type>& rhs) {
 		x -= rhs.x;
 		y -= rhs.y;
 	}
 
 	template <typename rhs_type>
-	inline void operator*=(rVector2& rhs) {
+	inline void operator*=(rVector2<rhs_type>& rhs) {
 		x *= rhs.x;
 		y *= rhs.y;
 	}
 
 	template <typename rhs_type>
-	inline void operator/=(rVector2& rhs) {
+	inline void operator/=(rVector2<rhs_type>& rhs) {
 		x /= rhs.x;
 		y /= rhs.y;
 	}
 
 	template <typename rhs_type>
 	inline rVector2<rhs_type> operator+ (const rhs_type& rhs) {
-		return rVector2{ x + rhs, y + rhs };
+		return rVector2<rhs_type>{ x + rhs, y + rhs };
 	}
 
 	template <typename rhs_type>
 	inline rVector2<rhs_type> operator- (const rhs_type& rhs) {
-		return rVector2{ x - rhs, y - rhs };
+		return rVector2<rhs_type>{ x - rhs, y - rhs };
 	}
 
 	template <typename rhs_type>
 	inline rVector2<rhs_type> operator* (const rhs_type& rhs) {
-		return rVector2{ x * rhs, y * rhs };
+		return rVector2<rhs_type>{ x * rhs, y * rhs };
 	}
 
 	template <typename rhs_type>
 	inline rVector2<rhs_type> operator/ (const rhs_type& rhs) {
-		return rVector2{ x / rhs, y / rhs };
+		return rVector2<rhs_type>{ x / rhs, y / rhs };
 	}
 
 	template <typename rhs_type>
-	inline bool operator==(const rVector2& rhs) {
+	inline bool operator==(const rVector2<rhs_type>& rhs) {
 		return (x == rhs.x && y == rhs.y);
 	}
 
 	template <typename rhs_type>
-	inline bool operator!=(const rVector2& rhs) {
+	inline bool operator!=(const rVector2<rhs_type>& rhs) {
 		return (x != rhs.x || y != rhs.y);
 	}
 
-	template <typename T>
-	rVector2<T> cast() {
-		return rVector2<T>{static_cast<T>(x), static_cast<T>(y)};
+	template <typename _T>
+	rVector2<_T> cast() {
+		return rVector2<_T>{static_cast<_T>(x), static_cast<_T>(y)};
 	}
 };
 
