@@ -123,7 +123,6 @@ public:
 		else {
 			list.resize(size);
 		}
-		
 	}
 
 	bool has(T val) {
