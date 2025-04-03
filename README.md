@@ -1,7 +1,7 @@
 # Estroengine v0.1.5
 [![estroengine](https://robinsaviary.com/gifs/estroengine.gif)](https://blinkies.cafe/?s=0023-trans-pride)
 
-A portable simple-to-use node-tree-based game engine built in C++.
+A portable simple-to-use node-tree-based game engine built in C++20.
 The entire engine is header-only so it can be easily integrated.
 
 ### Installation / Building
