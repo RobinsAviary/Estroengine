@@ -1,12 +1,12 @@
 #pragma once
 
-typedef struct rColor {
+struct rColor {
 	rColor(unsigned char r = 0, unsigned char g = 0, unsigned char b = 0, unsigned char a = 255) : r(r), g(g), b(b), a(a) {}
 	unsigned char r = 0;
 	unsigned char g = 0;
 	unsigned char b = 0;
 	unsigned char a = 255;
-} rColor;
+};
 
 rColor cWhite = { 255, 255, 255, 255 };
 rColor cBlack = { 0, 0, 0, 255 };
