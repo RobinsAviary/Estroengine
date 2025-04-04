@@ -37,22 +37,7 @@ template <typename T> int sign(T val) {
     return (T(0) < val) - (val < T(0));
 }
 
-/*class TestGrid : public rNode {
-public:
-    int slices = 16;
-    int spacing = 1;
-
-    void draw() {
-        DrawGrid(slices, spacing);
-    }
-
-    TestGrid(int _slices = 16, int _spacing = 1) {
-        slices = _slices;
-        spacing = _spacing;
-    }
-};
-
-class FreeCam : public rNode {
+/*class FreeCam : public rNode {
 public:
     Camera3D camera = { { 0.0f, 10.0f, 0.0f }, { 0.0f, 10.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }, 92.0f, CAMERA_PERSPECTIVE };
 
@@ -117,30 +102,6 @@ private:
         camera.target = Vector3{ camera.position.x + lengthdir_x(1, rotation.x), camera.position.y + lengthdir_y(1, rotation.y), camera.position.z + lengthdir_z(1, rotation.x) };
 
         SetMousePosition(GetScreenWidth() / 2, GetScreenHeight() / 2);
-    }
-};
-
-class rEnd3D : public rNode {
-    public:
-        void draw() {
-            EndMode3D();
-        }
-};
-
-class rModelRenderer : public rNode {
-    Model model = { 0 };
-    Vector3 position = { 0 };
-    Vector3 rotationAxis = { 0 };
-    float rotationAngle = 0;
-    Vector3 scale = { 1, 1, 1 };
-    Color tint = WHITE;
-    
-    void draw() {
-        if (IsModelValid(model)) DrawModelEx(model, position, rotationAxis, rotationAngle, scale, tint);
-    }
-
-    ~rModelRenderer() {
-        if (IsModelValid(model)) UnloadModel(model);
     }
 };*/
 

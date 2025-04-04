@@ -164,7 +164,7 @@ public:
 	}
 
 	void set(rVector2<unsigned int> position, T value) {
-		list[getIndex(position)] = value;
+		list.set(getIndex(position), value);
 	}
 
 	T get(rVector2<unsigned int> position) {
