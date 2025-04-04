@@ -15,6 +15,58 @@ struct rColor {
 		a = alpha;
 	}
 
+	inline rColor operator+ (const rColor& rhs) {
+		rColor{ static_cast<unsigned char>(r + rhs.r), static_cast<unsigned char>(g + rhs.g), static_cast<unsigned char>(b + rhs.b), static_cast<unsigned char>(a + rhs.a) };
+	}
+
+	inline rColor operator- (const rColor& rhs) {
+		rColor{ static_cast<unsigned char>(r - rhs.r), static_cast<unsigned char>(g - rhs.g), static_cast<unsigned char>(b + rhs.b), static_cast<unsigned char>(a + rhs.a) };
+	}
+
+	inline rColor operator* (const rColor& rhs) {
+		rColor{ static_cast<unsigned char>(r * rhs.r), static_cast<unsigned char>(g * rhs.g), static_cast<unsigned char>(b + rhs.b), static_cast<unsigned char>(a + rhs.a) };
+	}
+
+	inline rColor operator/ (const rColor& rhs) {
+		rColor{ static_cast<unsigned char>(r / rhs.r), static_cast<unsigned char>(g / rhs.g), static_cast<unsigned char>(b + rhs.b), static_cast<unsigned char>(a + rhs.a) };
+	}
+
+	inline void operator+=(rColor& rhs) {
+		r += rhs.r;
+		g += rhs.g;
+		b += rhs.b;
+		a += rhs.a;
+	}
+
+	inline void operator-=(rColor& rhs) {
+		r -= rhs.r;
+		g -= rhs.g;
+		b -= rhs.b;
+		a -= rhs.a;
+	}
+
+	inline void operator*=(rColor& rhs) {
+		r *= rhs.r;
+		g *= rhs.g;
+		b *= rhs.b;
+		a *= rhs.a;
+	}
+
+	inline void operator/=(rColor& rhs) {
+		r /= rhs.r;
+		g /= rhs.g;
+		b /= rhs.b;
+		a /= rhs.a;
+	}
+
+	inline bool operator==(const rColor& rhs) {
+		return (r == rhs.r && b == rhs.b && g == rhs.g && a == rhs.a);
+	}
+
+	inline bool operator!=(const rColor& rhs) {
+		return (r != rhs.r || b != rhs.b || g != rhs.g || a != rhs.a);
+	}
+
 	void rgb(unsigned char red = 0, unsigned char green = 0, unsigned char blue = 0) {
 		r = red;
 		g = green;

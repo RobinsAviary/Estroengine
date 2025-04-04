@@ -140,59 +140,59 @@ struct rVector3 {
 
 	template <typename rhs_type>
 	inline rVector3<rhs_type> operator+ (const rVector3<rhs_type>& rhs) {
-		return rVector3{ x + rhs.x, y + rhs.y, z + rhs.z };
+		return rVector3<rhs_type>{ x + rhs.x, y + rhs.y, z + rhs.z };
 	}
 
 	template <typename rhs_type>
 	inline rVector3<rhs_type> operator- (const rVector3<rhs_type>& rhs) {
-		return rVector3{ x - rhs.x, y - rhs.y, z - rhs.z };
+		return rVector3<rhs_type>{ x - rhs.x, y - rhs.y, z - rhs.z };
 	}
 
 	template <typename rhs_type>
 	inline rVector3<rhs_type> operator/ (const rVector3<rhs_type>& rhs) {
-		return rVector3{ x / rhs.x, y / rhs.y, z / rhs.z };
+		return rVector3<rhs_type>{ x / rhs.x, y / rhs.y, z / rhs.z };
 	}
 
 	template <typename rhs_type>
 	inline rVector3<rhs_type> operator* (const rVector3<rhs_type>& rhs) {
-		return rVector3{ x * rhs.x, y * rhs.y, z * rhs.z };
+		return rVector3<rhs_type>{ x * rhs.x, y * rhs.y, z * rhs.z };
 	}
 
 	template <typename rhs_type>
-	inline void operator+=(rVector3& rhs) {
+	inline void operator+=(rVector3<rhs_type>& rhs) {
 		x += rhs.x;
 		y += rhs.y;
 		z += rhs.z;
 	}
 
 	template <typename rhs_type>
-	inline void operator-=(rVector3& rhs) {
+	inline void operator-=(rVector3<rhs_type>& rhs) {
 		x -= rhs.x;
 		y -= rhs.y;
 		z -= rhs.z;
 	}
 
 	template <typename rhs_type>
-	inline void operator*=(rVector3& rhs) {
+	inline void operator*=(rVector3<rhs_type>& rhs) {
 		x *= rhs.x;
 		y *= rhs.y;
 		z *= rhs.z;
 	}
 
 	template <typename rhs_type>
-	inline void operator/=(rVector3& rhs) {
+	inline void operator/=(rVector3<rhs_type>& rhs) {
 		x /= rhs.x;
 		y /= rhs.y;
 		z /= rhs.z;
 	}
 
 	template <typename rhs_type>
-	inline bool operator==(const rVector3& rhs) {
+	inline bool operator==(const rVector3<rhs_type>& rhs) {
 		return (x == rhs.x && y == rhs.y && z == rhs.z);
 	}
 
 	template <typename rhs_type>
-	inline bool operator!=(const rVector3& rhs) {
+	inline bool operator!=(const rVector3<rhs_type>& rhs) {
 		return (x != rhs.x || y != rhs.y || z != rhs.z);
 	}
 
