@@ -43,6 +43,8 @@ Estroengine includes a standalone library, *estrovector*, which is a basic C#-st
 
 *Estropathing* is an interface for [Bensuperpc](https://github.com/bensuperpc)'s [A* implementation](https://github.com/bensuperpc/astar).
 
+*Estrocolors* is another technically standalone library that adds a simple but versatile rColor struct.
+
 Gamepads are currently a work in progress and only supported on the SFML backend at the moment.
 
 ### Related Reading
