@@ -74,6 +74,11 @@ struct rColor {
 			b = max;
 		}
 	}
+
+	void hsva(unsigned int hue = 0, unsigned int value = 0, unsigned int saturation = 0, unsigned int alpha = 0) {
+		hsv(hue, value, saturation);
+		a = alpha;
+	}
 };
 
 rColor cWhite = { 255, 255, 255, 255 };
