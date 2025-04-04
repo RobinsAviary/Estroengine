@@ -4,6 +4,8 @@
 An *open source, portable, easy-to-use node-tree-based game engine* built in *C++20*.
 The entire engine is ***header-only*** so it can be easily integrated.
 
+The structure/functionality of the engine/sister libraries themselves is heavily inspired by engines such as [Godot](https://godotengine.org/), [Source](https://developer.valvesoftware.com/wiki/Main_Page), and [GameMaker](https://gamemaker.io/en).
+
 ### Installation / Building
 
 [Premake](https://premake.github.io/) is a work-in-progress, though I am personally just using a simple include and templates for the backends themself. *(Also make sure you update the specific backend you're using in estroengine.hpp. I'm working on a way to hopefully avoid having to do this in the future.)* The final premake will just be a simple mix of SFML and estroengine.
