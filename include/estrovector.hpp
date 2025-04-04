@@ -6,6 +6,10 @@ struct rVector2 {
 	T x = 0;
 	T y = 0;
 
+	rVector2<T> yx() {
+		return rVector2<T>{y, x};
+	}
+
 	template <typename rhs_type>
 	inline rVector2<rhs_type> operator+ (const rVector2<rhs_type>& rhs) {
 		return rVector2<rhs_type>{ x + rhs.x, y + rhs.y };
@@ -104,6 +108,35 @@ struct rVector3 {
 	T x = 0;
 	T y = 0;
 	T z = 0;
+
+	// Basic swizzling
+	rVector3<T> yxz() {
+		return { y, x, z };
+	}
+
+	rVector3<T> zxy() {
+		return { z, x, y };
+	}
+
+	rVector3<T> xzy() {
+		return { x, z, y };
+	}
+
+	rVector3<T> yzx() {
+		return { y, z, x };
+	}
+
+	rVector3<T> zyx() {
+		return { z, y, x };
+	}
+
+	rVector2<T> xy() {
+		return { x, y };
+	}
+
+	rVector2<T> yx() {
+		return { y, x };
+	}
 
 	template <typename rhs_type>
 	inline rVector3<rhs_type> operator+ (const rVector3<rhs_type>& rhs) {

@@ -2,10 +2,76 @@
 
 struct rColor {
 	rColor(unsigned char r = 0, unsigned char g = 0, unsigned char b = 0, unsigned char a = 255) : r(r), g(g), b(b), a(a) {}
+
 	unsigned char r = 0;
 	unsigned char g = 0;
 	unsigned char b = 0;
 	unsigned char a = 255;
+
+	rColor(unsigned char grayscale = 0, unsigned char alpha = 255) {
+		r = grayscale;
+		g = grayscale;
+		b = grayscale;
+		a = alpha;
+	}
+
+	void rgb(unsigned char red = 0, unsigned char green = 0, unsigned char blue = 0) {
+		r = red;
+		g = green;
+		b = blue;
+	}
+
+	void rgba(unsigned char red = 0, unsigned char green = 0, unsigned char blue = 0, unsigned char alpha = 0) {
+		rgb(red, green, blue);
+		a = alpha;
+	}
+
+	void hsv(unsigned int hue = 0, unsigned char saturation = 0, unsigned char value = 0) {
+		unsigned char max = value;
+		unsigned int chroma = saturation * value;
+		unsigned char min = max - chroma;
+
+		if (hue >= 300) {
+			hue -= 360;
+			hue /= 60;
+		}
+		else {
+			hue = hue / 60;
+		}
+
+		if (hue < 0) {
+			r = max;
+			g = min;
+			b = min - hue * chroma;
+		}
+		else if (hue >= 0) {
+			r = max;
+			g = min + hue * chroma;
+			b = min;
+		}
+
+		if (hue - 2 < 0) {
+			r = min - (hue - 2) * chroma;
+			g = max;
+			b = min;
+		}
+		else if (hue - 2 >= 0) {
+			r = min;
+			g = max;
+			b = r + (hue - 2) * chroma;
+		}
+
+		if (hue - 4 < 0) {
+			r = min;
+			g = min - (hue - 4) * chroma;
+			b = max;
+		}
+		else if (hue - 4 >= 0) {
+			r = min + (hue - 4) * chroma;
+			g = min;
+			b = max;
+		}
+	}
 };
 
 rColor cWhite = { 255, 255, 255, 255 };
