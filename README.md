@@ -37,7 +37,7 @@ Estroengine currently supports two libraries as backends:
 * [raylib](https://www.raylib.com/)
 * [SFML](https://www.sfml-dev.org/)
 
-### Notes on individual libraries
+### Notes on sub-libraries
 
 Estroengine includes a standalone library, *estrovector*, which is a basic C#-style implementation of math vectors intended for general utility (Basically Vector2 and Vector3).
 
