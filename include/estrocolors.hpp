@@ -27,6 +27,8 @@ struct rColor {
 	}
 
 	void hsv(unsigned int hue = 0, unsigned char saturation = 0, unsigned char value = 0) {
+		// derived from https://cs.stackexchange.com/questions/64549/convert-hsv-to-rgb-colors
+
 		unsigned char max = value;
 		unsigned int chroma = saturation * value;
 		unsigned char min = max - chroma;
