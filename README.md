@@ -4,7 +4,7 @@
 An *open source, portable, easy-to-use node-tree-based game engine* built in *C++20*.
 The entire engine is ***header-only*** so it can be easily integrated.
 
-Heavily inspired by engines such as [Godot](https://godotengine.org/), [Source](https://developer.valvesoftware.com/wiki/Main_Page), and [GameMaker](https://gamemaker.io/en).
+Heavily inspired by engines such as [Godot](https://godotengine.org/), [Source](https://developer.valvesoftware.com/wiki/SDK_Docs), and [GameMaker](https://gamemaker.io/en).
 
 ### Installation / Building
 
