@@ -29,7 +29,8 @@ rVector2<T> Vector2TorVector2(Vector2 vector) {
 	return rVector2<T>{ static_cast<T>(vector.x), static_cast<T>(vector.y) };
 }
 
-Rectangle rRectangleToRectangle(rRectangle rectangle) {
+template <typename T>
+Rectangle rRectangleToRectangle(rRectangle<T> rectangle) {
 	return Rectangle{ static_cast<float>(rectangle.x), static_cast<float>(rectangle.y), static_cast<float>(rectangle.w), static_cast<float>(rectangle.h) };
 }
 
@@ -49,13 +50,15 @@ class rCPUTexture : public rAsset {
 			return texture.height;
 		}
 
-		void load(std::string filename) {
+		bool load(std::string filename) {
 			if (IsImageValid(texture)) {
 				UnloadImage(texture);
 			}
 			
 			texture = LoadImage(filename.c_str());
 			valid = IsImageValid(texture);
+
+			return valid;
 		}
 
 		~rCPUTexture() {
@@ -80,13 +83,15 @@ class rTexture : public rAsset {
 			return rVector2<unsigned int>{ getWidth(), getHeight() };
 		}
 
-		void load(std::string filename) {
+		bool load(std::string filename) {
 			if (IsTextureValid(texture)) {
 				UnloadTexture(texture);
 			}
 			texture = LoadTexture(filename.c_str());
 
 			valid = IsTextureValid(texture);
+
+			return valid;
 		}
 
 		~rTexture() {
@@ -98,13 +103,15 @@ class rAudio : public rAsset {
 	public:
 		Sound audio;
 
-		void load(std::string filename) {
+		bool load(std::string filename) {
 			if (IsSoundValid(audio)) {
 				UnloadSound(audio);
 			}
 			audio = LoadSound(filename.c_str());
 
 			valid = IsSoundValid(audio);
+
+			return valid;
 		}
 
 		~rAudio() {
@@ -145,12 +152,12 @@ void rDrawTexture(rTexture* texture, rVector2<float> position, rColor tint) {
 	DrawTexture(texture->texture, position.x, position.y, rColorToColor(tint));
 }
 
-void rDrawTextureSection(rTexture* texture, rVector2<float> position, rRectangle rectangle, rColor tint) {
+void rDrawTextureSection(rTexture* texture, rVector2<float> position, rRectangle<int> rectangle, rColor tint) {
 	if (!texture->isValid()) return;
 	DrawTextureRec(texture->texture, rRectangleToRectangle(rectangle), rVector2ToVector2(position), rColorToColor(tint));
 }
 
-void rDrawTextureReproject(rTexture* texture, rRectangle source, rRectangle target, rColor tint) {
+void rDrawTextureReproject(rTexture* texture, rRectangle<unsigned int> source, rRectangle<int> target, rColor tint) {
 	if (!texture->isValid()) return;
 	DrawTexturePro(texture->texture, rRectangleToRectangle(source), rRectangleToRectangle(target), Vector2{ 0, 0 }, 0, rColorToColor(tint));
 }
@@ -159,7 +166,7 @@ void rDrawLine(rVector2<float> pos1, rVector2<float> pos2, rColor color) {
 	DrawLine(pos1.x, pos1.y, pos2.x, pos2.y, rColorToColor(color));
 }
 
-void rDrawRectangle(rRectangle rectangle, rColor color, bool filled) {
+void rDrawRectangle(rRectangle<float> rectangle, rColor color, bool filled) {
 	if (filled) {
 		DrawRectangle(rectangle.x, rectangle.y, rectangle.w, rectangle.h, rColorToColor(color));
 	}
@@ -292,22 +299,22 @@ int rGetRandomValue(int min, int max) {
 	return GetRandomValue(min, max);
 }
 
-std::map<rKey, int> _keyMap{ {Q, KEY_Q}, {W, KEY_W}, {E, KEY_E}, {R, KEY_R}, {T, KEY_T}, {Y, KEY_Y}, {U, KEY_U}, {I, KEY_I}, {O, KEY_O}, {P, KEY_P}, {A, KEY_A}, {S, KEY_S}, {D, KEY_D}, {F, KEY_F}, {G, KEY_G}, {H, KEY_H}, {J, KEY_J}, {K, KEY_K}, {L, KEY_L}, {Z, KEY_Z}, {X, KEY_X}, {C, KEY_C}, {V, KEY_V}, {B, KEY_B}, {N, KEY_N}, {M, KEY_M},
-	{Space, KEY_SPACE}, {LeftAlt, KEY_LEFT_ALT}, {RightAlt, KEY_RIGHT_ALT}, {LeftCtrl, KEY_LEFT_CONTROL}, {RightCtrl, KEY_RIGHT_CONTROL}, {LeftShift, KEY_LEFT_SHIFT}, {RightShift, KEY_RIGHT_SHIFT}, {Enter, KEY_ENTER}, {Left, KEY_LEFT}, {Right, KEY_RIGHT}, {Up, KEY_UP}, {Down, KEY_DOWN} };
+std::map<rKeys::Key, int> _keyMap{ {rKeys::Q, KEY_Q}, {rKeys::W, KEY_W}, {rKeys::E, KEY_E}, {rKeys::R, KEY_R}, {rKeys::T, KEY_T}, {rKeys::Y, KEY_Y}, {rKeys::U, KEY_U}, {rKeys::I, KEY_I}, {rKeys::O, KEY_O}, {rKeys::P, KEY_P}, {rKeys::A, KEY_A}, {rKeys::S, KEY_S}, {rKeys::D, KEY_D}, {rKeys::F, KEY_F}, {rKeys::G, KEY_G}, {rKeys::H, KEY_H}, {rKeys::J, KEY_J}, {rKeys::K, KEY_K}, {rKeys::L, KEY_L}, {rKeys::Z, KEY_Z}, {rKeys::X, KEY_X}, {rKeys::C, KEY_C}, {rKeys::V, KEY_V}, {rKeys::B, KEY_B}, {rKeys::N, KEY_N}, {rKeys::M, KEY_M},
+	{rKeys::Space, KEY_SPACE}, {rKeys::LeftAlt, KEY_LEFT_ALT}, {rKeys::RightAlt, KEY_RIGHT_ALT}, {rKeys::LeftCtrl, KEY_LEFT_CONTROL}, {rKeys::RightCtrl, KEY_RIGHT_CONTROL}, {rKeys::LeftShift, KEY_LEFT_SHIFT}, {rKeys::RightShift, KEY_RIGHT_SHIFT}, {rKeys::Enter, KEY_ENTER}, {rKeys::Left, KEY_LEFT}, {rKeys::Right, KEY_RIGHT}, {rKeys::Up, KEY_UP}, {rKeys::Down, KEY_DOWN} };
 
-int rKeyToInt(rKey key) {
+int rKeyToInt(rKeys::Key key) {
 	return _keyMap[key];
 }
 
-bool rIsKeyPressed(rKey key) {
+bool rIsKeyPressed(rKeys::Key key) {
 	return IsKeyPressed(rKeyToInt(key));
 }
 
-bool rIsKeyHeld(rKey key) {
+bool rIsKeyHeld(rKeys::Key key) {
 	return IsKeyDown(rKeyToInt(key));
 }
 
-bool rIsKeyReleased(rKey key) {
+bool rIsKeyReleased(rKeys::Key key) {
 	return IsKeyReleased(rKeyToInt(key));
 }
 
