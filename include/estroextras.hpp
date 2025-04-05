@@ -296,19 +296,19 @@ private:
 
 class rSpriteCursor : public rNode {
 public:
-    rTexture texture;
+    rTexture* texture;
 
-    rSpriteCursor() {
+    void onCreate() {
         rHideCursor();
     }
 
-    ~rSpriteCursor() {
+    void onDestroy() {
         rShowCursor();
     }
 
     void draw() {
         if (rIsCursorOnScreen()) {
-            rDrawTexture(&texture, rGetMousePosition().cast<float>(), cWhite);
+            rDrawTexture(texture, rGetMousePosition().cast<float>(), cWhite);
         }
     }
 };

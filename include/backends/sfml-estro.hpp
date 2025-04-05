@@ -270,7 +270,7 @@ void rEndDraw() {
 }
 
 rVector2<int> rGetMousePosition() {
-	sf::Vector2i pos = sf::Mouse::getPosition();
+	sf::Vector2i pos = sf::Mouse::getPosition(window);
 
 	return rVector2<int>{ pos.x, pos.y };
 }
@@ -331,7 +331,7 @@ bool rIsCursorHidden() {
 }
 
 rVector2<int> rGetCursorPosition() {
-	sf::Vector2i pos = sf::Mouse::getPosition();
+	sf::Vector2i pos = sf::Mouse::getPosition(window);
 	return rVector2<int>{pos.x, pos.y};
 }
 
