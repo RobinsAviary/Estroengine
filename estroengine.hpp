@@ -32,8 +32,6 @@ class rNode {
 		virtual void onCreate() {}
 		virtual void onDestroy() {}
 
-		rNode* parent = nullptr;
-
 		template <typename T>
 		T* addNode() {
 			rNode* pointer = new T;
@@ -49,7 +47,7 @@ class rNode {
 		}
 
 		rNode* getNode(rNode* pointer) {
-			auto _children = getRoot()->getAllChildren();
+			auto _children = getRoot()->getDescendants();
 
 			for (auto child : children) {
 				if (child == pointer) {
@@ -59,7 +57,7 @@ class rNode {
 		}
 
 		rNode* getNode(unsigned int handle) {
-			auto _children = getRoot()->getAllChildren();
+			auto _children = getRoot()->getDescendants();
 
 			for (auto child : children) {
 				if (child->getHandle() == handle) {
@@ -101,6 +99,47 @@ class rNode {
 			return static_cast<T*>(children[index]);
 		}
 
+		rNode* getParent() {
+			return parent;
+		}
+
+		rList<rNode*> getAncestors() {
+			rList<rNode*> result;
+
+			rNode* currentParent = getParent();
+			while (currentParent) {
+				result.add(currentParent);
+
+				currentParent = currentParent->getParent();
+			}
+
+			return result;
+		}
+
+		rNode* getAncestorTagged(std::string tag) {
+			auto ancestors = getAncestors();
+
+			for (auto ancestor : ancestors) {
+				if (ancestor->isTagged(tag)) {
+					return ancestor;
+				}
+			}
+		}
+
+		rList<rNode*> getAncestorsTagged(std::string tag) {
+			auto ancestors = getAncestors();
+
+			rList<rNode*> result;
+
+			for (auto ancestor : ancestors) {
+				if (ancestor->isTagged(tag)) {
+					result.add(ancestor);
+				}
+			}
+
+			return result;
+		}
+
 		rNode* getRoot() {
 			rNode* currentNode = parent;
 
@@ -115,7 +154,13 @@ class rNode {
 			return children;
 		}
 
-		rList<rNode*> getAllChildren() {
+		rNode* getChildTagged(std::string tag) {
+			for (auto child : children) {
+				if (child->isTagged(tag)) return child;
+			}
+		}
+
+		rList<rNode*> getDescendants() {
 			rList<rNode*> result;
 
 			// Recursively iterate through hierarchy.
@@ -130,8 +175,8 @@ class rNode {
 				
 				if (node->children.size() != 0) { // If current node has children
 					for (auto child : node->children) {
-						unexploredNodes.pushBack(child); // Push back all children to the unexplored nodes and result.
-						result.pushBack(child);
+						unexploredNodes.add(child); // Push back all children to the unexplored nodes and result.
+						result.add(child);
 					}
 				}
 			}
@@ -139,8 +184,16 @@ class rNode {
 			return result;
 		}
 
-		rList<rNode*> getAllChildrenTagged(std::string tag) {
-			auto _children = getAllChildren();
+		rNode* getDescendantTagged(std::string tag) {
+			auto descendants = getDescendants();
+
+			for (auto descendant : descendants) {
+				if (descendant->isTagged(tag)) return descendant;
+			}
+		}
+
+		rList<rNode*> getDescendantsTagged(std::string tag) {
+			auto _children = getDescendants();
 			rList<rNode*> result;
 
 			for (auto child : _children) {
@@ -242,6 +295,7 @@ class rNode {
 	private:
 		rList<std::string> tags;
 		rList<rNode*> children;
+		rNode* parent = nullptr;
 
 	protected:
 		bool _valid = true;
@@ -305,7 +359,7 @@ public:
 			if (piece) {
 				rNode* currentNode = static_cast<rNode*>(piece);
 
-				auto allChildren = currentNode->getAllChildren();
+				auto allChildren = currentNode->getDescendants();
 
 				for (auto child : allChildren) {
 					delete child;
