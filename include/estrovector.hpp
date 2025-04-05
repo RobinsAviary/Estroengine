@@ -1,5 +1,7 @@
 #pragma once
 
+// Estrovector, created for estroengine by Robin <3
+
 template <typename T>
 struct rVector2 {
 	rVector2(T x = 0, T y = 0) : x(x), y(y) {}
@@ -108,6 +110,11 @@ struct rVector3 {
 	T x = 0;
 	T y = 0;
 	T z = 0;
+
+	rVector3(rVector2<T> vector = {0, 0}) {
+		x = vector.x;
+		y = vector.y;
+	}
 
 	// Basic swizzling
 	rVector3<T> yxz() {

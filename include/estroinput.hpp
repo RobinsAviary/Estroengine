@@ -1,5 +1,7 @@
 #pragma once
 
+// Estroinput, created for estroengine by Robin <3
+
 namespace rKeys {
 	enum Key {
 		Q,

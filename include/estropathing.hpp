@@ -1,6 +1,9 @@
 #pragma once
 #include "astar.hpp"
 
+// Estropathing, created for estroengine by Robin <3 (With AStar implementation from Bensuperpc)
+// Required library: https://github.com/bensuperpc/astar
+
 class rPathingGrid : public rNode {
 public:
 	AStar::AStar<> pathfinder;

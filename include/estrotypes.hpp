@@ -6,6 +6,8 @@
 #include <algorithm>
 #include <string>
 
+// Estrotypes, created for estroengine by Robin <3
+
 struct rTransform {
 	rTransform(rVector3<float> position, rVector3<float> rotation) : position(position), rotation(rotation) {}
 	rVector3<float> position;

@@ -7,7 +7,7 @@
 #include <memory>
 #include <iostream>
 
-// Estroengine 0.4, created by Robin
+// Estroengine v0.1.5, created by Robin <3
 
 rList<void*> garbage;
 
