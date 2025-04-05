@@ -232,25 +232,25 @@ void rDrawPixel(rVector2<unsigned int> position, rColor color) {
 	rDrawRectangle(rRectangle<float>{ static_cast<float>(position.x), static_cast<float>(position.y), 1, 1 }, color, true);
 }
 
-std::vector<sf::Keyboard::Key> _pressedKeys;
-std::vector<sf::Keyboard::Key> _releasedKeys;
+rList<sf::Keyboard::Key> _pressedKeys;
+rList<sf::Keyboard::Key> _releasedKeys;
 
 void rBeginStep() {
+	_pressedKeys.clear();
+	_releasedKeys.clear();
+
 	while (const std::optional event = window.pollEvent())
 	{
-		_pressedKeys.clear();
-		_releasedKeys.clear();
-
 		// Poll close button
 		if (event->is<sf::Event::Closed>()) window.close();
 
 		// Poll keyboard
 		else if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()) {
-			_pressedKeys.push_back(keyPressed->code);
+			_pressedKeys.add(keyPressed->code);
 		}
 
 		else if (const auto* keyReleased = event->getIf<sf::Event::KeyReleased>()) {
-			_releasedKeys.push_back(keyReleased->code);
+			_releasedKeys.add(keyReleased->code);
 		}
 	}
 }
@@ -389,15 +389,7 @@ sf::Keyboard::Key rKeyTosfKey(rKeys::Key key) {
 }
 
 bool rIsKeyPressed(rKeys::Key key) {
-	sf::Keyboard::Key _key = rKeyTosfKey(key);
-
-	for (auto key : _pressedKeys) {
-		for (auto& iter : _keyMap) {
-			if (iter.second == _key) return true;
-		}
-	}
-
-	return false;
+	return _pressedKeys.has(rKeyTosfKey(key));
 }
 
 bool rIsKeyHeld(rKeys::Key key) {
