@@ -144,7 +144,7 @@ class rNode {
 			rList<rNode*> result;
 
 			for (auto child : _children) {
-				if (child->hasTag(tag)) {
+				if (child->isTagged(tag)) {
 					result.add(child);
 				}
 			}
@@ -152,8 +152,8 @@ class rNode {
 			return result;
 		}
 
-		bool hasTag(std::string tag) {
-			return (std::find(tags.begin(), tags.end(), tag) != tags.end());
+		bool isTagged(std::string tag) {
+			return (tags.has(tag));
 		}
 
 		template <typename T = rNode>
@@ -209,7 +209,7 @@ class rNode {
 			auto childrenCopy = children;
 
 			for (auto child : childrenCopy) {
-				if (child->hasTag(tag)) {
+				if (child->isTagged(tag)) {
 					child->destroy();
 				}
 			}
@@ -218,13 +218,13 @@ class rNode {
 		bool isValid() { return _valid; }
 
 		void addTag(std::string tag) {
-			if (!hasTag(tag)) {
-				tags.push_back(tag);
+			if (!isTagged(tag)) {
+				tags.add(tag);
 			}
 		}
 
 		void removeTag(std::string tag) {
-			tags.erase(std::remove(tags.begin(), tags.end(), tag), tags.end());
+			tags.erase(tag);
 		}
 		
 		std::string getName() {
@@ -240,7 +240,7 @@ class rNode {
 		}
 
 	private:
-		std::vector<std::string> tags;
+		rList<std::string> tags;
 		rList<rNode*> children;
 
 	protected:
