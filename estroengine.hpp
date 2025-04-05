@@ -302,17 +302,19 @@ public:
 	// GARBAGE DAY. /ref
 	void garbageCollect() {
 		for (auto piece : garbage) {
-			rNode* currentNode = static_cast<rNode*>(piece);
+			if (piece) {
+				rNode* currentNode = static_cast<rNode*>(piece);
 
-			auto allChildren = currentNode->getAllChildren();
+				auto allChildren = currentNode->getAllChildren();
 
-			for (auto child : allChildren) {
-				delete child;
-				child = NULL;
+				for (auto child : allChildren) {
+					delete child;
+					child = NULL;
+				}
+
+				delete piece;
+				piece = NULL;
 			}
-
-			delete piece;
-			piece = NULL;
 		}
 
 		garbage.clear();

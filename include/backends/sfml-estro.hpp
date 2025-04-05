@@ -139,8 +139,12 @@ void rInit(rVector2<unsigned int> windowSize, std::string windowTitle, bool resi
 	window.setKeyRepeatEnabled(false);
 }
 
-void rDeinit() {
+void rCloseWindow() {
 	window.close();
+}
+
+void rDeinit() {
+	rCloseWindow();
 }
 
 void rDrawTexture(rTexture* texture, rVector2<float> position, rColor tint) {
@@ -382,7 +386,7 @@ int rGetRandomValue(int min, int max) {
 }
 
 std::map<rKeys::Key, sf::Keyboard::Key> _keyMap{ {rKeys::Q, sf::Keyboard::Key::Q}, {rKeys::W, sf::Keyboard::Key::W}, {rKeys::E, sf::Keyboard::Key::E}, {rKeys::R, sf::Keyboard::Key::R}, {rKeys::T, sf::Keyboard::Key::T}, {rKeys::Y, sf::Keyboard::Key::Y}, {rKeys::U, sf::Keyboard::Key::U}, {rKeys::I, sf::Keyboard::Key::I}, {rKeys::O, sf::Keyboard::Key::O}, {rKeys::P, sf::Keyboard::Key::P}, {rKeys::A, sf::Keyboard::Key::A}, {rKeys::S, sf::Keyboard::Key::S}, {rKeys::D, sf::Keyboard::Key::D}, {rKeys::F, sf::Keyboard::Key::F}, {rKeys::G, sf::Keyboard::Key::G}, {rKeys::H, sf::Keyboard::Key::H}, {rKeys::J, sf::Keyboard::Key::J}, {rKeys::K, sf::Keyboard::Key::K}, {rKeys::L, sf::Keyboard::Key::L}, {rKeys::Z, sf::Keyboard::Key::Z}, {rKeys::X, sf::Keyboard::Key::X}, {rKeys::C, sf::Keyboard::Key::C}, {rKeys::V, sf::Keyboard::Key::V}, {rKeys::B, sf::Keyboard::Key::B}, {rKeys::N, sf::Keyboard::Key::N}, {rKeys::M, sf::Keyboard::Key::M},
-	{rKeys::Space, sf::Keyboard::Key::Space}, {rKeys::LeftAlt, sf::Keyboard::Key::LAlt}, {rKeys::RightAlt, sf::Keyboard::Key::RAlt}, {rKeys::LeftCtrl, sf::Keyboard::Key::LControl}, {rKeys::RightCtrl, sf::Keyboard::Key::RControl}, {rKeys::LeftShift, sf::Keyboard::Key::LShift}, {rKeys::RightShift, sf::Keyboard::Key::RShift}, {rKeys::Enter, sf::Keyboard::Key::Enter}, {rKeys::Left, sf::Keyboard::Key::Left}, {rKeys::Right, sf::Keyboard::Key::Right}, {rKeys::Up, sf::Keyboard::Key::Up}, {rKeys::Down, sf::Keyboard::Key::Down} };
+	{rKeys::Space, sf::Keyboard::Key::Space}, {rKeys::LeftAlt, sf::Keyboard::Key::LAlt}, {rKeys::RightAlt, sf::Keyboard::Key::RAlt}, {rKeys::LeftCtrl, sf::Keyboard::Key::LControl}, {rKeys::RightCtrl, sf::Keyboard::Key::RControl}, {rKeys::LeftShift, sf::Keyboard::Key::LShift}, {rKeys::RightShift, sf::Keyboard::Key::RShift}, {rKeys::Enter, sf::Keyboard::Key::Enter}, {rKeys::Left, sf::Keyboard::Key::Left}, {rKeys::Right, sf::Keyboard::Key::Right}, {rKeys::Up, sf::Keyboard::Key::Up}, {rKeys::Down, sf::Keyboard::Key::Down}, {rKeys::Escape, sf::Keyboard::Key::Escape} };
 
 sf::Keyboard::Key rKeyTosfKey(rKeys::Key key) {
 	return _keyMap[key];

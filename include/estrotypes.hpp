@@ -14,15 +14,6 @@ struct rTransform {
 	rVector3<float> rotation;
 };
 
-template <typename T>
-struct rRectangle {
-	rRectangle(T x = 0, T y = 0, T w = 0, T h = 0) : x(x), y(y), w(w), h(h) {}
-	T x = 0;
-	T y = 0;
-	T w = 0;
-	T h = 0;
-};
-
 class rAsset {
 public:
 	virtual bool load(std::string filename) = 0;
@@ -179,6 +170,10 @@ public:
 
 	rVector2<unsigned int> getSize() {
 		return size;
+	}
+
+	rRectangle<unsigned int> getRectangle() {
+		return rRectangle<unsigned int>{0, 0, size.x, size.y};
 	}
 
 private:

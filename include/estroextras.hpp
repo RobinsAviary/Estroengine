@@ -312,3 +312,14 @@ public:
         }
     }
 };
+
+class rCloseKey : public rNode {
+public:
+    rKeys::Key key = rKeys::Escape;
+
+    void step() {
+        if (rIsKeyPressed(key)) {
+            rCloseWindow();
+        }
+    }
+};

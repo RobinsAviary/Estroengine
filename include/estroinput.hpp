@@ -41,7 +41,8 @@ namespace rKeys {
 		Left,
 		Right,
 		Up,
-		Down
+		Down,
+		Escape
 	};
 }
 

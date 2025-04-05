@@ -3,6 +3,15 @@
 // Estrovector, created for estroengine by Robin <3
 
 template <typename T>
+struct rRectangle {
+	rRectangle(T x = 0, T y = 0, T w = 0, T h = 0) : x(x), y(y), w(w), h(h) {}
+	T x = 0;
+	T y = 0;
+	T w = 0;
+	T h = 0;
+};
+
+template <typename T>
 struct rVector2 {
 	rVector2(T x = 0, T y = 0) : x(x), y(y) {}
 	T x = 0;
@@ -89,6 +98,16 @@ struct rVector2 {
 	template <typename _T>
 	rVector2<_T> cast() {
 		return rVector2<_T>{static_cast<_T>(x), static_cast<_T>(y)};
+	}
+
+	bool isInside(rRectangle<T> rectangle) {
+		if (x >= rectangle.x && x < rectangle.x + rectangle.w) {
+			if (y >= rectangle.y && y < rectangle.y + rectangle.h) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 };
 
