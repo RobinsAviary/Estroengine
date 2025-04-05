@@ -159,7 +159,7 @@ void rDrawTextureSection(rTexture* texture, rVector2<float> position, rRectangle
 
 	sf::Sprite sprite(texture->texture);
 
-	sprite.setTextureRect(sf::IntRect({ rectangle.x, rectangle.y }, { rectangle.w, rectangle.h }));
+	sprite.setTextureRect(sf::IntRect{ { rectangle.x, rectangle.y }, { rectangle.w, rectangle.h } });
 	sprite.setPosition(sf::Vector2f{ position.x, position.y });
 	sprite.setColor(rColorTosfColor(tint));
 
