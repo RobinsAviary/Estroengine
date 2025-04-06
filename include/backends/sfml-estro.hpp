@@ -66,6 +66,11 @@ class rTexture : public rAsset {
 public:
 	sf::Texture texture;
 
+	rVector2<unsigned int> getSize() {
+		sf::Vector2u size = texture.getSize();
+		return rVector2<unsigned int>{ size.x, size.y };
+	}
+
 	int getWidth() {
 		rVector2 size = getSize();
 
@@ -76,11 +81,6 @@ public:
 		rVector2<unsigned int> size = getSize();
 
 		return size.y;
-	}
-
-	rVector2<unsigned int> getSize() {
-		sf::Vector2u size = texture.getSize();
-		return rVector2<unsigned int>{ size.x, size.y };
 	}
 
 	bool load(std::string filename) {

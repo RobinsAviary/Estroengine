@@ -116,24 +116,28 @@ class rNode {
 			return result;
 		}
 
-		rNode* getAncestorTagged(std::string tag) {
+		template <typename T = rNode>
+		T* getAncestorTagged(std::string tag) {
 			auto ancestors = getAncestors();
 
 			for (auto ancestor : ancestors) {
 				if (ancestor->isTagged(tag)) {
-					return ancestor;
+					return static_cast<T*>(ancestor);
 				}
 			}
+
+			return NULL;
 		}
 
-		rList<rNode*> getAncestorsTagged(std::string tag) {
+		template <typename T = rNode>
+		rList<T*> getAncestorsTagged(std::string tag) {
 			auto ancestors = getAncestors();
 
 			rList<rNode*> result;
 
 			for (auto ancestor : ancestors) {
 				if (ancestor->isTagged(tag)) {
-					result.add(ancestor);
+					result.add(static_cast<T>(ancestor));
 				}
 			}
 
@@ -154,10 +158,13 @@ class rNode {
 			return children;
 		}
 
-		rNode* getChildTagged(std::string tag) {
+		template <typename T = rNode>
+		T* getChildTagged(std::string tag) {
 			for (auto child : children) {
-				if (child->isTagged(tag)) return child;
+				if (child->isTagged(tag)) return static_cast<T>(child);
 			}
+
+			return NULL;
 		}
 
 		rList<rNode*> getDescendants() {
@@ -184,21 +191,25 @@ class rNode {
 			return result;
 		}
 
-		rNode* getDescendantTagged(std::string tag) {
+		template <typename T = rNode>
+		T* getDescendantTagged(std::string tag) {
 			auto descendants = getDescendants();
 
 			for (auto descendant : descendants) {
-				if (descendant->isTagged(tag)) return descendant;
+				if (descendant->isTagged(tag)) return static_cast<T>(descendant);
 			}
+
+			return NULL;
 		}
 
-		rList<rNode*> getDescendantsTagged(std::string tag) {
+		template <typename T = rNode>
+		rList<T*> getDescendantsTagged(std::string tag) {
 			auto _children = getDescendants();
 			rList<rNode*> result;
 
 			for (auto child : _children) {
 				if (child->isTagged(tag)) {
-					result.add(child);
+					result.add(static_cast<T>(child));
 				}
 			}
 
@@ -242,12 +253,25 @@ class rNode {
 			rList<rNode*> siblings = getSiblings();
 
 			for (auto sibling : siblings) {
-				if (sibling->hasTag("tag")) {
+				if (sibling->hasTag(tag)) {
 					result.add(static_cast<T*>(sibling));
 				}
 			}
 
 			return result;
+		}
+
+		template <typename T = rNode>
+		T* getSiblingTagged(std::string tag) {
+			rList<rNode*> siblings = getSiblings();
+
+			for (auto sibling : siblings) {
+				if (sibling->hasTag(tag)) {
+					return static_cast<T*>(sibling);
+				}
+			}
+
+			return NULL;
 		}
 
 		void destroyAllChildren() {

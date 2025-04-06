@@ -129,6 +129,13 @@ struct rColor {
 		}
 	}
 
+	void mix(rColor color) {
+		r = (r + color.r) / 2;
+		g = (g + color.g) / 2;
+		b = (b + color.b) / 2;
+		a = (a + color.a) / 2;
+	}
+
 	void hsva(unsigned int hue = 0, unsigned int value = 0, unsigned int saturation = 0, unsigned int alpha = 0) {
 		hsv(hue, value, saturation);
 		a = alpha;
