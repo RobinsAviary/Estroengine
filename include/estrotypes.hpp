@@ -126,7 +126,7 @@ protected:
 	std::list<T> list;
 };
 
-template <typename T> 
+template <typename T>
 class rGrid {
 public:
 	rGrid() {

@@ -49,6 +49,24 @@ class rNode {
 			return static_cast<T*>(pointer);
 		}
 
+		rNode* getRoot() {
+			rNode* currentNode = parent;
+
+			while (currentNode->parent) {
+				currentNode = currentNode->parent;
+			}
+
+			return currentNode;
+		}
+
+		rList<rNode*> getChildren() {
+			return children;
+		}
+
+		rNode* getParent() {
+			return parent;
+		}
+
 		rNode* getNode(rNode* pointer) {
 			auto _children = getRoot()->getDescendants();
 
@@ -71,10 +89,6 @@ class rNode {
 
 		unsigned int getHandle() {
 			return _handle;
-		}
-
-		void removeNode(int index) {
-			children.erase(index);
 		}
 
 		void destroy() {
@@ -103,9 +117,7 @@ class rNode {
 			return static_cast<T*>(children[index]);
 		}
 
-		rNode* getParent() {
-			return parent;
-		}
+		// Old query system
 
 		rList<rNode*> getAncestors() {
 			rList<rNode*> result;
@@ -148,20 +160,6 @@ class rNode {
 			return result;
 		}
 
-		rNode* getRoot() {
-			rNode* currentNode = parent;
-
-			while (currentNode->parent) {
-				currentNode = currentNode->parent;
-			}
-
-			return currentNode;
-		}
-
-		rList<rNode*> getChildren() {
-			return children;
-		}
-
 		template <typename T = rNode>
 		T* getChildTagged(std::string tag) {
 			for (auto child : children) {
@@ -169,30 +167,6 @@ class rNode {
 			}
 
 			return NULL;
-		}
-
-		rList<rNode*> getDescendants() {
-			rList<rNode*> result;
-
-			// Recursively iterate through hierarchy.
-			rList<rNode*> unexploredNodes;
-
-			unexploredNodes = children;
-			result = children;
-
-			while (unexploredNodes.size() > 0) {
-				rNode* node = unexploredNodes.back(); // Get last node
-				unexploredNodes.popBack(); // Remove last node
-				
-				if (node->children.size() != 0) { // If current node has children
-					for (auto child : node->children) {
-						unexploredNodes.add(child); // Push back all children to the unexplored nodes and result.
-						result.add(child);
-					}
-				}
-			}
-
-			return result;
 		}
 
 		template <typename T = rNode>
@@ -220,28 +194,11 @@ class rNode {
 			return result;
 		}
 
-		bool isTagged(std::string tag) {
-			return (tags.has(tag));
-		}
-
-		template <typename T = rNode>
-		rList<T*> getChildrenTagged(std::string tag) {
-			rList<T*> result;
-			
-			for (auto child : children) {
-				if (child->hasTag(tag)) {
-					result.add(static_cast<T*>(child));
-				}
-			}
-
-			return result;
-		}
-
 		rList<rNode*> getSiblings() {
 			rList<rNode*> result;
-			
+
 			if (parent) {
-				 parent->getChildren();
+				parent->getChildren();
 
 				// Remove self from list
 				result.erase(this);
@@ -253,7 +210,7 @@ class rNode {
 		template <typename T = rNode>
 		rList<T*> getSiblingsTagged(std::string tag) {
 			rList<T*> result;
-			
+
 			rList<rNode*> siblings = getSiblings();
 
 			for (auto sibling : siblings) {
@@ -276,6 +233,58 @@ class rNode {
 			}
 
 			return NULL;
+		}
+
+		template <typename T = rNode>
+		rList<T*> getChildrenTagged(std::string tag) {
+			rList<T*> result;
+
+			for (auto child : children) {
+				if (child->hasTag(tag)) {
+					result.add(static_cast<T*>(child));
+				}
+			}
+
+			return result;
+		}
+
+		// New Query system
+
+		template <typename T>
+		T* getChild() {
+			for (auto child : children) {
+				if (child->_type == T) {
+					return child;
+				}
+			}
+		}
+
+		rList<rNode*> getDescendants() {
+			rList<rNode*> result;
+
+			// Recursively iterate through hierarchy.
+			rList<rNode*> unexploredNodes;
+
+			unexploredNodes = children;
+			result = children;
+
+			while (unexploredNodes.size() > 0) {
+				rNode* node = unexploredNodes.back(); // Get last node
+				unexploredNodes.popBack(); // Remove last node
+				
+				if (node->children.size() != 0) { // If current node has children
+					for (auto child : node->children) {
+						unexploredNodes.add(child); // Push back all children to the unexplored nodes and result.
+						result.add(child);
+					}
+				}
+			}
+
+			return result;
+		}
+
+		bool isTagged(std::string tag) {
+			return (tags.has(tag));
 		}
 
 		void destroyAllChildren() {
