@@ -6,6 +6,7 @@
 #include <list>
 #include <memory>
 #include <iostream>
+#include <typeindex>
 
 // Estroengine v0.1.5, created by Robin <3
 
@@ -40,6 +41,8 @@ class rNode {
 			}
 
 			pointer->parent = this;
+
+			pointer->_type = typeid(T);
 
 			pointer->onCreate();
 			
@@ -95,6 +98,7 @@ class rNode {
 			}
 
 			pointer->parent = this;
+			pointer->_type = typeid(T);
 
 			return static_cast<T*>(children[index]);
 		}
@@ -325,6 +329,7 @@ class rNode {
 		bool _valid = true;
 		unsigned int _handle = 0;
 		std::string _name;
+		std::type_index _type = typeid(rNode);
 
 		void childrenStep() {
 			if (children.size() != 0) {
@@ -359,6 +364,10 @@ public:
 
 class rEngine : public rNode {
 public:
+	void onCreate() {
+		_type = typeid(rEngine);
+	}
+
 	void update() {
 		step();
 		draw();
