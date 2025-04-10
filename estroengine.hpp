@@ -236,13 +236,28 @@ class rNode {
 		}
 
 		template <typename T>
-		rList<T*> getAncestors() {
+		T* getAncestor() {
+			auto ancestors = getAncestors(1);
+			if (ancestors.size() > 0) return ancestors.front();
+			else return nullptr;
+		}
+
+		template <typename T>
+		rList<T*> getAncestors(unsigned int maxSize = 0) {
+			unsigned sizeSoFar = 0;
+
 			auto ancestors = getAncestors();
 			rList<T*> result;
 
 			for (auto ancestor : ancestors) {
 				if (ancestor->_type == T) {
 					result.add(ancestor);
+
+					if (maxSize > 0) {
+						sizeSoFar++;
+
+						if (sizeSoFar == maxSize) break;
+					}
 				}
 			}
 
@@ -274,13 +289,30 @@ class rNode {
 		}
 
 		template <typename T>
-		rList<T*> getDescendants() {
+		T* getDescendant() {
+			auto descendants = getDescendants<T>(1);
+			if (descendants.size() > 0) return descendants.front();
+			else return nullptr;
+		}
+
+		template <typename T>
+		rList<T*> getDescendants(unsigned int maxSize = 0) {
+			unsigned int sizeSoFar = 0;
+
 			auto descendants = getDescendants();
 			rList<T*> result;
 
 			for (auto descendant : descendants) {
 				if (descendant->_type == T) {
 					result.add(descendant);
+
+					if (maxSize > 0) {
+						sizeSoFar++;
+
+						if (sizeSoFar == maxSize) {
+							break;
+						}
+					}
 				}
 			}
 
