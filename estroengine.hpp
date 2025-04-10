@@ -118,20 +118,6 @@ class rNode {
 		}
 
 		// Old query system
-
-		rList<rNode*> getAncestors() {
-			rList<rNode*> result;
-
-			rNode* currentParent = getParent();
-			while (currentParent) {
-				result.add(currentParent);
-
-				currentParent = currentParent->getParent();
-			}
-
-			return result;
-		}
-
 		template <typename T = rNode>
 		T* getAncestorTagged(std::string tag) {
 			auto ancestors = getAncestors();
@@ -194,19 +180,6 @@ class rNode {
 			return result;
 		}
 
-		rList<rNode*> getSiblings() {
-			rList<rNode*> result;
-
-			if (parent) {
-				parent->getChildren();
-
-				// Remove self from list
-				result.erase(this);
-			}
-
-			return result;
-		}
-
 		template <typename T = rNode>
 		rList<T*> getSiblingsTagged(std::string tag) {
 			rList<T*> result;
@@ -249,14 +222,31 @@ class rNode {
 		}
 
 		// New Query system
+		rList<rNode*> getAncestors() {
+			rList<rNode*> result;
+
+			rNode* currentParent = getParent();
+			while (currentParent) {
+				result.add(currentParent);
+
+				currentParent = currentParent->getParent();
+			}
+
+			return result;
+		}
 
 		template <typename T>
-		T* getChild() {
-			for (auto child : children) {
-				if (child->_type == T) {
-					return child;
+		rList<T*> getAncestors() {
+			auto ancestors = getAncestors();
+			rList<T*> result;
+
+			for (auto ancestor : ancestors) {
+				if (ancestor->_type == T) {
+					result.add(ancestor);
 				}
 			}
+
+			return result;
 		}
 
 		rList<rNode*> getDescendants() {
@@ -271,12 +261,86 @@ class rNode {
 			while (unexploredNodes.size() > 0) {
 				rNode* node = unexploredNodes.back(); // Get last node
 				unexploredNodes.popBack(); // Remove last node
-				
+
 				if (node->children.size() != 0) { // If current node has children
 					for (auto child : node->children) {
 						unexploredNodes.add(child); // Push back all children to the unexplored nodes and result.
 						result.add(child);
 					}
+				}
+			}
+
+			return result;
+		}
+
+		template <typename T>
+		rList<T*> getDescendants() {
+			auto descendants = getDescendants();
+			rList<T*> result;
+
+			for (auto descendant : descendants) {
+				if (descendant->_type == T) {
+					result.add(descendant);
+				}
+			}
+
+			return result;
+		}
+
+		template <typename T>
+		T* getSibling() {
+			auto siblings = getSiblings();
+
+			for (auto sibling : siblings) {
+				if (sibling->_type == T) {
+					return sibling;
+				}
+			}
+		}
+
+		rList<rNode*> getSiblings() {
+			rList<rNode*> result;
+
+			if (parent) {
+				parent->getChildren();
+
+				// Remove self from list
+				result.erase(this);
+			}
+
+			return result;
+		}
+
+		template <typename T>
+		rList<T*> getSiblings() {
+			auto siblings = getSiblings();
+			rList<T*> result;
+
+			for (auto sibling : siblings) {
+				if (sibling->_type == T) {
+					result.add(sibling);
+				}
+			}
+
+			return result;
+		}
+
+		template <typename T>
+		T* getChild() {
+			for (auto child : children) {
+				if (child->_type == T) {
+					return child;
+				}
+			}
+		}
+
+		template <typename T>
+		rList<T*> getChildren() {
+			rList<T*> result;
+
+			for (auto child : children) {
+				if (child->_type == T) {
+					result.add(child);
 				}
 			}
 
