@@ -250,8 +250,8 @@ class rNode {
 			rList<T*> result;
 
 			for (auto ancestor : ancestors) {
-				if (ancestor->_type == T) {
-					result.add(ancestor);
+				if (ancestor->_type == typeid(T)) {
+					result.add(static_cast<T*>(ancestor));
 
 					if (maxSize > 0) {
 						sizeSoFar++;
@@ -303,8 +303,8 @@ class rNode {
 			rList<T*> result;
 
 			for (auto descendant : descendants) {
-				if (descendant->_type == T) {
-					result.add(descendant);
+				if (descendant->_type == typeid(T)) {
+					result.add(static_cast<T*>(descendant));
 
 					if (maxSize > 0) {
 						sizeSoFar++;
@@ -324,8 +324,8 @@ class rNode {
 			auto siblings = getSiblings();
 
 			for (auto sibling : siblings) {
-				if (sibling->_type == T) {
-					return sibling;
+				if (sibling->_type == typeid(T)) {
+					return static_cast<T*>(sibling);
 				}
 			}
 		}
@@ -349,8 +349,8 @@ class rNode {
 			rList<T*> result;
 
 			for (auto sibling : siblings) {
-				if (sibling->_type == T) {
-					result.add(sibling);
+				if (sibling->_type == typeid(T)) {
+					result.add(static_cast<T*>(sibling));
 				}
 			}
 
@@ -360,8 +360,8 @@ class rNode {
 		template <typename T>
 		T* getChild() {
 			for (auto child : children) {
-				if (child->_type == T) {
-					return child;
+				if (child->_type == typeid(T)) {
+					return static_cast<T*>(child);
 				}
 			}
 		}
@@ -371,8 +371,8 @@ class rNode {
 			rList<T*> result;
 
 			for (auto child : children) {
-				if (child->_type == T) {
-					result.add(child);
+				if (child->_type == typeid(T)) {
+					result.add(static_cast<T*>(child));
 				}
 			}
 

@@ -55,8 +55,8 @@ public:
 		*iter = item;
 	}
 
-	int size() {
-		return list.size();
+	unsigned int size() {
+		return static_cast<unsigned int>(list.size());
 	}
 
 	void pushBack(T item) {
