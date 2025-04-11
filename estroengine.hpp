@@ -226,6 +226,15 @@ class rNode {
 		}
 
 		template <typename T>
+		T* getNode() {
+			auto root = getRoot();
+
+			if (root->_type == T) return root;
+			
+			return getRoot()->getChild<T>();
+		}
+
+		template <typename T>
 		T* getAncestor() {
 			auto ancestors = getAncestors(1);
 			if (ancestors.size() > 0) return ancestors.front();
