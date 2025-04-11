@@ -1,4 +1,4 @@
-# Estroengine v0.1.5
+# Estroengine v0.1.6
 [![estroengine](https://robinsaviary.com/gifs/estroengine.gif)](https://blinkies.cafe/?s=0023-trans-pride)
 
 An *open source, portable, easy-to-use node-tree-based game engine* built in *C++20*.
