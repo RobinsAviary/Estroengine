@@ -8,7 +8,7 @@ Heavily inspired by engines such as [Godot](https://godotengine.org/), [Source](
 
 ### Installation / Building
 
-[Premake](https://premake.github.io/) is a work-in-progress, though I am personally just using a simple include and templates for the backends themself. *(Also make sure you update the specific backend you're using in estroengine.hpp. I'm working on a way to hopefully avoid having to do this in the future.)* The final premake will just be a simple mix of SFML and estroengine.
+I am in the process of making Estroengine much more user-friendly. The final setup will use [CMake](https://cmake.org/).
 
 ### Example
 
