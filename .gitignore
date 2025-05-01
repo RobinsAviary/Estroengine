@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Visual Studiop Mcguffins
+*.vcxproj*
+
+main.cpp
+x64/
