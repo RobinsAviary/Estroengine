@@ -14,6 +14,12 @@ namespace Estro {
 			virtual void onCreate();
 			virtual void onDestroy();
 
+			inline List<Node*> getChildren() { return children; }
+
+			List<Node*> getAncestors();
+			List<Node*> getSiblings();
+			List<Node*> getDescendants();
+
 			inline unsigned int getHandle() { return _handle; }
 
 			List<Node*> children;
@@ -29,6 +35,8 @@ namespace Estro {
 	class Engine : public Node {
 		public:
 			void step();
+			void draw();
+			void update();
 
 		protected:
 
