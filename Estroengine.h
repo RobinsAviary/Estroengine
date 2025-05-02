@@ -3,6 +3,7 @@
 #include <string> // Used for text
 #include "Estrodefs.h" // Used for TemplateType
 #include "Estrolist.h" // Used for lists
+#include "Estrocolors.h"
 
 namespace Estro {
 	class Node {
