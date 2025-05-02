@@ -15,7 +15,7 @@ I am in the process of making Estroengine much more user-friendly. The final set
 ### Backends
 
 Estroengine currently supports two libraries as backends:
-* [raylib](https://www.raylib.com/)
+* [raylib](https://www.raylib.com/) (Web, Windows, MacOS, Linux)
 * [SFML](https://www.sfml-dev.org/) (Windows, MacOS, Linux)
 
 ### Notes on sub-libraries
