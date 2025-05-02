@@ -22,9 +22,7 @@ Estroengine currently supports two libraries as backends:
 
 Estroengine includes a standalone library, *estrovector*, which is a basic C#-style implementation of math vectors intended for general utility (Basically Vector2 and Vector3).
 
-*Estropathing* is an interface for [Bensuperpc](https://github.com/bensuperpc)'s [A* implementation](https://github.com/bensuperpc/astar).
-
-*Estrocolors* is another technically standalone library that adds a simple but versatile rColor struct.
+*Estrocolors* is another technically standalone library that adds a simple but versatile Color struct.
 
 ### Related Reading
 
