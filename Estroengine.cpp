@@ -76,8 +76,12 @@ void Estro::Engine::draw() {
 }
 
 void Estro::Engine::update() {
+	beginStep();
 	step();
+	endStep();
+	beginDraw();
 	draw();
+	endDraw();
 	garbageCollect();
 }
 

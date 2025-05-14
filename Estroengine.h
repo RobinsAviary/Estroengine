@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string> // Used for text
+#include "Estroimpl.h"
 #include "Estrodefs.h" // Used for TemplateType
 #include "Estrolist.h" // Used for lists
 #include "Estrocolors.h"
