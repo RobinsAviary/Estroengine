@@ -1,6 +1,5 @@
 #include "Estrovector.h"
 
-
 using namespace Estro;
 
 template <typename T> template <typename newType>

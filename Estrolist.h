@@ -68,7 +68,7 @@ void List<T>::append(List<T> _list) {
 
 TemplateType
 unsigned int List<T>::size() {
-	return list.size();
+	return static_cast<int>(list.size());
 }
 
 TemplateType
