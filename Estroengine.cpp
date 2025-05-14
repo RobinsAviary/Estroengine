@@ -118,17 +118,11 @@ List<Node*> Node::getChildrenTagged(std::string tag) {
 
 List<Node*> Node::getAncestorsTagged(std::string tag) {
 	List<Node*> result;
+	List<Node*> ancestors = getAncestors();
 
-	while (true) {
-		Node* currentNode = this;
-		
-		if (currentNode->hasTag(tag)) result.add(currentNode);
-
-		if (currentNode->parent) {
-			currentNode = currentNode->parent;
-		}
-		else {
-			break;
+	for (Node* ancestor : ancestors) {
+		if (ancestor->hasTag(tag)) {
+			result.add(ancestor);
 		}
 	}
 
