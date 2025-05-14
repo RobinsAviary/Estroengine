@@ -204,14 +204,6 @@ Node* Node::getDescendantTagged(std::string tag) {
 	return NULL;
 }
 
-template <typename nodeType>
-nodeType* Node::addNode() {
-	Node* node = new nodeType;
-	_children.add(node);
-	
-	return node;
-}
-
 void Node::addTag(std::string tag) {
 	if (!_tags.has(tag)) {
 		_tags.add(tag);

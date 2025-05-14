@@ -31,6 +31,12 @@ void Estro::endDraw() {
 	window.display();
 }
 
-void Estro::drawRectangle(int x, int y, int w, int h) {
-	//sf::RectangleShape 
+void Estro::drawRectangle(float x, float y, float w, float h) {
+	sf::RectangleShape rectangle;
+
+	rectangle.setPosition({x, y});
+	rectangle.setSize({w, h});
+	rectangle.setFillColor({255, 255, 255, 255});
+
+	window.draw(rectangle);
 }

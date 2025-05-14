@@ -38,7 +38,12 @@ namespace Estro {
 			List<std::string> getTags();
 
 			template <typename nodeType>
-			nodeType* addNode();
+			nodeType* addNode() {
+				nodeType* node = new nodeType;
+				_children.add(node);
+
+				return node;
+			}
 
 			Node* getRoot();
 
