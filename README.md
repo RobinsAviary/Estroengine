@@ -1,4 +1,4 @@
-# Estroengine Pre-Alpha
+# Estroengine Alpha
 
 (NOTE: This version of Estroengine is a full rewrite, with the hopes of making this the permanant base, now that I better understand how C++ is structured and compiled.)
 
