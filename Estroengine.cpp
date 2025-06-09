@@ -230,3 +230,52 @@ void Node::destroy() {
 		parent->_children.remove(this);
 	}
 }
+
+void Node::destroyChildTagged(const std::string &tag) {
+	if (Node* node = getChildTagged(tag)) {
+		node->destroy();
+	}
+}
+
+void Node::destroyAncestorTagged(const std::string &tag) {
+	if (Node* node = getAncestorTagged(tag)) {
+		node->destroy();
+	}
+}
+
+void Node::destroySiblingTagged(const std::string &tag) {
+	if (Node* node = getSiblingTagged(tag)) {
+		node->destroy();
+	}
+}
+
+void Node::destroyDescendantTagged(const std::string &tag) {
+	if (Node* node = getDescendantTagged(tag)) {
+		node->destroy();
+	}
+}
+
+
+void Node::destroyChildrenTagged(const std::string &tag) {
+	for (auto child : getChildrenTagged(tag)) {
+		child->destroy();
+	}
+}
+
+void Node::destroyAncestorsTagged(const std::string &tag) {
+	for (auto ancestor : getAncestorsTagged(tag)) {
+		ancestor->destroy();
+	}
+}
+
+void Node::destroySiblingsTagged(const std::string &tag) {
+	for (auto sibling : getSiblingsTagged(tag)) {
+		sibling->destroy();
+	}
+}
+
+void Node::destroyDescendantsTagged(const std::string &tag) {
+	for (auto descendant : getDescendantsTagged(tag)) {
+		descendant->destroy();
+	}
+}

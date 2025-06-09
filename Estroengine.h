@@ -34,6 +34,16 @@ namespace Estro {
 
 			void destroy();
 
+			void destroyChildTagged(const std::string &tag);
+			void destroyAncestorTagged(const std::string &tag);
+			void destroySiblingTagged(const std::string &tag);
+			void destroyDescendantTagged(const std::string &tag);
+
+			void destroyChildrenTagged(const std::string &tag);
+			void destroyAncestorsTagged(const std::string &tag);
+			void destroySiblingsTagged(const std::string &tag);
+			void destroyDescendantsTagged(const std::string &tag);
+
 			void addTag(const std::string &tag);
 			void removeTag(const std::string &tag);
 			bool hasTag(const std::string &tag);
