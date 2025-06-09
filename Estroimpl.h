@@ -1,4 +1,6 @@
 #pragma once
+#include "Estrovector.h"
+#include "Estrocolors.h"
 #include <string>
 
 namespace Estro {
@@ -9,5 +11,10 @@ namespace Estro {
 	void init(unsigned int width, unsigned int height, std::string title);
 
 	bool isLooping();
-	void drawRectangle(float x, float y, float w, float h);
+
+	// These should mostly be used for debug.
+	void drawRectangle(Vector2<float> position, Vector2<float> size, Color color);
+	void drawLine(Vector2<float> startPosition, Vector2<float> endPosition, Color color);
+	void drawCircle(Vector2<float> position, float size, Color color);
+	 
 }

@@ -52,7 +52,7 @@ List<Node*> Estro::Node::getDescendants() {
 
 // GARBAGE DAY. /ref
 void Estro::Engine::garbageCollect() {
-	for (Node* piece : garbage) {
+	for (const Node* piece : garbage) {
 		delete piece;
 	}
 
@@ -102,7 +102,7 @@ Node* Node::getRoot() {
 	}
 }
 
-List<Node*> Node::getChildrenTagged(std::string tag) {
+List<Node*> Node::getChildrenTagged(const std::string &tag) {
 	List<Node*> result;
 
 	List<Node*> children = getChildren();
@@ -116,7 +116,7 @@ List<Node*> Node::getChildrenTagged(std::string tag) {
 	return result;
 }
 
-List<Node*> Node::getAncestorsTagged(std::string tag) {
+List<Node*> Node::getAncestorsTagged(const std::string &tag) {
 	List<Node*> result;
 	List<Node*> ancestors = getAncestors();
 
@@ -129,7 +129,7 @@ List<Node*> Node::getAncestorsTagged(std::string tag) {
 	return result;
 }
 
-List<Node*> Node::getSiblingsTagged(std::string tag) {
+List<Node*> Node::getSiblingsTagged(const std::string &tag) {
 	List<Node*> siblings = getSiblings();
 	List<Node*> result;
 
@@ -140,7 +140,7 @@ List<Node*> Node::getSiblingsTagged(std::string tag) {
 	return result;
 }
 
-List<Node*> Node::getDescendantsTagged(std::string tag) {
+List<Node*> Node::getDescendantsTagged(const std::string &tag) {
 	List<Node*> descendants = getDescendants();
 	List<Node*> result;
 
@@ -153,17 +153,17 @@ List<Node*> Node::getDescendantsTagged(std::string tag) {
 	return result;
 }
 
-Node* Node::getChildTagged(std::string tag) {
+Node* Node::getChildTagged(const std::string &tag) {
 	List<Node*> children = getChildren();
 	
 	for (Node* child : children) {
 		if (child->hasTag(tag)) return child;
 	}
 
-	return NULL;
+	return nullptr;
 }
 
-Node* Node::getAncestorTagged(std::string tag) {
+Node* Node::getAncestorTagged(const std::string &tag) {
 	Node* node = this;
 	while (true) {
 		if (node->parent) {
@@ -174,22 +174,22 @@ Node* Node::getAncestorTagged(std::string tag) {
 			node = node->parent;
 		}
 		else {
-			return NULL;
+			return nullptr;
 		}
 	}
 }
 
-Node* Node::getSiblingTagged(std::string tag) {
+Node* Node::getSiblingTagged(const std::string &tag) {
 	List<Node*> siblings = getSiblings();
 
 	for (Node* sibling : siblings) {
 		if (sibling->hasTag(tag)) return sibling;
 	}
 
-	return NULL;
+	return nullptr;
 }
 
-Node* Node::getDescendantTagged(std::string tag) {
+Node* Node::getDescendantTagged(const std::string &tag) {
 	List<Node*> unexploredNodes = getChildren();
 
 	while (unexploredNodes.size() > 0) {
@@ -201,20 +201,20 @@ Node* Node::getDescendantTagged(std::string tag) {
 		unexploredNodes.append(node->getChildren());
 	}
 
-	return NULL;
+	return nullptr;
 }
 
-void Node::addTag(std::string tag) {
+void Node::addTag(const std::string &tag) {
 	if (!_tags.has(tag)) {
 		_tags.add(tag);
 	}
 }
 
-void Node::removeTag(std::string tag) {
+void Node::removeTag(const std::string &tag) {
 	_tags.remove(tag);
 }
 
-bool Node::hasTag(std::string tag) {
+bool Node::hasTag(const std::string &tag) {
 	return _tags.has(tag);
 }
 

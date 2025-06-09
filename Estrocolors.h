@@ -1,3 +1,5 @@
+#pragma once
+
 namespace Estro {
 	struct Color {
 		unsigned char r = 0;
@@ -26,4 +28,9 @@ namespace Estro {
 		void hsva(unsigned int hue = 0, unsigned char value = 0, unsigned char saturation = 0, unsigned char alpha = 0);
 		void mix(Color color);
 	};
+
+	namespace Colors {
+		inline Color White = {255, 255, 255, 255};
+		inline Color Black = {0, 0, 0, 255};
+	}
 }

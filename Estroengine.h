@@ -10,7 +10,7 @@
 namespace Estro {
 	class Node {
 		public:
-			Node* parent = NULL; // NULL is used when a value is not yet set. This can be checked by going, for example, if (parent) {//codegoeshere}
+			Node* parent = nullptr; // nullptr is used when a value is not yet set. This can be checked by going, for example, if (parent) {//codegoeshere}
 			
 			virtual void step();
 			virtual void draw();
@@ -22,19 +22,19 @@ namespace Estro {
 			List<Node*> getSiblings();
 			List<Node*> getDescendants();
 
-			List<Node*> getChildrenTagged(std::string tag);
-			List<Node*> getAncestorsTagged(std::string tag);
-			List<Node*> getSiblingsTagged(std::string tag);
-			List<Node*> getDescendantsTagged(std::string tag);
+			List<Node*> getChildrenTagged(const std::string &tag);
+			List<Node*> getAncestorsTagged(const std::string &tag);
+			List<Node*> getSiblingsTagged(const std::string &tag);
+			List<Node*> getDescendantsTagged(const std::string &tag);
 
-			Node* getChildTagged(std::string tag);
-			Node* getAncestorTagged(std::string tag);
-			Node* getSiblingTagged(std::string tag);
-			Node* getDescendantTagged(std::string tag);
+			Node* getChildTagged(const std::string &tag);
+			Node* getAncestorTagged(const std::string &tag);
+			Node* getSiblingTagged(const std::string &tag);
+			Node* getDescendantTagged(const std::string &tag);
 
-			void addTag(std::string tag);
-			void removeTag(std::string tag);
-			bool hasTag(std::string tag);
+			void addTag(const std::string &tag);
+			void removeTag(const std::string &tag);
+			bool hasTag(const std::string &tag);
 			List<std::string> getTags();
 
 			template <typename nodeType>
@@ -65,7 +65,7 @@ namespace Estro {
 			void update();
 
 		protected:
-			void garbageCollect();
+			static void garbageCollect();
 
 		private:
 

@@ -1,7 +1,19 @@
 #include "Estroimpl.h"
 #include "SFML/Graphics.hpp"
+#include "Estrovector.h"
+#include "Estrocolors.h"
 
 sf::RenderWindow window;
+
+template <typename T>
+sf::Vector2<T> Vector2ToSFVector2(Estro::Vector2<T> vector) {
+	return {vector.x, vector.y};
+}
+
+template <typename T>
+sf::Vector3<T> Vector3ToSFVector3(Estro::Vector3<T> vector) {
+	return {vector.x, vector.y, vector.z};
+}
 
 bool Estro::isLooping() {
 	return window.isOpen();
@@ -31,12 +43,12 @@ void Estro::endDraw() {
 	window.display();
 }
 
-void Estro::drawRectangle(float x, float y, float w, float h) {
-	sf::RectangleShape rectangle;
+void Estro::drawLine(Vector2<float> startPosition, Vector2<float> endPosition, Color color) {
+	std::array line =
+	{
+		sf::Vertex{Vector2ToSFVector2(startPosition)},
+		sf::Vertex{Vector2ToSFVector2(endPosition)}
+	};
 
-	rectangle.setPosition({x, y});
-	rectangle.setSize({w, h});
-	rectangle.setFillColor({255, 255, 255, 255});
-
-	window.draw(rectangle);
+	window.draw(line.data(), line.size(), sf::PrimitiveType::Lines);
 }

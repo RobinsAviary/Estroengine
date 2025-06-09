@@ -2,10 +2,10 @@
 
 using namespace Estro;
 
-template <typename T> template <typename newType>
+/*template <typename T> template <typename newType>
 Vector2<typename newType> Vector2<T>::cast() {
 	return Vector2<newType>{static_cast<newType>(x), static_cast<newType>(y)};
-}
+}*/
 
 template <typename T>
 Vector2<T> Vector2<T>::operator+ (const Vector2<T>& rhs) {
@@ -64,12 +64,6 @@ bool Vector2<T>::operator!=(const Vector2<T>& rhs) {
 template <typename T>
 Vector2<T> Vector2<T>::yx() {
 	return Vector2<T>{y, x};
-}
-
-template <typename T>
-Vector2<T>::Vector2(T xPosition, T yPosition) {
-	x = xPosition;
-	y = yPosition;
 }
 
 template <typename T>

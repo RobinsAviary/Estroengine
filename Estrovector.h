@@ -15,7 +15,10 @@ namespace Estro {
 		T x = 0;
 		T y = 0;
 
-		Vector2(T xPosition, T yPosition);
+		Vector2(T xPosition, T yPosition) {
+			x = xPosition;
+			y = yPosition;
+		}
 
 		Vector2<T> yx();
 
