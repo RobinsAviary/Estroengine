@@ -30,7 +30,19 @@ namespace Estro {
 	};
 
 	namespace Colors {
-		inline Color White = {255, 255, 255, 255};
-		inline Color Black = {0, 0, 0, 255};
+		inline Color White = { 255, 255, 255, 255 };
+		inline Color Black = { 0, 0, 0, 255 };
+		inline Color Red = { 255, 0, 0, 255 };
+		inline Color Green = { 0, 255, 0, 255 };
+		inline Color Blue = { 0, 0, 255, 255 };
+		inline Color Gray = { 128, 128, 128, 255 };
+		inline Color DarkGray = { 48, 48, 48, 255 };
+		inline Color LightGray = { 192, 192, 192, 255 };
+		inline Color Pink = { 255, 0, 220, 255 };
+		inline Color Yellow = { 255, 216, 0, 255 };
+		inline Color Brown = { 84, 45, 19, 255 };
+		inline Color Purple = { 140, 0, 255, 255 };
+		inline Color HotPink = { 255, 0, 110, 255 };
+		inline Color Estrogen = { 142, 236, 255, 255 };
 	}
 }

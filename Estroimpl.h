@@ -16,5 +16,5 @@ namespace Estro {
 	void drawRectangle(Vector2<float> position, Vector2<float> size, Color color);
 	void drawLine(Vector2<float> startPosition, Vector2<float> endPosition, Color color);
 	void drawCircle(Vector2<float> position, float size, Color color);
-	 
+	void drawClear(Color color);
 }

@@ -221,3 +221,12 @@ bool Node::hasTag(const std::string &tag) {
 List<std::string> Node::getTags() {
 	return _tags;
 }
+
+void Node::destroy() {
+	auto list = getDescendants();
+	list.add(this);
+	garbage.append(list);
+	if (parent) {
+		parent->_children.remove(this);
+	}
+}

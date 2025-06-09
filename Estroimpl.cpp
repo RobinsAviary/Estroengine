@@ -15,6 +15,10 @@ sf::Vector3<T> Vector3ToSFVector3(Estro::Vector3<T> vector) {
 	return {vector.x, vector.y, vector.z};
 }
 
+sf::Color ColorToSFColor(Estro::Color color) {
+	return {color.r, color.g, color.b, color.a};
+}
+
 bool Estro::isLooping() {
 	return window.isOpen();
 }
@@ -51,4 +55,8 @@ void Estro::drawLine(Vector2<float> startPosition, Vector2<float> endPosition, C
 	};
 
 	window.draw(line.data(), line.size(), sf::PrimitiveType::Lines);
+}
+
+void Estro::drawClear(Color color) {
+	window.clear(ColorToSFColor(color));
 }

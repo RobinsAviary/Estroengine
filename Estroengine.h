@@ -32,6 +32,8 @@ namespace Estro {
 			Node* getSiblingTagged(const std::string &tag);
 			Node* getDescendantTagged(const std::string &tag);
 
+			void destroy();
+
 			void addTag(const std::string &tag);
 			void removeTag(const std::string &tag);
 			bool hasTag(const std::string &tag);
@@ -60,8 +62,8 @@ namespace Estro {
 
 	class Engine : public Node {
 		public:
-			void step();
-			void draw();
+			void step() override;
+			void draw() override;
 			void update();
 
 		protected:
