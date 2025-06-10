@@ -1,7 +1,7 @@
 #pragma once
 
 namespace Estro {
-    namespace Key {
+    namespace Keys {
         enum Key {
             Q,
             W,
@@ -96,14 +96,14 @@ namespace Estro {
         };
     }
 
-    namespace Joystick {
+    namespace Joysticks {
         enum Joystick {
             Left,
             Right
         };
     }
 
-    namespace Button {
+    namespace Buttons {
         enum Button {
             A,
             B,

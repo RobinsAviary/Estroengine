@@ -26,9 +26,20 @@ namespace Estro {
 		bool operator==(const Color& rhs);
 		bool operator!=(const Color& rhs);
 
-		//!Sets the Color using Red, Green, and Blue. Assumes Alpha to be 255.
+		/*!Sets the Color using Red, Green, and Blue. Assumes Alpha to be 255.
+		@param red Red.
+		@param green Green.
+		@param blue Blue.
+		@sa rgba(), hsv(), hsva().
+		*/
 		void rgb(unsigned char red = 0, unsigned char green = 0, unsigned char blue = 0);
-		//!Sets the Color using Red, Green, Blue, and Alpha.
+		/*!Sets the Color using Red, Green, Blue, and Alpha.
+		@param red Red.
+		@param green Green.
+		@param blue Blue.
+		@param alpha Alpha.
+		@sa rgb(), hsv(), hsva().
+		*/
 		void rgba(unsigned char red = 0, unsigned char green = 0, unsigned char blue = 0, unsigned char alpha = 255);
 		//!Sets the Color using Hue, Saturation, and Value. Assumes alpha to be 255.
 		void hsv(unsigned int hue = 0, unsigned char saturation = 0, unsigned char value = 0);
@@ -38,7 +49,6 @@ namespace Estro {
 		/*!Averages the base color with the supplied color.
 		@param color The color to mix in.
 		*/
-
 		void mix(Color color);
 	};
 
