@@ -4,7 +4,7 @@
 #include "Estroimpl.h"
 #include "Estrolist.h"
 #include "Estrocolors.h"
-#include "Estrovector.h"
+#include "Estrotypes.h"
 #include "Estroinput.h"
 
 //!The default Estroengine namespace.

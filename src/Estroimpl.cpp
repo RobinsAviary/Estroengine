@@ -1,6 +1,6 @@
 #include "../include/Estroimpl.h"
 #include "SFML/Graphics.hpp"
-#include "../include/Estrovector.h"
+#include "../include/Estrotypes.h"
 #include "../include/Estrocolors.h"
 
 sf::RenderWindow window;

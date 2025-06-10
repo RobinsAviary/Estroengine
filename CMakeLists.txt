@@ -12,7 +12,7 @@ FetchContent_MakeAvailable(SFML)
 add_library(Estroengine
         src/Estrocolors.cpp
         src/Estroengine.cpp
-        src/Estrovector.cpp
+        src/Estrotypes.cpp
         src/Estroimpl.cpp
         src/Estroassets.cpp
         src/Estroinput.cpp
@@ -25,7 +25,7 @@ add_library(Estroengine
         include/Estroimpl.h
         include/Estroinput.h
         include/Estrolist.h
-        include/Estrovector.h
+        include/Estrotypes.h
 )
 
 target_link_libraries(Estroengine PRIVATE SFML::Graphics)
