@@ -10,7 +10,7 @@ Heavily inspired by engines such as [Godot](https://godotengine.org/), [Source](
 
 The current version of the repisitory includes a CMakeLists.txt for building Estroengine (as a static library) as part of your project :)
 
-This project also features generable documentation from Doxygen.
+This project also features generable documentation from [Doxygen](https://www.doxygen.nl/).
 
 ### Backends
 
