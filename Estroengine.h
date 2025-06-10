@@ -54,6 +54,8 @@ namespace Estro {
 				nodeType* node = new nodeType;
 				_children.add(node);
 
+				node->onCreate();
+
 				return node;
 			}
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "Estrovector.h"
 #include "Estrocolors.h"
+#include "Estroassets.h"
 #include <string>
 
 namespace Estro {
@@ -17,4 +18,5 @@ namespace Estro {
 	void drawLine(Vector2<float> startPosition, Vector2<float> endPosition, Color color);
 	void drawCircle(Vector2<float> position, float size, Color color);
 	void drawClear(Color color);
+	void drawTexture(Vector2<float> position, const Texture &texture, Color color = Colors::White);
 }

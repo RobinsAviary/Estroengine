@@ -7,6 +7,6 @@ FetchContent_Declare(SFML
         SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_library(Estroengine Estrocolors.cpp Estroengine.cpp Estrovector.cpp Estroimpl.cpp)
+add_library(Estroengine Estrocolors.cpp Estroengine.cpp Estrovector.cpp Estroimpl.cpp Estroassets.cpp)
 
 target_link_libraries(Estroengine PRIVATE SFML::Graphics)

@@ -24,7 +24,7 @@ bool Estro::isLooping() {
 }
 
 void Estro::init(unsigned int width, unsigned int height, std::string title) {
-	window.create(sf::VideoMode({width, height}), title);
+	window.create(sf::VideoMode({width, height}), title, sf::Style::Close);
 }
 
 void Estro::beginStep() {
@@ -59,4 +59,15 @@ void Estro::drawLine(Vector2<float> startPosition, Vector2<float> endPosition, C
 
 void Estro::drawClear(Color color) {
 	window.clear(ColorToSFColor(color));
+}
+
+void Estro::drawTexture(Vector2<float> position, const Texture &texture, Color color) {
+	if (texture.isValid()) {
+		sf::Sprite sprite(texture.data);
+
+		sprite.setPosition(Vector2ToSFVector2(position));
+		sprite.setColor(ColorToSFColor(color));
+
+		window.draw(sprite);
+	}
 }
