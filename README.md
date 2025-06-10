@@ -1,7 +1,5 @@
 # Estroengine Alpha
 
-(NOTE: This version of Estroengine is a full rewrite, with the hopes of making this the permanant base, now that I better understand how C++ is structured and compiled.)
-
 [![estroengine](https://robinsaviary.com/gifs/estroengine.gif)](https://blinkies.cafe/?s=0023-trans-pride)
 
 An *open source, portable, easy-to-use node-tree-based game engine* built in *C++20*.
