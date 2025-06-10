@@ -17,10 +17,9 @@ Estroengine currently supports two libraries as backends:
 * [SFML](https://www.sfml-dev.org/) (Windows, MacOS, Linux)
 
 ### Notes on sub-libraries
+*Estrovector* - C#-style math vectors.
 
-Estroengine includes a standalone library, *estrovector*, which is a basic C#-style implementation of math vectors intended for general utility (Basically Vector2 and Vector3).
-
-*Estrocolors* is another technically standalone library that adds a simple but versatile Color struct.
+*Estrocolors* - Generic Color struct & base engine colors.
 
 ### Related Reading
 
