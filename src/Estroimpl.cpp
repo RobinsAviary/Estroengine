@@ -1,7 +1,7 @@
-#include "Estroimpl.h"
+#include "../include/Estroimpl.h"
 #include "SFML/Graphics.hpp"
-#include "Estrovector.h"
-#include "Estrocolors.h"
+#include "../include/Estrovector.h"
+#include "../include/Estrocolors.h"
 
 sf::RenderWindow window;
 

@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <list>
 
-#include "Estrodefs.h" // For TemplateType
+#include "Estrodefs.h"
 
 #define ListIterator std::list<T>::iterator
 
