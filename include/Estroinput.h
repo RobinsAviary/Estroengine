@@ -122,7 +122,7 @@ namespace Estro {
         };
     }
 
-    bool isKeyDown(Key::Key key);
-    bool isKeyPressed(Key::Key key);
-    bool isKeyReleased(Key::Key key);
+    bool isKeyDown(Keys::Key key);
+    bool isKeyPressed(Keys::Key key);
+    bool isKeyReleased(Keys::Key key);
 }

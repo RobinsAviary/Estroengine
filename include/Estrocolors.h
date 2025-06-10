@@ -33,6 +33,7 @@ namespace Estro {
 		@sa rgba(), hsv(), hsva().
 		*/
 		void rgb(unsigned char red = 0, unsigned char green = 0, unsigned char blue = 0);
+
 		/*!Sets the Color using Red, Green, Blue, and Alpha.
 		@param red Red.
 		@param green Green.
@@ -41,9 +42,21 @@ namespace Estro {
 		@sa rgb(), hsv(), hsva().
 		*/
 		void rgba(unsigned char red = 0, unsigned char green = 0, unsigned char blue = 0, unsigned char alpha = 255);
-		//!Sets the Color using Hue, Saturation, and Value. Assumes alpha to be 255.
+
+		/*!Sets the Color using Hue, Saturation, and Value. Assumes alpha to be 255.
+		@param hue Hue.
+		@param saturation Saturation.
+		@param value Value.
+		@sa rgb(), rgba(), hsva().
+		*/
 		void hsv(unsigned int hue = 0, unsigned char saturation = 0, unsigned char value = 0);
-		//!Sets the Color using Hue, Saturation, Value, and Alpha.
+
+		/*!Sets the Color using Hue, Saturation, Value, and Alpha.
+		@param hue Hue.
+		@param saturation Saturation.
+		@param value Value.
+		@sa rgb(), rgba(), hsv().
+		*/
 		void hsva(unsigned int hue = 0, unsigned char value = 0, unsigned char saturation = 0, unsigned char alpha = 255);
 
 		/*!Averages the base color with the supplied color.
