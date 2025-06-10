@@ -12,6 +12,8 @@ namespace Estro {
             bool _valid = false;
     };
 
+    /*!@ingroup Graphics
+     */
     class Texture : public Asset {
         public:
             sf::Texture data;

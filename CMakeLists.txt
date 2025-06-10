@@ -17,6 +17,15 @@ add_library(Estroengine
         src/Estroassets.cpp
         src/Estroinput.cpp
         src/Estroextras.cpp
+        include/Estroassets.h
+        include/Estrocolors.h
+        include/Estrodefs.h
+        include/Estroengine.h
+        include/Estroextras.h
+        include/Estroimpl.h
+        include/Estroinput.h
+        include/Estrolist.h
+        include/Estrovector.h
 )
 
 target_link_libraries(Estroengine PRIVATE SFML::Graphics)

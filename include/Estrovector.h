@@ -2,15 +2,6 @@
 
 namespace Estro {
 	template <typename T>
-	struct Rectangle {
-		T x = 0;
-		T y = 0;
-		T w = 0;
-		T h = 0;
-		Rectangle(T xPosition = 0, T yPosition = 0, T width = 0, T height = 0);
-	};
-
-	template <typename T>
 	struct Vector2 {
 		T x = 0;
 		T y = 0;
@@ -36,8 +27,6 @@ namespace Estro {
 
 		template <typename newType>
 		Vector2<newType> cast();
-
-		bool isInside(Rectangle<T> rectangle);
 	};
 
 	template <typename T>
@@ -73,4 +62,19 @@ namespace Estro {
 			template <typename newType>
 			Vector3<newType> cast();
 	};
+
+	template <typename T>
+	struct Rectangle {
+		Vector2<T> position;
+		Vector2<T> size;
+	};
+
+	template <typename T>
+	struct Circle {
+		Vector2<T> position;
+		T radius;
+	};
+
+	template <typename T>
+	void isPointInsideRectangle(Vector2<T> point, Rectangle<T> rectangle);
 }
