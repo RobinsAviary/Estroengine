@@ -229,6 +229,7 @@ void Node::destroy() {
 	if (parent) {
 		parent->_children.remove(this);
 	}
+	onDestroy();
 }
 
 void Node::destroyChildTagged(const std::string &tag) {

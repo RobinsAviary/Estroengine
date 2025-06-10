@@ -6,6 +6,7 @@
 #include "Estrolist.h"
 #include "Estrocolors.h"
 #include "Estrovector.h"
+#include "Estroinput.h"
 
 namespace Estro {
 	class Node {
