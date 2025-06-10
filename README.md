@@ -26,3 +26,5 @@ Estroengine currently supports two libraries as backends:
 I occasionally post about Estroengine on my website:
 
 [![Robin's Aviary](https://robinsaviary.com/robins-aviary.gif)](https://robinsaviary.com)
+
+Estroengine is provided under the [Unlicense License](https://unlicense.org/)
