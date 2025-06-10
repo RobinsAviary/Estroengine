@@ -30,3 +30,4 @@ I occasionally post about Estroengine on my website:
 [![Robin's Aviary](https://robinsaviary.com/robins-aviary.gif)](https://robinsaviary.com)
 
 Estroengine is provided under the [Unlicense License](https://unlicense.org/).
+Free for any type of use (personal, commercial, etc.) and credit of this library is not required - but always appreciated!
