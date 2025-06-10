@@ -12,6 +12,7 @@
 // Interface
 
 namespace Estro {
+	/*!@brief A basic list of any type. The size is dynamic.*/
 	TemplateType
 	class List {
 		public:
@@ -20,12 +21,41 @@ namespace Estro {
 			*/
 			std::list<T> getInternal();
 
+			/*!@brief Adds a value to the list.
+			@param value The value to add.
+			*/
 			void add(T value);
+
+			/*!@brief Removes all instances of a value from the list.
+			@param value The value to remove.
+			*/
 			void remove(T value);
+
+			/*!@brief Removes a value from the list at a specific index.
+			@param index The index of the value to remove.
+			*/
 			void erase(unsigned int index);
+
+			/*!@brief Checks if the list has a given value in it.
+			@param value The value to check for.
+			@return TRUE if the value is in the list, otherwise FALSE.
+			*/
 			bool has(T value);
+
+			/*!@brief Inserts a value into the list at a given index.
+			@param index The index at which to insert the value.
+			@param value The value to insert.
+			*/
 			void insert(unsigned int index, T value);
+
+			/*!@brief Adds a value to the end of the list.
+			@param value The value to add.
+			*/
 			void pushBack(T value);
+
+			/*!@brief Adds a value to the beginning of the list.
+			@param value The value to add.
+			*/
 			void pushFront(T value);
 
 			/*!@brief Appends a list to the end of another list.
@@ -79,7 +109,14 @@ namespace Estro {
 			*/
 			T back();
 
+			/*!@brief Set the item at a specific index.
+			@sa set().
+			*/
 			T at(unsigned int index);
+			/*!@brief Get the item at a specific index.
+			@return The value at the specified index.
+			@sa at().
+			*/
 			void set(unsigned int, T value);
 
 		private:
@@ -95,8 +132,8 @@ namespace Estro {
 using namespace Estro;
 
 TemplateType
-void List<T>::append(List<T> _list) {
-	for (T item : _list) {
+void List<T>::append(List<T> list) {
+	for (T item : list) {
 		add(item);
 	}
 }

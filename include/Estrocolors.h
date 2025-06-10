@@ -26,7 +26,7 @@ namespace Estro {
 		bool operator==(const Color& rhs);
 		bool operator!=(const Color& rhs);
 
-		/*!Sets the Color using Red, Green, and Blue. Assumes Alpha to be 255.
+		/*!@brief Sets the Color using Red, Green, and Blue. Assumes Alpha to be 255.
 		@param red Red.
 		@param green Green.
 		@param blue Blue.
@@ -34,7 +34,7 @@ namespace Estro {
 		*/
 		void rgb(unsigned char red = 0, unsigned char green = 0, unsigned char blue = 0);
 
-		/*!Sets the Color using Red, Green, Blue, and Alpha.
+		/*!@brief Sets the Color using Red, Green, Blue, and Alpha.
 		@param red Red.
 		@param green Green.
 		@param blue Blue.
@@ -43,7 +43,7 @@ namespace Estro {
 		*/
 		void rgba(unsigned char red = 0, unsigned char green = 0, unsigned char blue = 0, unsigned char alpha = 255);
 
-		/*!Sets the Color using Hue, Saturation, and Value. Assumes alpha to be 255.
+		/*!@brief Sets the Color using Hue, Saturation, and Value. Assumes alpha to be 255.
 		@param hue Hue.
 		@param saturation Saturation.
 		@param value Value.
@@ -51,7 +51,7 @@ namespace Estro {
 		*/
 		void hsv(unsigned int hue = 0, unsigned char saturation = 0, unsigned char value = 0);
 
-		/*!Sets the Color using Hue, Saturation, Value, and Alpha.
+		/*!@brief Sets the Color using Hue, Saturation, Value, and Alpha.
 		@param hue Hue.
 		@param saturation Saturation.
 		@param value Value.
@@ -59,7 +59,7 @@ namespace Estro {
 		*/
 		void hsva(unsigned int hue = 0, unsigned char value = 0, unsigned char saturation = 0, unsigned char alpha = 255);
 
-		/*!Averages the base color with the supplied color.
+		/*!@brief Averages the base color with the supplied color.
 		@param color The color to mix in.
 		*/
 		void mix(Color color);
@@ -80,7 +80,7 @@ namespace Estro {
 		inline Color Brown = { 84, 45, 19, 255 };
 		inline Color Purple = { 140, 0, 255, 255 };
 		inline Color HotPink = { 255, 0, 110, 255 };
-		//!A basic light blue color.
+		//!@briefA basic light blue color.
 		inline Color Estrogen = { 142, 236, 255, 255 };
 	}
 }
