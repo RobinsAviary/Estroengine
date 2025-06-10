@@ -18,7 +18,7 @@ Estroengine currently supports two libraries as backends:
 * [raylib](https://www.raylib.com/) (Web, Windows, MacOS, Linux)
 * [SFML](https://www.sfml-dev.org/) (Windows, MacOS, Linux)
 
-### Notes on sub-libraries
+## Notes on sub-libraries
 *Estrovector* - C#-style math vectors.
 
 *Estrocolors* - Generic Color struct & base engine colors.
