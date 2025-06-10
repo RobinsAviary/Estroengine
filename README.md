@@ -6,13 +6,13 @@ An *open source, portable, easy-to-use node-tree-based game engine* built in *C+
 
 Heavily inspired by engines such as [Godot](https://godotengine.org/), [Source](https://developer.valvesoftware.com/wiki/SDK_Docs), and [GameMaker](https://gamemaker.io/en).
 
-### Building
+## Building
 
 The current version of the repisitory includes a `CMakeLists.txt` (for [CMake](https://cmake.org/)) for building Estroengine (as a static library) as part of your project :)
 
 This project also features generable documentation from [Doxygen](https://www.doxygen.nl/).
 
-### Backends
+## Backends
 
 Estroengine currently supports two libraries as backends:
 * [raylib](https://www.raylib.com/) (Web, Windows, MacOS, Linux)
@@ -23,12 +23,12 @@ Estroengine currently supports two libraries as backends:
 
 *Estrocolors* - Generic Color struct & base engine colors.
 
-### License
+## License
 
 Estroengine is provided under the [Unlicense License](https://unlicense.org/).
 Free for any type of use (personal, commercial, etc.) and credit of this library is not required - but always appreciated!
 
-### Related Reading
+## Related Reading
 
 I occasionally post about Estroengine on my website:
 
