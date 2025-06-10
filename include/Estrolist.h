@@ -15,6 +15,9 @@ namespace Estro {
 	TemplateType
 	class List {
 		public:
+			/*!@brief Returns the std::list that makes up this list internally.
+			@return The std::list that this list uses internally.
+			*/
 			std::list<T> getInternal();
 
 			void add(T value);
@@ -25,25 +28,57 @@ namespace Estro {
 			void pushBack(T value);
 			void pushFront(T value);
 
+			/*!@brief Appends a list to the end of another list.
+			@param _list The list to append to the other.
+			*/
 			void append(List<T> _list);
 			//void prepend(List<T> _list);
 
+			/*!@brief Clears the list of all values.
+			*/
 			void clear();
 
+			/*!@brief Find the index of the specified value in the list.
+
+			Returns zero if the value is not found, so use ::has() or ::count() in order to check if the value is in the list first.
+			@param value Value to search for.
+			@return Index of the value in the list.
+			*/
 			unsigned int find(T value);
+
+			/*!@brief Find the indices of a value in the list.
+			@param value Value to search for.
+			@return A List of indices in the list that match the given value.
+			*/
 			List<unsigned int> findAll(T value);
 
+			/*!@brief Get the number of items in the list.
+			@return The number of items in the list.
+			*/
 			unsigned int size();
-			inline unsigned int length(){ return size(); }
+
+			/*!@brief Get the number of times a given value appears in the list.
+			@return The number of times the given value appears in the list.
+			*/
 			unsigned int count(T value);
 
-			std::list<T>::iterator begin();
-			std::list<T>::iterator end();
+			typename std::list<T>::iterator begin();
 
+			typename std::list<T>::iterator end();
+
+			/*!@brief Remove the first item of the list.*/
 			void popFront();
+			/*!@brief Remove the last item of the list.*/
 			void popBack();
+			/*!@brief Get the first item of the list.
+			@return The first item of the list.
+			*/
 			T front();
+			/*!@brief Get the last item of the list.
+			@return The last item of the list.
+			*/
 			T back();
+
 			T at(unsigned int index);
 			void set(unsigned int, T value);
 

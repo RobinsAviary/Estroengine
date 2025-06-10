@@ -65,7 +65,7 @@ namespace Estro {
 		void mix(Color color);
 	};
 
-	//!Estroengine's default colors.
+	//!Default colors.
 	namespace Colors {
 		inline Color White = { 255, 255, 255, 255 };
 		inline Color Black = { 0, 0, 0, 255 };

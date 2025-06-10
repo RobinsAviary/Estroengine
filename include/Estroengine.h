@@ -7,6 +7,7 @@
 #include "Estrovector.h"
 #include "Estroinput.h"
 
+//!The default Estroengine namespace.
 namespace Estro {
 	class Node {
 		public:

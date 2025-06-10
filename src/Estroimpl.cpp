@@ -47,6 +47,7 @@ void Estro::endDraw() {
 	window.display();
 }
 
+
 void Estro::drawLine(Vector2<float> startPosition, Vector2<float> endPosition, Color color) {
 	std::array line =
 	{

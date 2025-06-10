@@ -1,3 +1,7 @@
-/*! @mainpage Estroengine Documentation
-- This is a test
+/*! @mainpage Estroengine
+An *open source, portable, easy-to-use node-tree-based game engine* built in *C++20*.
+
+Heavily inspired by engines such as [Godot](https://godotengine.org/), [Source](https://developer.valvesoftware.com/wiki/SDK_Docs), and [GameMaker](https://gamemaker.io/en).
 */
+
+//!@defgroup Graphics
