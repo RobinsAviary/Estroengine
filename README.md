@@ -6,9 +6,11 @@ An *open source, portable, easy-to-use node-tree-based game engine* built in *C+
 
 Heavily inspired by engines such as [Godot](https://godotengine.org/), [Source](https://developer.valvesoftware.com/wiki/SDK_Docs), and [GameMaker](https://gamemaker.io/en).
 
-### Installation / Building
+### Building
 
-I am in the process of making Estroengine much more user-friendly. The final setup will use [CMake](https://cmake.org/).
+The current version of the repisitory includes a CMakeLists.txt for building Estroengine (as a static library) as part of your project :)
+
+This project also features generatable documentation from Doxygen.
 
 ### Backends
 
