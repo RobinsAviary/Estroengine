@@ -27,4 +27,4 @@ I occasionally post about Estroengine on my website:
 
 [![Robin's Aviary](https://robinsaviary.com/robins-aviary.gif)](https://robinsaviary.com)
 
-Estroengine is provided under the [Unlicense License](https://unlicense.org/)
+Estroengine is provided under the [Unlicense License](https://unlicense.org/).
