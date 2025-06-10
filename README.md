@@ -15,8 +15,8 @@ This project also features generable documentation from [Doxygen](https://www.do
 ## Backends
 
 Estroengine currently supports two libraries as backends:
-* [raylib](https://www.raylib.com/) (Web, Windows, MacOS, Linux)
-* [SFML](https://www.sfml-dev.org/) (Windows, MacOS, Linux)
+* [raylib](https://www.raylib.com/) (Web, Windows, MacOS, Linux) [Planned]
+* [SFML](https://www.sfml-dev.org/) (Windows, MacOS, Linux) [Actively Developing]
 
 ## Notes on sub-libraries
 *Estrovector* - C#-style math vectors.
