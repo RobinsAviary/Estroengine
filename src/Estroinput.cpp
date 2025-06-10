@@ -3,7 +3,7 @@
 
 #include "SFML/Window.hpp"
 
-sf::Keyboard::Key KeyToSFKey(Estro::Key::Key key) {
+/*sf::Keyboard::Key KeyToSFKey(Estro::Key::Key key) {
     std::map<Estro::Key::Key, sf::Keyboard::Key> map {
         {Estro::Key::A, sf::Keyboard::Key::A},
         {Estro::Key::Apostrophe, sf::Keyboard::Key::Apostrophe},
@@ -28,11 +28,10 @@ sf::Keyboard::Key KeyToSFKey(Estro::Key::Key key) {
         {Estro::Key::F3, sf::Keyboard::Key::F3},
         {Estro::Key::F4, sf::Keyboard::Key::F4},
         {Estro::Key::F5, sf::Keyboard::Key::F5,
-        {Estro::Key::F6, sf::Keyboard::Key::F6},
-        {}
+        {Estro::Key::F6, sf::Keyboard::Key::F6}
         }
     };
-}
+}*/
 
 bool Estro::isKeyDown(Key::Key key) {
 

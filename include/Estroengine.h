@@ -2,7 +2,6 @@
 
 #include <string> // Used for text
 #include "Estroimpl.h"
-#include "Estrodefs.h" // Used for TemplateType
 #include "Estrolist.h"
 #include "Estrocolors.h"
 #include "Estrovector.h"
