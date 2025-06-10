@@ -1,4 +1,4 @@
-# Estroengine Alpha
+# Estroengine 0.5.0
 
 [![estroengine](https://robinsaviary.com/gifs/estroengine.gif)](https://blinkies.cafe/?s=0023-trans-pride)
 
