@@ -135,12 +135,18 @@ namespace Estro {
 		public:
 			Grid(Vector2<unsigned int> size, T defaultValue);
 
-			void clear();
+			//!@brief Clears the entire grid to a single value.
+			void clear(T defaultValue);
 
+			//!@brief Gets a value from the grid at a specific position.
 			T at(Vector2<unsigned int> position);
+			//!@brief Sets a value in the grid at a specific position.
 			void set(Vector2<unsigned int> position, T value);
 
+			//!@brief Returns the size of the grid as a Vector2.
 			Vector2<unsigned int> getSize();
+
+			//!@brief Sets the size of the grid, initializing new cells to a default value.
 			void setSize(Vector2<unsigned int> size, T defaultValue);
 
 		protected:
