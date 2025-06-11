@@ -10,7 +10,7 @@ Heavily inspired by engines such as [Godot](https://godotengine.org/), [Source](
 
 I am a long-time GameMaker user (we're talking all the way back to days of 8.1). I found after a while I was rapidly outgrowing what GML could support, both in scope and in speed. Admittedly, I do actually still actively use game engines such as Godot, but I found that nothing could really match the "draw anything anywhere to the screen" energy that GameMaker really supported with it's wide function set.
 
-The goal with this project is to marry the rendering ideas of GameMaker with the flexibility/speed of C++ and the Node tree structure from Godot.
+The goal with this project is to marry the rendering ideas of GameMaker, with the flexibility/speed of C++, and the Node tree structure from Godot.
 
 ## Building
 
