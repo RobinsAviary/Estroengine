@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <list>
 
+#include "Estrotypes.h"
 #include "Estrodefs.h"
 
 #define ListIterator std::list<T>::iterator
@@ -117,11 +118,39 @@ namespace Estro {
 			*/
 			void set(unsigned int, T value);
 
+			void resize(unsigned int size);
+			void resize(unsigned int size, T defaultValue);
+
 		private:
 
 
 		protected:
 			std::list<T> list;
+	};
+
+	/*!@brief A version of List that is able to be accessed in a 2D grid.
+	*/
+	TemplateType
+	class Grid {
+		public:
+			Grid(Vector2<unsigned int> size, T defaultValue);
+
+			void clear();
+
+			T at(Vector2<unsigned int> position);
+			void set(Vector2<unsigned int> position, T value);
+
+			Vector2<unsigned int> getSize();
+			void setSize(Vector2<unsigned int> size, T defaultValue);
+
+		protected:
+			List<T> list;
+			unsigned int positionToIndex(Vector2<unsigned int> position);
+			Vector2<unsigned int> size = {0, 0};
+
+
+		private:
+
 	};
 }
 
@@ -282,4 +311,50 @@ unsigned int List<T>::count(T value) {
 	}
 
 	return result;
+}
+
+TemplateType
+void List<T>::resize(unsigned int size, T defaultValue) {
+	list.resize(size, defaultValue);
+}
+
+TemplateType
+void List<T>::resize(unsigned int size) {
+	list.resize(size);
+}
+
+TemplateType
+void Grid<T>::clear() {
+	list.clear();
+}
+
+TemplateType
+T Grid<T>::at(Vector2<unsigned int> position) {
+	return list.at();
+}
+
+TemplateType
+void Grid<T>::set(Vector2<unsigned int> position, T value) {
+
+}
+
+TemplateType
+Grid<T>::Grid(Vector2<unsigned int> size, T defaultValue) {
+
+}
+
+TemplateType
+Grid<T>::Vector2<unsigned int> getSize() {
+
+}
+
+TemplateType
+void Grid<T>::setSize(Vector2<unsigned int> _size, T defaultValue) {
+	size = _size;
+	list.resize()
+}
+
+TemplateType
+unsigned int Grid<T>::positionToIndex(Vector2<unsigned int> position) {
+	return (getSize().x * position.y) + position.x;
 }

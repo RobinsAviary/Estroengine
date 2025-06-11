@@ -1,6 +1,8 @@
 #pragma once
 
 namespace Estro {
+	/*!@brief A struct for colors.
+	*/
 	struct Color {
 		//!Red value.
 		unsigned char r = 0;
