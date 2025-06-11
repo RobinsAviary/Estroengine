@@ -220,3 +220,11 @@ bool Estro::isKeyReleased(Keys::Key key) {
 	return false;
 }
 
+Vector2<int> getCursorPosition() {
+	sf::Vector2i cursorPosition = sf::Mouse::getPosition();
+	return {cursorPosition.x, cursorPosition.y};
+}
+
+void setCursorPosition(Vector2<int> position) {
+	sf::Mouse::setPosition(position.x, position.y);
+}

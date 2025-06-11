@@ -45,4 +45,13 @@ namespace Estro {
 	@ingroup Input
 	*/
 	bool isKeyReleased(Keys::Key key);
+
+	/*!@brief Get the position of the cursor on-screen.
+	 *@ingroup Input
+	 */
+	Vector2<int> getCursorPosition();
+	/*!@brief Set the position of the cursor on-screen.
+	 *@ingorup Input
+	 */
+	void setCursorPosition(Vector2<int> position);
 }

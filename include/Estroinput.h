@@ -1,9 +1,11 @@
 #pragma once
 
 namespace Estro {
-    /*!@ingroup Input*/
+    /*!@ingroup Input
+     */
     namespace Keys {
-        /*!@ingroup Input*/
+        /*!@ingroup Input
+         */
         enum Key {
             Q,
             W,
