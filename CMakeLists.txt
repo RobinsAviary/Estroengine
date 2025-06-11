@@ -28,4 +28,4 @@ add_library(Estroengine
         include/Estrotypes.h
 )
 
-target_link_libraries(Estroengine PRIVATE SFML::Graphics)
+target_link_libraries(Estroengine PRIVATE SFML::Graphics SFML::Audio)

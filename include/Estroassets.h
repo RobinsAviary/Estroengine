@@ -29,7 +29,7 @@ namespace Estro {
 
     class Sound : public Asset {
         public:
-            sf::Sound sound;
+            sf::SoundBuffer data;
 
             void load(std::string filename) override;
 

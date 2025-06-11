@@ -9,3 +9,12 @@ void Texture::load(std::string filename) {
 Texture::~Texture() {
     _valid = false;
 }
+
+void Sound::load(std::string filename) {
+    _valid = data.loadFromFile(filename);
+}
+
+Sound::~Sound() {
+    _valid = false;
+}
+

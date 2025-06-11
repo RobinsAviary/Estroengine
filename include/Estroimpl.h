@@ -54,4 +54,6 @@ namespace Estro {
 	 *@ingorup Input
 	 */
 	void setCursorPosition(Vector2<int> position);
+
+	void playSound(Sound sound);
 }

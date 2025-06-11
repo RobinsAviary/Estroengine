@@ -9,6 +9,8 @@ I am a long-time GameMaker user (we're talking all the way back to days of 8.1).
 
 The goal with this project is to marry the rendering ideas of GameMaker, with the flexibility/speed of C++, and the Node tree structure from Godot.
 
+Another (slightly less strongly adhered-to) aspect of this engine is that it is able to be fully platform-agnostic.
+
 ### Building
 
 The current version of the repisitory includes a `CMakeLists.txt` (for [CMake](https://cmake.org/)) for building Estroengine (as a static library) as part of your project :)
@@ -24,6 +26,8 @@ Windows users can optionally use the batch utility scripts to help manage docume
 Estroengine currently supports two libraries as backends:
 - [raylib](https://www.raylib.com/) (Web, Windows, MacOS, Linux) [Planned]
 - [SFML](https://www.sfml-dev.org/) (Windows, MacOS, Linux) [Actively Developing]
+
+All code outside of Estroassets.h and Estroimpl.h is fully platform-agnostic.
 
 ### License
 

@@ -1,6 +1,7 @@
 #include "../include/Estroimpl.h"
 
 #include "SFML/Graphics.hpp"
+#include "SFML/Audio.hpp"
 #include "../include/Estrotypes.h"
 #include "../include/Estrocolors.h"
 #include "../include/Estroinput.h"
@@ -227,4 +228,9 @@ Vector2<int> getCursorPosition() {
 
 void setCursorPosition(Vector2<int> position) {
 	sf::Mouse::setPosition({position.x, position.y});
+}
+
+void playSound(Sound sound) {
+	sf::Sound _sound(sound.data);
+	_sound.play();
 }
