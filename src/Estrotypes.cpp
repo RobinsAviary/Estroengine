@@ -4,10 +4,10 @@
 
 using namespace Estro;
 
-/*template <typename T> template <typename newType>
-Vector2<typename newType> Vector2<T>::cast() {
-	return Vector2<newType>{static_cast<newType>(x), static_cast<newType>(y)};
-}*/
+template <typename T> template <typename newType>
+Vector2<newType> Vector2<T>::cast() {
+	return {static_cast<newType>(x), static_cast<newType>(y)};
+}
 
 TemplateType
 Vector2<T> Vector2<T>::operator+ (const Vector2<T>& rhs) {
