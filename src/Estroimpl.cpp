@@ -226,5 +226,5 @@ Vector2<int> getCursorPosition() {
 }
 
 void setCursorPosition(Vector2<int> position) {
-	sf::Mouse::setPosition(position.x, position.y);
+	sf::Mouse::setPosition({position.x, position.y});
 }
