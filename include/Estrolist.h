@@ -9,8 +9,6 @@
 
 // Due to a quirk in C++ builds system templated objects must be implemented in their header file.
 
-// Interface
-
 namespace Estro {
 	/*!@brief A basic list of any type. The size is dynamic.*/
 	TemplateType

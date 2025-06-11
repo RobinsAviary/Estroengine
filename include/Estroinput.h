@@ -91,8 +91,6 @@ namespace Estro {
             NumSeven,
             NumEight,
             NumNine,
-            NumDecimal,
-            NumEnter,
         };
     }
 
@@ -121,8 +119,4 @@ namespace Estro {
             RightStick
         };
     }
-
-    bool isKeyDown(Keys::Key key);
-    bool isKeyPressed(Keys::Key key);
-    bool isKeyReleased(Keys::Key key);
 }

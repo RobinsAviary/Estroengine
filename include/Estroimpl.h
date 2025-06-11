@@ -2,6 +2,7 @@
 #include "Estrotypes.h"
 #include "Estrocolors.h"
 #include "Estroassets.h"
+#include "Estroinput.h"
 #include <string>
 
 namespace Estro {
@@ -31,4 +32,8 @@ namespace Estro {
 	void drawClear(Color color);
 	//!@ingroup Graphics
 	void drawTexture(Vector2<float> position, const Texture &texture, Color color = Colors::White);
+
+	bool isKeyDown(Keys::Key key);
+	bool isKeyPressed(Keys::Key key);
+	bool isKeyReleased(Keys::Key key);
 }
