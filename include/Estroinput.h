@@ -1,7 +1,9 @@
 #pragma once
 
 namespace Estro {
+    /*!@ingroup Input*/
     namespace Keys {
+        /*!@ingroup Input*/
         enum Key {
             Q,
             W,
@@ -94,14 +96,18 @@ namespace Estro {
         };
     }
 
+    /*!@ingroup Input*/
     namespace Joysticks {
+        /*!@ingroup Input*/
         enum Joystick {
             Left,
             Right
         };
     }
 
+    /*!@ingroup Input*/
     namespace Buttons {
+        /*!@ingroup Input*/
         enum Button {
             A,
             B,

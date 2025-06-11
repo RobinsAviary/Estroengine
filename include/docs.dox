@@ -5,3 +5,5 @@ Heavily inspired by engines such as [Godot](https://godotengine.org/), [Source](
 */
 
 //!@defgroup Graphics
+
+//!@defgroup Input
