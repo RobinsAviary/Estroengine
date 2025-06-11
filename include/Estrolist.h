@@ -330,8 +330,10 @@ void List<T>::resize(unsigned int size) {
 }
 
 TemplateType
-void Grid<T>::clear() {
+void Grid<T>::clear(T defaultValue) {
 	list.clear();
+	Vector2<unsigned int> size = getSize();
+	list.resize(size.x * size.y, defaultValue);
 }
 
 TemplateType
@@ -341,23 +343,25 @@ T Grid<T>::at(Vector2<unsigned int> position) {
 
 TemplateType
 void Grid<T>::set(Vector2<unsigned int> position, T value) {
-
+	unsigned int index = positionToIndex(position);
+	list[index] = value;
 }
 
 TemplateType
-Grid<T>::Grid(Vector2<unsigned int> size, T defaultValue) {
-
+Grid<T>::Grid(Vector2<unsigned int> _size, T defaultValue) {
+	size = _size;
+	clear(defaultValue);
 }
 
 TemplateType
-Grid<T>::Vector2<unsigned int> getSize() {
-
+Vector2<unsigned int> Grid<T>::getSize() {
+	return size;
 }
 
 TemplateType
 void Grid<T>::setSize(Vector2<unsigned int> _size, T defaultValue) {
 	size = _size;
-	list.resize()
+	list.resize(size.x * size.y, defaultValue);
 }
 
 TemplateType
