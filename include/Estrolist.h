@@ -128,7 +128,7 @@ namespace Estro {
 			std::list<T> list;
 	};
 
-	/*!@brief A version of List that is able to be accessed in a 2D grid.
+	/*!@brief A version of List that can be accessed in a 2D grid.
 	*/
 	TemplateType
 	class Grid {
@@ -165,8 +165,8 @@ namespace Estro {
 using namespace Estro;
 
 TemplateType
-void List<T>::append(List<T> list) {
-	for (T item : list) {
+void List<T>::append(List<T> _list) {
+	for (T item : _list) {
 		add(item);
 	}
 }
