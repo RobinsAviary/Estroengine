@@ -18,7 +18,7 @@ The current version of the repisitory includes a `CMakeLists.txt` (for [CMake](h
 
 ## Learn
 
-This project also features generable documentation from [Doxygen](https://www.doxygen.nl/).
+This project also features HTML documentation you can build with [Doxygen](https://www.doxygen.nl/).
 
 ## Backends
 
