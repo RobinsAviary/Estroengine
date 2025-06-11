@@ -17,6 +17,8 @@ The current version of the repisitory includes a `CMakeLists.txt` (for [CMake](h
 
 This project also features HTML documentation you can build with [Doxygen](https://www.doxygen.nl/).
 
+Windows users can optionally use the batch utility scripts to help manage documentation.
+
 ### Backends
 
 Estroengine currently supports two libraries as backends:

@@ -76,5 +76,6 @@ namespace Estro {
 	};
 
 	template <typename T>
+	/*!@brief Checks if a given point is inside a rectangle.*/
 	void isPointInsideRectangle(Vector2<T> point, Rectangle<T> rectangle);
 }
