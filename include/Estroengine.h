@@ -125,6 +125,16 @@ namespace Estro {
 			List<std::string> _tags;
 	};
 
+	/*!@brief A basic Node with a 2D position.*/
+	class Node2D : public Node {
+		Vector2<float> position;
+	};
+
+	/*!@brief A basic Node with a 3D position.*/
+	class Node3D : public Node {
+		Vector3<float> position;
+	};
+
 	/*!@brief A basic Node to be able to manage the global program state.
 	 *
 	 *Always intended to be the root of the tree.

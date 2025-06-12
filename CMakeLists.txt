@@ -12,7 +12,6 @@ FetchContent_MakeAvailable(SFML)
 add_library(Estroengine
         src/Estrocolors.cpp
         src/Estroengine.cpp
-        src/Estrotypes.cpp
         src/backends/SFML/Estroimpl-SFML.cpp
         src/backends/SFML/Estroassets-SFML.cpp
         src/Estroinput.cpp
