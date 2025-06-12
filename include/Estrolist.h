@@ -84,7 +84,7 @@ namespace Estro {
 			/*!@brief Get the number of items in the list.
 			@return The number of items in the list.
 			*/
-			unsigned int size();
+			unsigned int getSize();
 
 			/*!@brief Get the number of times a given value appears in the list.
 			@return The number of times the given value appears in the list.
@@ -172,7 +172,7 @@ void List<T>::append(List<T> _list) {
 }
 
 TemplateType
-unsigned int List<T>::size() {
+unsigned int List<T>::getSize() {
 	return static_cast<int>(list.size());
 }
 
@@ -255,6 +255,7 @@ void List<T>::insert(unsigned int index, T value) {
 
 TemplateType
 T List<T>::at(unsigned int index) {
+	// Welcome to the 21st century!
 	return *next(list.begin(), index);
 }
 
@@ -337,8 +338,15 @@ void Grid<T>::clear(T defaultValue) {
 }
 
 TemplateType
+unsigned int Grid<T>::positionToIndex(Vector2<unsigned int> position) {
+	return (getSize().x * position.y) + position.x;
+}
+
+TemplateType
 T Grid<T>::at(Vector2<unsigned int> position) {
-	return list.at();
+	unsigned int index = positionToIndex(position);
+
+	return list.at(index);
 }
 
 TemplateType
@@ -362,9 +370,4 @@ TemplateType
 void Grid<T>::setSize(Vector2<unsigned int> _size, T defaultValue) {
 	size = _size;
 	list.resize(size.x * size.y, defaultValue);
-}
-
-TemplateType
-unsigned int Grid<T>::positionToIndex(Vector2<unsigned int> position) {
-	return (getSize().x * position.y) + position.x;
 }

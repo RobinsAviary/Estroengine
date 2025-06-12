@@ -180,15 +180,40 @@ void Estro::drawClear(Color color) {
 	window.clear(ColorToSFColor(color));
 }
 
-void Estro::drawTexture(Vector2<float> position, const Texture &texture, Color color) {
-	if (texture.isValid()) {
-		sf::Sprite sprite(texture.data);
+void Estro::drawTexture(const Texture &texture, Vector2<float> position, Color tint) {
+	if (!texture.isValid()) return;
 
-		sprite.setPosition(Vector2ToSFVector2(position));
-		sprite.setColor(ColorToSFColor(color));
+	sf::Sprite sprite(texture.data);
 
-		window.draw(sprite);
-	}
+	sprite.setPosition(Vector2ToSFVector2(position));
+	sprite.setColor(ColorToSFColor(tint));
+
+	window.draw(sprite);
+}
+
+void Estro::drawTextureSection(const Texture &texture, Vector2<float> position, Rectangle<int> section, Color tint) {
+	if (!texture.isValid()) return;
+
+	sf::Sprite sprite(texture.data);
+
+	sprite.setPosition(Vector2ToSFVector2(position));
+	sprite.setColor(ColorToSFColor(tint));
+	sprite.setTextureRect({{section.position.x, section.position.y},  {section.size.x, section.size.y}});
+
+	window.draw(sprite);
+}
+
+void Estro::drawTextureReproject(const Texture &texture, Vector2<float>position, Rectangle<int> source, Rectangle<float> target, Color tint) {
+	if (!texture.isValid()) return;
+
+	sf::Sprite sprite(texture.data);
+
+	sprite.setTextureRect({{source.position.x, source.position.y}, {source.size.x, source.size.y}});
+
+	sf::Vector2f scale = {target.position.x / static_cast<float>(source.position.x), target.position.y / static_cast<float>(source.position.y)};
+	sprite.setScale(scale);
+
+	window.draw(sprite);
 }
 
 bool Estro::isKeyDown(Keys::Key key) {

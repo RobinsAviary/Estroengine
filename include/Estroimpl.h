@@ -31,7 +31,11 @@ namespace Estro {
 	*/
 	void drawClear(Color color);
 	//!@ingroup Graphics
-	void drawTexture(Vector2<float> position, const Texture &texture, Color color = Colors::White);
+	void drawTexture(const Texture &texture, Vector2<float> position, Color tint);
+
+	void drawTextureSection(const Texture &texture, Vector2<float> position, Rectangle<int> section, Color tint);
+
+	void drawTextureReproject(const Texture &texture, Vector2<float>position, Rectangle<int> source, Rectangle<float> target, Color tint);
 
 	/*!@brief Check if a key is pressed down.
 	@ingroup Input

@@ -40,7 +40,7 @@ List<Node*> Estro::Node::getDescendants() {
 
 	List<Node*> unexploredNodes = getChildren();
 
-	while (unexploredNodes.size() > 0) {
+	while (unexploredNodes.getSize() > 0) {
 		Node* node = unexploredNodes.front();
 		unexploredNodes.popFront(); // Remove the first item
 		result.add(node); // Add to our resulting output
@@ -192,7 +192,7 @@ Node* Node::getSiblingTagged(const std::string &tag) {
 Node* Node::getDescendantTagged(const std::string &tag) {
 	List<Node*> unexploredNodes = getChildren();
 
-	while (unexploredNodes.size() > 0) {
+	while (unexploredNodes.getSize() > 0) {
 		Node* node = unexploredNodes.front();
 		unexploredNodes.popFront();
 
