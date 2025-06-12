@@ -9,11 +9,12 @@
 #include <map>
 
 sf::RenderWindow window;
+sf::RenderTarget* target = &window;
 
 Estro::List<sf::Keyboard::Key> pressedKeys;
 Estro::List<sf::Keyboard::Key> releasedKeys;
 
-sf::Keyboard::Key KeyToSFKey(Estro::Keys::Key key) {
+sf::Keyboard::Key KeyToSFKey(const Estro::Keys::Key key) {
     std::map<Estro::Keys::Key, sf::Keyboard::Key> map {
         {Estro::Keys::A, sf::Keyboard::Key::A},
         {Estro::Keys::Apostrophe, sf::Keyboard::Key::Apostrophe},
@@ -173,7 +174,7 @@ void Estro::drawLine(Vector2<float> startPosition, Vector2<float> endPosition, C
 		sf::Vertex{Vector2ToSFVector2(endPosition)}
 	};
 
-	window.draw(line.data(), line.size(), sf::PrimitiveType::Lines);
+	target->draw(line.data(), line.size(), sf::PrimitiveType::Lines);
 }
 
 void Estro::drawClear(Color color) {
@@ -188,7 +189,7 @@ void Estro::drawTexture(const Texture &texture, Vector2<float> position, Color t
 	sprite.setPosition(Vector2ToSFVector2(position));
 	sprite.setColor(ColorToSFColor(tint));
 
-	window.draw(sprite);
+	target->draw(sprite);
 }
 
 void Estro::drawTextureSection(const Texture &texture, Vector2<float> position, Rectangle<int> section, Color tint) {
@@ -200,23 +201,23 @@ void Estro::drawTextureSection(const Texture &texture, Vector2<float> position, 
 	sprite.setColor(ColorToSFColor(tint));
 	sprite.setTextureRect({{section.position.x, section.position.y},  {section.size.x, section.size.y}});
 
-	window.draw(sprite);
+	target->draw(sprite);
 }
 
-void Estro::drawTextureReproject(const Texture &texture, Vector2<float>position, Rectangle<int> source, Rectangle<float> target, Color tint) {
+void Estro::drawTextureReproject(const Texture &texture, Vector2<float>position, Rectangle<int> source, Rectangle<float> targetProjection, Color tint) {
 	if (!texture.isValid()) return;
 
 	sf::Sprite sprite(texture.data);
 
 	sprite.setTextureRect({{source.position.x, source.position.y}, {source.size.x, source.size.y}});
 
-	sf::Vector2f scale = {target.position.x / static_cast<float>(source.position.x), target.position.y / static_cast<float>(source.position.y)};
+	sf::Vector2f scale = {targetProjection.position.x / static_cast<float>(source.position.x), targetProjection.position.y / static_cast<float>(source.position.y)};
 	sprite.setScale(scale);
 
-	window.draw(sprite);
+	target->draw(sprite);
 }
 
-bool Estro::isKeyDown(Keys::Key key) {
+bool Estro::isKeyDown(const Keys::Key key) {
 	sf::Keyboard::Key _key = KeyToSFKey(key);
 
 	if (_key != sf::Keyboard::Key::Unknown) {
@@ -226,7 +227,7 @@ bool Estro::isKeyDown(Keys::Key key) {
 	return false;
 }
 
-bool Estro::isKeyPressed(Keys::Key key) {
+bool Estro::isKeyPressed(const Keys::Key key) {
 	sf::Keyboard::Key _key = KeyToSFKey(key);
 
 	if (_key != sf::Keyboard::Key::Unknown) {
@@ -236,7 +237,7 @@ bool Estro::isKeyPressed(Keys::Key key) {
 	return false;
 }
 
-bool Estro::isKeyReleased(Keys::Key key) {
+bool Estro::isKeyReleased(const Keys::Key key) {
 	sf::Keyboard::Key _key = KeyToSFKey(key);
 
 	if (_key != sf::Keyboard::Key::Unknown) {
@@ -255,7 +256,7 @@ void setCursorPosition(Vector2<int> position) {
 	sf::Mouse::setPosition({position.x, position.y});
 }
 
-void playSound(Sound sound) {
+void playSound(const Sound& sound) {
 	sf::Sound _sound(sound.data);
 	_sound.play();
 }
