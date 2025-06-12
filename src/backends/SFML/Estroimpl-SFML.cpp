@@ -1,11 +1,11 @@
-#include "../include/Estroimpl.h"
+#include "../../../include/Estroimpl.h"
 
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
-#include "../include/Estrotypes.h"
-#include "../include/Estrocolors.h"
-#include "../include/Estroinput.h"
-#include "../include/Estrolist.h"
+#include "../../../include/Estrotypes.h"
+#include "../../../include/Estrocolors.h"
+#include "../../../include/Estroinput.h"
+#include "../../../include/Estrolist.h"
 #include <map>
 
 sf::RenderWindow window;

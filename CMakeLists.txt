@@ -13,8 +13,8 @@ add_library(Estroengine
         src/Estrocolors.cpp
         src/Estroengine.cpp
         src/Estrotypes.cpp
-        src/Estroimpl.cpp
-        src/Estroassets.cpp
+        src/backends/SFML/Estroimpl-SFML.cpp
+        src/backends/SFML/Estroassets-SFML.cpp
         src/Estroinput.cpp
         src/Estroextras.cpp
         include/Estroassets.h
