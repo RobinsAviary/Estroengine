@@ -1,15 +1,13 @@
 #pragma once
-#include "Estrotypes.h"
-#include "Estrocolors.h"
-#include "Estroassets.h"
-#include "Estroinput.h"
 #include <string>
 
+#include "Estroassets.h"
+#include "Estrocolors.h"
+#include "Estroinput.h"
+#include "Estrotypes.h"
+#include "Estronodes.h"
+
 namespace Estro {
-	void beginStep();
-	void endStep();
-	void beginDraw();
-	void endDraw();
 	void init(unsigned int width, unsigned int height, std::string title);
 
 	bool isLooping();
@@ -55,9 +53,22 @@ namespace Estro {
 	 */
 	Vector2<int> getCursorPosition();
 	/*!@brief Set the position of the cursor on-screen.
-	 *@ingorup Input
+	 *@ingroup Input
 	 */
 	void setCursorPosition(Vector2<int> position);
 
 	void playSound(Sound sound);
+
+	void beginStep();
+	void endStep();
+	void beginDraw();
+	void endDraw();
+
+	class Sprite2D : public Node2D {
+		public:
+			void step() override;
+			void draw() override;
+
+			Texture texture;
+	};
 }

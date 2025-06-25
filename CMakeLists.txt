@@ -12,8 +12,8 @@ FetchContent_MakeAvailable(SFML)
 add_library(Estroengine
         src/Estrocolors.cpp
         src/Estroengine.cpp
-        src/backends/SFML/Estroimpl-SFML.cpp
-        src/backends/SFML/Estroassets-SFML.cpp
+        src/backends/SFML/Estroimpl.cpp
+        src/backends/SFML/Estroassets.cpp
         src/Estroinput.cpp
         src/Estroextras.cpp
         include/Estroassets.h
@@ -25,6 +25,31 @@ add_library(Estroengine
         include/Estroinput.h
         include/Estrolist.h
         include/Estrotypes.h
+        include/Estroframework.h
+        src/backends/SFML/Estroframework.cpp
+        include/Estronodes.h
+        src/Estronodes.cpp
+)
+
+function(add_git_dependency libName gitURL gitTag)
+    FetchContent_Declare(${libName}
+            GIT_REPOSITORY ${gitURL}
+            GIT_TAG        ${gitTag}
+            GIT_SHALLOW    TRUE
+            GIT_PROGRESS   TRUE
+    )
+    FetchContent_MakeAvailable(${libName})
+    target_compile_options(${libName} PRIVATE "-w")
+endfunction()
+
+set(BOX2D_BUILD_UNIT_TESTS OFF CACHE BOOL "" FORCE)
+set(BOX2D_BUILD_TESTBED OFF CACHE BOOL "" FORCE)
+add_git_dependency(
+        box2d
+        https://github.com/erincatto/box2d.git
+        v3.1.1
 )
 
 target_link_libraries(Estroengine PRIVATE SFML::Graphics SFML::Audio)
+
+target_link_libraries(Estroengine PRIVATE box2d)

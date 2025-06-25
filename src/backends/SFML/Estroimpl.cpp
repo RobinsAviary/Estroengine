@@ -260,3 +260,12 @@ void playSound(const Sound& sound) {
 	sf::Sound _sound(sound.data);
 	_sound.play();
 }
+
+void Sprite2D::step() {
+
+}
+
+
+void Sprite2D::draw() {
+	drawTexture(texture, position, Colors::White);
+}
