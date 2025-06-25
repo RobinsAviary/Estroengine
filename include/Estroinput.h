@@ -5,6 +5,8 @@ namespace Estro {
      */
     namespace Keys {
         /*!@ingroup Input
+         *@brief All the keys on the keyboard in an enum for use with input functions.
+         *@sa isKeyDown(), isKeyPressed(), isKeyReleased()
          */
         enum Key {
             Q,
@@ -98,7 +100,9 @@ namespace Estro {
         };
     }
 
-    /*!@ingroup Input*/
+    /*!@ingroup Input
+     * @brief An enum of the joysticks on a controller for use with input functions.
+     */
     namespace Joysticks {
         /*!@ingroup Input*/
         enum Joystick {
@@ -109,7 +113,9 @@ namespace Estro {
 
     /*!@ingroup Input*/
     namespace Buttons {
-        /*!@ingroup Input*/
+        /*!@ingroup Input
+         * @brief An enum of buttons for use with with input functions
+         */
         enum Button {
             A,
             B,

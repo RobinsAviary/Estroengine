@@ -37,14 +37,17 @@ namespace Estro {
 
 	/*!@brief Check if a key is pressed down.
 	@ingroup Input
+	@sa Keys::Key
 	*/
 	bool isKeyDown(Keys::Key key);
 	/*!@brief Check if a key was just pressed this frame.
 	@ingroup Input
+	@sa Keys::Key
 	*/
 	bool isKeyPressed(Keys::Key key);
 	/*!@brief Check if a key was just released this frame.
 	@ingroup Input
+	@sa Keys::Key
 	*/
 	bool isKeyReleased(Keys::Key key);
 
@@ -64,11 +67,31 @@ namespace Estro {
 	void beginDraw();
 	void endDraw();
 
+	/*!@brief A basic 2D node that contains and constantly renders a sprite.
+	 *@ingroup Graphics
+	 */
 	class Sprite2D : public Node2D {
 		public:
 			void step() override;
 			void draw() override;
 
+			/*!@brief Set the tint color of the sprite.
+			 */
+			void setTint(Color color);
+			/*!@brief Get the tint color of the sprite.
+			 */
+			Color getTint();
+
+			/*!@brief Set the position of the sprite relative to it's origin.
+			 */
+			void setPosition(Vector2<float> newPosition);
+			/*!@brief Get the position of the sprite relative to it's origin.
+			 */
+			Vector2<float> getPosition();
+
+
+			/*!@brief The texture used for this sprite.
+			 */
 			Texture texture;
 	};
 }

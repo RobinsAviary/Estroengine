@@ -24,8 +24,15 @@ namespace Estro {
 			void draw() override;
 			void update();
 
+			/*!
+			 * @brief Clean up all the accumulated garbage in memory.
+			 *
+			 * It is unlikely you will need to call this function directly, as it is done automatically every frame during the engine's update() function.
+			 */
+			void garbageCollect();
+
 		protected:
-			static void garbageCollect();
+
 
 		private:
 
