@@ -14,7 +14,7 @@ The goal with this project is to marry the rendering ideas of GameMaker, with th
 
 ## Building
 
-The current version of the repisitory includes a `CMakeLists.txt` (for [CMake](https://cmake.org/)) for building Estroengine (as a static library) as part of your project :)
+The current version of the repisitory includes a `CMakeLists.txt` (for [CMake](https://cmake.org/)) for building Estroengine (as a static library) as part of your project :) At the moment it does download/import [SFML](https://www.sfml-dev.org/) and [Box2D](https://box2d.org/) automatically for building.
 
 ## Learn
 
