@@ -269,3 +269,12 @@ void Sprite2D::step() {
 void Sprite2D::draw() {
 	drawTexture(texture, position, Colors::White);
 }
+
+void Sprite2D::setTint(const Color color) {
+	sprite.setColor(ColorToSFColor(color));
+}
+
+Color Sprite2D::getTint() {
+	sf::Color color = sprite.getColor();
+	return {color.r, color.g, color.b, color.a};
+}

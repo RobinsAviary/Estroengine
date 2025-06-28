@@ -84,6 +84,16 @@ namespace Estro {
 
 		return (horizontal && vertical);
 	}
+
+	class Transform {
+		Vector3<float> position;
+		Vector3<float> rotation;
+		Vector3<float> scale;
+	};
+
+	class Transformable {
+		Transform transform;
+	};
 }
 
 template <typename T> template <typename newType>

@@ -82,16 +82,11 @@ namespace Estro {
 			 */
 			Color getTint();
 
-			/*!@brief Set the position of the sprite relative to it's origin.
-			 */
-			void setPosition(Vector2<float> newPosition);
-			/*!@brief Get the position of the sprite relative to it's origin.
-			 */
-			Vector2<float> getPosition();
-
 
 			/*!@brief The texture used for this sprite.
 			 */
 			Texture texture;
+		private:
+			sf::Sprite sprite;
 	};
 }

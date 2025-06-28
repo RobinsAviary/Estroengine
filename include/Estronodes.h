@@ -129,7 +129,7 @@ namespace  Estro {
 	/*!@brief A basic Node with a 3D position.*/
 	class Node3D : public Node {
 	public:
-		Estro::Vector3<float> position;
+		Vector3<float> position;
 
 		void step() override {};
 		void draw() override {};
