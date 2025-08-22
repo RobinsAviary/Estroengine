@@ -2,7 +2,7 @@
 
 [![estroengine](https://robinsaviary.com/gifs/estroengine.gif)](https://blinkies.cafe/?s=0023-trans-pride)
 
-A **free** *and open source, portable, easy-to-use node-tree-based game engine* built in *C++20*.
+A **free** *and open source, 100% portable, easy-to-use node-tree-based game engine* built in *C++20*.
 
 Heavily inspired by engines such as [Godot](https://godotengine.org/), [Source](https://developer.valvesoftware.com/wiki/SDK_Docs), and [GameMaker](https://gamemaker.io/en).
 
@@ -19,6 +19,40 @@ The current version of the repisitory includes a `CMakeLists.txt` (for [CMake](h
 ## Learn
 
 This project also features HTML documentation you can build with [Doxygen](https://www.doxygen.nl/).
+
+## Example
+
+```
+#include <iostream>
+#include "Estroengine/include/Estroengine.h"
+
+using namespace Estro;
+
+Engine engine;
+
+class HelloNode : public Node {
+  public:
+    void step() override {
+      if (isKeyPressed(Keys::Space)) {
+        std::cout << "Hello, World!" << std::endl;
+      }
+    }
+};
+
+int main() {
+  engine.addNode<HelloNode>();
+
+  init(600, 400, "Estroengine")
+
+  while (isLooping()) {
+    engine.update();
+  }
+
+  engine.destroy();
+
+  return 0;
+}
+```
 
 ## Backends
 
