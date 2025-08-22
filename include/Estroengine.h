@@ -13,7 +13,6 @@ namespace Estro {
 	 * Derive this class to create your own Nodes to add to the engine.
 	 */
 
-
 	/*!@brief A basic Node to be able to manage the global program state.
 	 *
 	 *Always intended to be the root of the tree.

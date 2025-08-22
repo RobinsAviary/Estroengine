@@ -14,66 +14,76 @@ namespace Estro {
 	/*!@brief Checks if the gameloop still running.*/
 	bool isLooping();
 
-	/*!@brief Draws a colored rectangle to the screen.
-	@ingroup Graphics
-	*/
-	void drawRectangle(Vector2<float> position, Vector2<float> size, Color color = Colors::White);
-	/*!@brief Draws a colored line to the screen.
-	@ingroup Graphics
-	*/
-	void drawLine(Vector2<float> startPosition, Vector2<float> endPosition, Color color = Colors::White);
-	/*!@brief Draws a colored circle to the screen.
-	@ingroup Graphics
-	*/
-	void drawCircle(Vector2<float> position, float size, Color color = Colors::White);
-	/*!@brief Draws a single color across the entire screen.
-	@ingroup Graphics
-	*/
-	void drawClear(Color color = Colors::White);
-	/*!@brief  Draws a texture onscreen.
-	 *@ingroup Graphics
-	 */
-	void drawTexture(const Texture &texture, Vector2<float> position, Color tint = Colors::White);
+	namespace Graphics {
+		/*!@brief Draws a colored rectangle to the screen.
+		@ingroup Graphics
+		*/
+		void drawRectangle(Vector2<float> position, Vector2<float> size, Color color = Colors::White);
+		/*!@brief Draws a colored line to the screen.
+		@ingroup Graphics
+		*/
+		void drawLine(Vector2<float> startPosition, Vector2<float> endPosition, Color color = Colors::White);
+		/*!@brief Draws a colored circle to the screen.
+		@ingroup Graphics
+		*/
+		void drawCircle(Vector2<float> position, float size, Color color = Colors::White);
+		/*!@brief Draws a single color across the entire screen.
+		@ingroup Graphics
+		*/
+		void drawClear(Color color = Colors::White);
+		/*!@brief  Draws a texture onscreen.
+		 *@ingroup Graphics
+		 */
+		void drawTexture(const Texture &texture, Vector2<float> position, Color tint = Colors::White);
 
-	/*!@brief Draw part of a texture onscreen.
-	 *@ingroup  Graphics
-	 */
-	void drawTextureSection(const Texture &texture, Vector2<float> position, Rectangle<int> section, Color tint = Colors::White);
+		/*!@brief Draw part of a texture onscreen.
+		 *@ingroup  Graphics
+		 */
+		void drawTextureSection(const Texture &texture, Vector2<float> position, Rectangle<int> section, Color tint = Colors::White);
 
-	/*!@brief Draw part of a texture at a specific resolution onscreen.
-	 *@ingroup
-	 */
-	void drawTextureReproject(const Texture &texture, Vector2<float>position, Rectangle<int> source, Rectangle<float> target, Color tint = Colors::White);
+		/*!@brief Draw part of a texture at a specific resolution onscreen.
+		 *@ingroup
+		 */
+		void drawTextureReproject(const Texture &texture, Vector2<float>position, Rectangle<int> source, Rectangle<float> target, Color tint = Colors::White);
+	}
 
-	/*!@brief Check if a key is pressed down.
-	@ingroup Input
-	@sa Keys::Key
-	*/
-	bool isKeyDown(Keys::Key key);
-	/*!@brief Check if a key was just pressed this frame.
-	@ingroup Input
-	@sa Keys::Key
-	*/
-	bool isKeyPressed(Keys::Key key);
-	/*!@brief Check if a key was just released this frame.
-	@ingroup Input
-	@sa Keys::Key
-	*/
-	bool isKeyReleased(Keys::Key key);
+	namespace Input {
+		/*!@brief Check if a key is pressed down.
+		@ingroup Input
+		@sa Keys::Key
+		*/
+		bool isKeyDown(Keyboard::Keys::Key key);
 
-	/*!@brief Get the position of the cursor on-screen.
-	 *@ingroup Input
-	 */
-	Vector2<int> getCursorPosition();
-	/*!@brief Set the position of the cursor on-screen.
-	 *@ingroup Input
-	 */
-	void setCursorPosition(Vector2<int> position);
+		/*!@brief Check if a key was just pressed this frame.
+		@ingroup Input
+		@sa Keys::Key
+		*/
+		bool isKeyPressed(Keyboard::Keys::Key key);
 
-	/*!brief Play a sound.
-	 *@ingroup Audio
-	 */
-	void playSound(Sound sound);
+		/*!@brief Check if a key was just released this frame.
+		@ingroup Input
+		@sa Keys::Key
+		*/
+		bool isKeyReleased(Keyboard::Keys::Key key);
+
+		/*!@brief Get the position of the cursor on-screen.
+		 *@ingroup Input
+		 */
+		Vector2<int> getCursorPosition();
+
+		/*!@brief Set the position of the cursor on-screen.
+		 *@ingroup Input
+		 */
+		void setCursorPosition(Vector2<int> position);
+	}
+
+	namespace Audio {
+		/*!brief Play a sound.
+		 *@ingroup Audio
+		 */
+		void playSound(Sound sound);
+	}
+
 
 	void beginStep();
 	void endStep();
