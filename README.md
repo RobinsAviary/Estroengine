@@ -20,6 +20,40 @@ The current version of the repisitory includes a `CMakeLists.txt` (for [CMake](h
 
 This project also features HTML documentation you can build with [Doxygen](https://www.doxygen.nl/).
 
+## Example
+
+```
+#include <iostream>
+#include "Estroengine/include/Estroengine.h"
+
+using namespace Estro;
+
+Engine engine;
+
+class HelloNode : public Node {
+  public:
+    void step() override {
+      if (isKeyPressed(Keys::Space)) {
+        std::cout << "Hello, World!" << std::endl;
+      }
+    }
+};
+
+int main() {
+  engine.addNode<HelloNode>();
+
+  init(600, 400, "Estroengine")
+
+  while (isLooping()) {
+    engine.update();
+  }
+
+  engine.destroy();
+
+  return 0;
+}
+```
+
 ## Backends
 
 Estroengine currently supports two libraries as backends:
