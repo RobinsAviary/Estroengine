@@ -2,6 +2,7 @@
 
 namespace Estro {
 	/*!@brief A struct for colors.
+	 *@ingroup Colors
 	*/
 	struct Color {
 		//!Red value.
@@ -33,6 +34,7 @@ namespace Estro {
 		@param green Green.
 		@param blue Blue.
 		@sa rgba(), hsv(), hsva().
+		@ingroup Colors
 		*/
 		void rgb(unsigned char red = 0, unsigned char green = 0, unsigned char blue = 0);
 
@@ -42,6 +44,7 @@ namespace Estro {
 		@param blue Blue.
 		@param alpha Alpha.
 		@sa rgb(), hsv(), hsva().
+		@ingroup Colors
 		*/
 		void rgba(unsigned char red = 0, unsigned char green = 0, unsigned char blue = 0, unsigned char alpha = 255);
 
@@ -50,6 +53,7 @@ namespace Estro {
 		@param saturation Saturation.
 		@param value Value.
 		@sa rgb(), rgba(), hsva().
+		@ingroup Colors
 		*/
 		void hsv(unsigned int hue = 0, unsigned char saturation = 0, unsigned char value = 0);
 
@@ -63,26 +67,70 @@ namespace Estro {
 
 		/*!@brief Averages the base color with the supplied color.
 		@param color The color to mix in.
+		@ingroup Colors
 		*/
 		void mix(Color color);
 	};
 
-	//!Default colors.
+	/*!Default colors.
+	 *@ingroup Colors
+	 */
 	namespace Colors {
+		/*!
+		 *@ingroup Colors
+		 */
 		inline Color White = { 255, 255, 255, 255 };
+		/*!
+		 *@ingroup Colors
+		 */
 		inline Color Black = { 0, 0, 0, 255 };
+		/*!
+		 *@ingroup Colors
+		 */
 		inline Color Red = { 255, 0, 0, 255 };
+		/*!
+		 *@ingroup Colors
+		 */
 		inline Color Green = { 0, 255, 0, 255 };
+		/*!
+		 *@ingroup Colors
+		 */
 		inline Color Blue = { 0, 0, 255, 255 };
+		/*!
+		 *@ingroup Colors
+		 */
 		inline Color Gray = { 128, 128, 128, 255 };
+		/*!
+		 *@ingroup Colors
+		 */
 		inline Color DarkGray = { 48, 48, 48, 255 };
+		/*!
+		 *@ingroup Colors
+		 */
 		inline Color LightGray = { 192, 192, 192, 255 };
+		/*!
+		 *@ingroup Colors
+		 */
 		inline Color Pink = { 255, 0, 220, 255 };
+		/*!
+		 *@ingroup Colors
+		 */
 		inline Color Yellow = { 255, 216, 0, 255 };
+		/*!
+		 *@ingroup Colors
+		 */
 		inline Color Brown = { 84, 45, 19, 255 };
+		/*!
+		 *@ingroup Colors
+		 */
 		inline Color Purple = { 140, 0, 255, 255 };
+		/*!
+		 *@ingroup Colors
+		 */
 		inline Color HotPink = { 255, 0, 110, 255 };
-		//!@briefA basic light blue color.
+		/*!@brief A basic light blue color.
+		 *@ingroup Colors
+		 */
 		inline Color Estrogen = { 142, 236, 255, 255 };
 	}
 }

@@ -22,16 +22,19 @@ namespace Estro {
 
 			/*!@brief Adds a value to the list.
 			@param value The value to add.
+			@sa remove, insert, pushBack, pushFront, append
 			*/
 			void add(T value);
 
 			/*!@brief Removes all instances of a value from the list.
 			@param value The value to remove.
+			@sa add, erase, clear
 			*/
 			void remove(T value);
 
 			/*!@brief Removes a value from the list at a specific index.
 			@param index The index of the value to remove.
+			@sa remove, clear
 			*/
 			void erase(unsigned int index);
 
@@ -44,26 +47,31 @@ namespace Estro {
 			/*!@brief Inserts a value into the list at a given index.
 			@param index The index at which to insert the value.
 			@param value The value to insert.
+			@sa add, pushBack, pushFront, append
 			*/
 			void insert(unsigned int index, T value);
 
 			/*!@brief Adds a value to the end of the list.
 			@param value The value to add.
+			@sa add, insert, pushFront, append
 			*/
 			void pushBack(T value);
 
 			/*!@brief Adds a value to the beginning of the list.
 			@param value The value to add.
+			@sa add, insert, pushBack, append
 			*/
 			void pushFront(T value);
 
 			/*!@brief Appends a list to the end of another list.
 			@param _list The list to append to the other.
+			@sa add, insert, pushBack, pushFront
 			*/
 			void append(List<T> _list);
 			//void prepend(List<T> _list);
 
 			/*!@brief Clears the list of all values.
+			 *@sa remove, erase
 			*/
 			void clear();
 
@@ -95,26 +103,36 @@ namespace Estro {
 
 			typename std::list<T>::iterator end();
 
-			/*!@brief Remove the first item of the list.*/
+			/*!@brief Remove the first item of the list.
+			 * @sa popBack
+			 */
 			void popFront();
-			/*!@brief Remove the last item of the list.*/
+
+			/*!@brief Remove the last item of the list.
+			 * @sa popFront
+			 */
 			void popBack();
+
 			/*!@brief Get the first item of the list.
 			@return The first item of the list.
+			@sa front
 			*/
 			T front();
+
 			/*!@brief Get the last item of the list.
 			@return The last item of the list.
+			@sa back
 			*/
 			T back();
 
 			/*!@brief Set the item at a specific index.
-			@sa set().
+			@sa set
 			*/
 			T at(unsigned int index);
+
 			/*!@brief Get the item at a specific index.
 			@return The value at the specified index.
-			@sa at().
+			@sa at
 			*/
 			void set(unsigned int, T value);
 

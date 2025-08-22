@@ -8,32 +8,42 @@
 #include "Estronodes.h"
 
 namespace Estro {
+	/*!@brief Initialize the window for drawing.*/
 	void init(unsigned int width, unsigned int height, std::string title);
 
+	/*!@brief Checks if the gameloop still running.*/
 	bool isLooping();
 
 	/*!@brief Draws a colored rectangle to the screen.
 	@ingroup Graphics
 	*/
-	void drawRectangle(Vector2<float> position, Vector2<float> size, Color color);
+	void drawRectangle(Vector2<float> position, Vector2<float> size, Color color = Colors::White);
 	/*!@brief Draws a colored line to the screen.
 	@ingroup Graphics
 	*/
-	void drawLine(Vector2<float> startPosition, Vector2<float> endPosition, Color color);
+	void drawLine(Vector2<float> startPosition, Vector2<float> endPosition, Color color = Colors::White);
 	/*!@brief Draws a colored circle to the screen.
 	@ingroup Graphics
 	*/
-	void drawCircle(Vector2<float> position, float size, Color color);
+	void drawCircle(Vector2<float> position, float size, Color color = Colors::White);
 	/*!@brief Draws a single color across the entire screen.
 	@ingroup Graphics
 	*/
-	void drawClear(Color color);
-	//!@ingroup Graphics
-	void drawTexture(const Texture &texture, Vector2<float> position, Color tint);
+	void drawClear(Color color = Colors::White);
+	/*!@brief  Draws a texture onscreen.
+	 *@ingroup Graphics
+	 */
+	void drawTexture(const Texture &texture, Vector2<float> position, Color tint = Colors::White);
 
-	void drawTextureSection(const Texture &texture, Vector2<float> position, Rectangle<int> section, Color tint);
+	/*!@brief Draw part of a texture onscreen.
+	 *@ingroup  Graphics
+	 */
+	void drawTextureSection(const Texture &texture, Vector2<float> position, Rectangle<int> section, Color tint = Colors::White);
 
-	void drawTextureReproject(const Texture &texture, Vector2<float>position, Rectangle<int> source, Rectangle<float> target, Color tint);
+	/*!@brief Draw part of a texture at a specific resolution onscreen.
+	 *@ingroup
+	 */
+	void drawTextureReproject(const Texture &texture, Vector2<float>position, Rectangle<int> source, Rectangle<float> target, Color tint = Colors::White);
 
 	/*!@brief Check if a key is pressed down.
 	@ingroup Input
@@ -60,6 +70,9 @@ namespace Estro {
 	 */
 	void setCursorPosition(Vector2<int> position);
 
+	/*!brief Play a sound.
+	 *@ingroup Audio
+	 */
 	void playSound(Sound sound);
 
 	void beginStep();

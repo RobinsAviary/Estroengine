@@ -87,9 +87,15 @@ namespace  Estro {
 			 *Will not add the same tag more than once.
 			 */
 			void addTag(const std::string &tag);
-			/*!@brief Remove a tag from this node.*/
+
+			/*!@brief Remove a tag from this node.
+			 *
+			 */
 			void removeTag(const std::string &tag);
-			/*!@brief Check if this node has a specific tag*/
+
+			/*!@brief Check if this node has a specific tag
+			 * @return If the node has the tag.
+			 */
 			bool hasTag(const std::string &tag);
 			/*!@brief Get a list of all this Node's tags.*/
 			List<std::string> getTags();
