@@ -86,13 +86,31 @@ namespace Estro {
 	}
 
 	class Transform {
+
+	};
+
+	class Transform2D : public Transform {
+		Vector2<float> position;
+		Vector2<float> rotation;
+		Vector2<float> scale;
+	};
+
+	class Transform3D : public Transform {
 		Vector3<float> position;
 		Vector3<float> rotation;
 		Vector3<float> scale;
 	};
 
 	class Transformable {
-		Transform transform;
+
+	};
+
+	class Transformable2D : public Transformable {
+		Transform2D transform;
+	};
+
+	class Transformable3D : public Transformable {
+		Transform3D transform;
 	};
 }
 

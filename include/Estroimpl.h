@@ -66,27 +66,4 @@ namespace Estro {
 	void endStep();
 	void beginDraw();
 	void endDraw();
-
-	/*!@brief A basic 2D node that contains and constantly renders a sprite.
-	 *@ingroup Graphics
-	 */
-	class Sprite2D : public Node2D {
-		public:
-			void step() override;
-			void draw() override;
-
-			/*!@brief Set the tint color of the sprite.
-			 */
-			void setTint(Color color);
-			/*!@brief Get the tint color of the sprite.
-			 */
-			Color getTint();
-
-
-			/*!@brief The texture used for this sprite.
-			 */
-			Texture texture;
-		private:
-			sf::Sprite sprite;
-	};
 }

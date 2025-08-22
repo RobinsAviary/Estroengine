@@ -98,6 +98,7 @@ namespace  Estro {
 			template <typename nodeType>
 			nodeType* addNode() {
 				nodeType* node = new nodeType;
+				node->onCreate();
 				_children.add(node);
 
 				return node;
@@ -118,19 +119,15 @@ namespace  Estro {
 	};
 
 	/*!@brief A basic Node with a 2D position.*/
-	class Node2D : public Node {
+	class Node2D : public Node, Transformable2D {
 	public:
-		Vector2<float> position;
-
 		void step() override {};
 		void draw() override {};
 	};
 
 	/*!@brief A basic Node with a 3D position.*/
-	class Node3D : public Node {
+	class Node3D : public Node, Transformable3D {
 	public:
-		Vector3<float> position;
-
 		void step() override {};
 		void draw() override {};
 	};
